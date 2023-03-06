@@ -87,16 +87,16 @@ const Orders = () => {
           <div class="relative shadow-md sm:rounded-lg">
             <TableContainer class="w-full text-sm text-left text-gray-500">
               <Table>
-                <TableHead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <TableHead class="text-xs text-gray-700 uppercase ">
                   <TableRow>
                     <TableCell />
-                    <TableCell>Order ID</TableCell>
-                    <TableCell align="right">User name</TableCell>
+
+                    <TableCell align="left">User name</TableCell>
                     <TableCell align="right">Phone</TableCell>
                     <TableCell align="right">Order Status</TableCell>
                     <TableCell align="right">Issue Date</TableCell>
                     <TableCell align="right">Total Price</TableCell>
-                    <TableCell align="right">Grand Total Price</TableCell>
+                    <TableCell align="center">Grand Total</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>

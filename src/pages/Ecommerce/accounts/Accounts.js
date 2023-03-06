@@ -5,6 +5,9 @@ import { useQuery } from "react-query";
 import { useAuth } from "../../../context/auth";
 import AccountsAdd from "./AccountsAdd";
 import AccountsTable from "./AccountsTable";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Accounts = () => {
   const [showModal, setShowModal] = useState(false);
   const [deleteAccountId, setDeleteAccountId] = useState(false);
@@ -31,6 +34,9 @@ const Accounts = () => {
       enabled: !!token,
       onSuccess: () => {
         //  console.log(categoryData?.data?.data?.data[1]?.name?.amharic);
+        if (deleteAccountId == 1) {
+          toast.success("Delete Success");
+        }
         setDeleteAccountId(null);
       },
       onError: (res) => {
@@ -101,6 +107,7 @@ const Accounts = () => {
           </div>
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 };

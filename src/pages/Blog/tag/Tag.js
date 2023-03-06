@@ -5,6 +5,8 @@ import { useQuery } from "react-query";
 import { useAuth } from "../../../context/auth";
 import AddTag from "./AddTag";
 import TagTable from "./TagTable";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Tag = () => {
   const [showModal, setShowModal] = useState(false);
@@ -31,7 +33,9 @@ const Tag = () => {
       retry: false,
       enabled: !!token,
       onSuccess: () => {
-        //  console.log(categoryData?.data?.data?.data[1]?.name?.amharic);
+        if (deleteTagId == 1) {
+          toast.success("Delete Success");
+        }
         setDeleteTagId(null);
       },
       onError: (res) => {
@@ -100,6 +104,7 @@ const Tag = () => {
           </div>
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 };

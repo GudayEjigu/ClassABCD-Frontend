@@ -15,6 +15,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
 import { AiFillCaretDown } from "react-icons/ai";
+import { Card, CardActionArea, CardContent, CardMedia } from "@mui/material";
 
 export default function OrdersTable({ order }) {
   const [open, setOpen] = React.useState(false);
@@ -40,96 +41,129 @@ export default function OrdersTable({ order }) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell>{order.id}</TableCell>
-        <TableCell align="right">{order.user_id}</TableCell>
-        <TableCell align="right">Phone</TableCell>
+        <TableCell>{order.user.name}</TableCell>
+        <TableCell align="right">{order.user.phone}</TableCell>
         <TableCell align="right">{order.order_status}</TableCell>
         <TableCell align="right">{order.created_at}</TableCell>
         <TableCell align="right">{order.totalPrice}</TableCell>
-        <TableCell align="right">{order.grandTotalPrice}</TableCell>
+        <TableCell align="center">{order.grandTotalPrice}</TableCell>
       </TableRow>
       <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={10}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box>
-              <Typography variant="h6" component="div">
-                Order Items
-              </Typography>
-              <Table
-                className="bg-gray-100"
-                size="small"
-                aria-label="purchases"
-              >
-                <TableHead>
-                  <TableRow>
-                    <TableCell>#</TableCell>
-                    <TableCell>Order ID</TableCell>
-                    <TableCell>Product name</TableCell>
-                    <TableCell align="right">brand</TableCell>
-                    <TableCell align="right">Category </TableCell>
-                    <TableCell align="right">Date </TableCell>
-                    <TableCell align="right">Quantity </TableCell>
-
-                    <TableCell align="right">Price </TableCell>
-                    <TableCell align="right">Sum Price </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {order.order_items.map((item, id) => (
-                    <TableRow key={id}>
-                      <TableCell component="th" scope="row">
-                        {counter++}
-                      </TableCell>
-                      <TableCell component="th" scope="row">
-                        {item.order_id}
-                      </TableCell>
-                      <TableCell>{item.product?.name?.english}</TableCell>
-                      <TableCell align="right">
-                        {item?.product?.brand}
-                      </TableCell>
-                      <TableCell align="right">
-                        {item?.product?.category?.name?.english}
-                      </TableCell>
-                      <TableCell align="right">{item.created_at}</TableCell>
-                      <TableCell align="right">{item.quantity}</TableCell>
-                      <TableCell align="right">{item.price}</TableCell>
-                      <TableCell align="right">{item.sumPrice}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-              <div className="w-100vh flex justify-end ">
-                <div>
-                  <Button
-                    style={{
-                      color: "white",
-
-                      backgroundColor: "#636ab1",
-                      padding: "16px",
-                      margin: "2px",
-                    }}
-                    aria-controls={open1 ? "fade-menu" : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open1 ? "true" : undefined}
-                    onClick={handleClick}
+              <div className="flex flex-row">
+                <div className="flex flex-col">
+                  <Typography variant="h6" component="div">
+                    Order Items
+                  </Typography>
+                  <Table
+                    className="bg-gray-100"
+                    size="small"
+                    aria-label="purchases"
                   >
-                    Status
-                    <AiFillCaretDown className="ml-2" />
-                  </Button>
-                  <Menu
-                    id="fade-menu"
-                    MenuListProps={{
-                      "aria-labelledby": "fade-button",
-                    }}
-                    anchorEl={anchorEl}
-                    open={open1}
-                    onClose={handleClose}
-                    TransitionComponent={Fade}
-                  >
-                    <MenuItem onClick={handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
-                    <MenuItem onClick={handleClose}>Logout</MenuItem>
-                  </Menu>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>#</TableCell>
+                        <TableCell>Order ID</TableCell>
+                        <TableCell>Product name</TableCell>
+                        <TableCell align="right">brand</TableCell>
+                        <TableCell align="right">Category </TableCell>
+                        <TableCell align="right">Date </TableCell>
+                        <TableCell align="right">Quantity </TableCell>
+
+                        <TableCell align="right">Price </TableCell>
+                        <TableCell align="right">Sum Price </TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {order.order_items.map((item, id) => (
+                        <TableRow key={id}>
+                          <TableCell component="th" scope="row">
+                            {counter++}
+                          </TableCell>
+                          <TableCell component="th" scope="row">
+                            {item.order_id}
+                          </TableCell>
+                          <TableCell>{item.product?.name?.english}</TableCell>
+                          <TableCell align="right">
+                            {item?.product?.brand}
+                          </TableCell>
+                          <TableCell align="right">
+                            {item?.product?.category?.name?.english}
+                          </TableCell>
+                          <TableCell align="right">{item.created_at}</TableCell>
+                          <TableCell align="right">{item.quantity}</TableCell>
+                          <TableCell align="right">{item.price}</TableCell>
+                          <TableCell align="right">{item.sumPrice}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+
+                  <div className="w-100vh flex justify-end ">
+                    <div>
+                      <Button
+                        style={{
+                          color: "white",
+
+                          backgroundColor: "#636ab1",
+                          padding: "16px",
+                          margin: "2px",
+                        }}
+                        aria-controls={open1 ? "fade-menu" : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open1 ? "true" : undefined}
+                        onClick={handleClick}
+                      >
+                        Status
+                        <AiFillCaretDown className="ml-2" />
+                      </Button>
+                      <Menu
+                        id="fade-menu"
+                        MenuListProps={{
+                          "aria-labelledby": "fade-button",
+                        }}
+                        anchorEl={anchorEl}
+                        open={open1}
+                        onClose={handleClose}
+                        TransitionComponent={Fade}
+                      >
+                        <MenuItem onClick={handleClose}>Profile</MenuItem>
+                        <MenuItem onClick={handleClose}>My account</MenuItem>
+                        <MenuItem onClick={handleClose}>Logout</MenuItem>
+                      </Menu>
+                    </div>
+                  </div>
+                </div>
+                <div className="m-4 mt-6 ml-6 w-80">
+                  {" "}
+                  <Card>
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        height="140"
+                        width="50"
+                        image={order?.user?.user_image}
+                        alt="green iguana"
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="div">
+                          {order.user.name}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          email: {order.user.email}
+                          <br />
+                          phone: {order.user.phone}
+                          <br />
+                          role: {order.user.role.name}
+                          <br />
+                          status: {order.user.status}
+                          <br />
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
                 </div>
               </div>
             </Box>

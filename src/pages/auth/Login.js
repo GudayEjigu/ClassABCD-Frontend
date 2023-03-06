@@ -45,8 +45,8 @@ const Login = () => {
             console.log({ user: responseData?.data?.data });
             navigate("/dashboard");
 
-            toast.success("Success Notification !", {
-              position: toast.POSITION.TOP_CENTER,
+            toast.success("Login success!", {
+              position: toast.POSITION.TOP_RIGHT,
             });
           },
           onError: (err) => {

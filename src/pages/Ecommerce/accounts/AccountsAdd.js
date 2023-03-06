@@ -12,6 +12,7 @@ const AccountsAdd = ({ setShowModal }) => {
   const [amharicAccountName, setAmharicAccountName] = useState();
   const [accountNumber, setAccountNumber] = useState();
   const [paymentMethodId, setPaymentMethodId] = useState();
+  const [accountType, setAccountType] = useState();
 
   const { token, user } = useAuth();
   const headers = {
@@ -50,10 +51,11 @@ const AccountsAdd = ({ setShowModal }) => {
     try {
       addAccountMutation.mutate(
         {
-          nameEnglish: englishAccountName,
-          nameAmharic: amharicAccountName,
+          accountNameEnglish: englishAccountName,
+          accountNameAmharic: amharicAccountName,
           accountNumber: accountNumber,
-          payment_Method_id: paymentMethodId,
+          accountType: accountType,
+          payment_method_id: paymentMethodId,
         },
         {
           onSuccess: () => {
@@ -108,12 +110,14 @@ const AccountsAdd = ({ setShowModal }) => {
       englishName: "",
       amharicName: "",
       accountNumber: "",
+      accountType: "",
       paymentMethod: "",
     },
     validationSchema: Yup.object({
       englishName: Yup.string().required("English name is required"),
       amharicName: Yup.string().required("Amharic name is required"),
       accountNumber: Yup.string().required("Account number is required"),
+      accountType: Yup.string().required("account Type is required"),
       paymentMethod: Yup.string().required("Payment method is required"),
     }),
     onSubmit: (values) => {
@@ -198,6 +202,25 @@ const AccountsAdd = ({ setShowModal }) => {
                     formik.errors.accountNumber ? (
                       <div className="text-[13px] text-red-500">
                         {formik.errors.accountNumber}
+                      </div>
+                    ) : null}
+                  </div>
+
+                  <div>
+                    <label className="block text-black text-sm font-base mb-1">
+                      Account Type
+                    </label>
+                    <input
+                      name="accountType"
+                      className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
+                      onChange={(e) => {
+                        formik.handleChange(e);
+                        setAccountType(e.target.value);
+                      }}
+                    />
+                    {formik.touched.accountType && formik.errors.accountType ? (
+                      <div className="text-[13px] text-red-500">
+                        {formik.errors.accountType}
                       </div>
                     ) : null}
                   </div>

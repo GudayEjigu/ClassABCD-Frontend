@@ -54,12 +54,7 @@ const PaymentMethodsAdd = ({ setShowModal }) => {
         {
           onSuccess: () => {
             setShowModal(false);
-            toast.success("success", {
-              style: {
-                backgroundColor: "#22c55e",
-                color: "white",
-              },
-            });
+            toast.success("success");
             setShowModal(false);
           },
           onError: (err) => {
