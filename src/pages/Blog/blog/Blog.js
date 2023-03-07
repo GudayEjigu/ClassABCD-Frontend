@@ -5,6 +5,9 @@ import { useQuery } from "react-query";
 import { useAuth } from "../../../context/auth";
 import BlogAdd from "./BlogAdd";
 import BlogTable from "./BlogTable";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Blog = () => {
   const [showModal, setShowModal] = useState(false);
   const [deleteBlogId, setDeleteBlogId] = useState(false);
@@ -29,7 +32,10 @@ const Blog = () => {
       retry: false,
       enabled: !!token,
       onSuccess: () => {
-        //  console.log(categoryData?.data?.data?.data[1]?.name?.amharic);
+        if (deleteBlogId == 1) {
+          toast.success("Delete Success");
+        }
+        setDeleteBlogId(null);
       },
       onError: (res) => {
         if (res?.response?.status == 401) {
@@ -101,6 +107,7 @@ const Blog = () => {
           </div>
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 };

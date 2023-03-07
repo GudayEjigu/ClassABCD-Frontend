@@ -57,7 +57,7 @@ const BlogDelete = ({ blog, setShowDeleteModal, setDeleteBlogId }) => {
                 Are you sure you want to delete?
               </p>
               <br />
-              <p>{blog?.blog_name}</p>
+              <p>{blog?.title?.english}</p>
             </div>
             {/*footer*/}
             <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
