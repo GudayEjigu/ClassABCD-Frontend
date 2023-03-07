@@ -4,6 +4,8 @@ import { Bars } from "react-loader-spinner";
 import { useQuery } from "react-query";
 import { useAuth } from "../../../context/auth";
 import WeekAdd from "./WeekAdd";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import WeekTable from "./WeekTable";
 
 const Week = () => {
@@ -30,7 +32,10 @@ const Week = () => {
       retry: false,
       enabled: !!token,
       onSuccess: () => {
-        //  console.log(categoryData?.data?.data?.data[1]?.name?.amharic);
+        if (deleteWeekId == 1) {
+          toast.success("Delete Success");
+        }
+        setDeleteWeekId(null);
       },
       onError: (res) => {
         if (res?.response?.status == 401) {
@@ -100,6 +105,7 @@ const Week = () => {
           </div>
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 };

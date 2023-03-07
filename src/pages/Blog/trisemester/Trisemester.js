@@ -5,6 +5,8 @@ import { useQuery } from "react-query";
 import { useAuth } from "../../../context/auth";
 import AddTrisemester from "./AddTrisemester";
 import TrisemesterTable from "./TrisemesterTable";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Trisemester = () => {
   const { token, user } = useAuth();
@@ -37,7 +39,10 @@ const Trisemester = () => {
       retry: false,
       enabled: !!token,
       onSuccess: () => {
-        //  console.log(categoryData?.data?.data?.data[1]?.name?.amharic);
+        if (deleteTrisemesterId == 1) {
+          toast.success("Delete Success");
+        }
+        setDeleteTrisemesterId(null);
       },
       onError: (res) => {
         if (res?.response?.status == 401) {
@@ -109,6 +114,7 @@ const Trisemester = () => {
           </div>
         )}
       </div>
+      <ToastContainer />
     </>
   );
 };

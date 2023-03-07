@@ -80,7 +80,7 @@ const DeleteTrisemester = ({
               </p>
               <br />
               <p>ID:</p>
-              <p>{trisemester?.id}</p>
+              <p>{trisemester?.name?.english}</p>
             </div>
             {/*footer*/}
             <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">

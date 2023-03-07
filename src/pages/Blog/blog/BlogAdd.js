@@ -79,12 +79,7 @@ const BlogAdd = ({ setShowModal }) => {
       addBlogMutation.mutate(formData, {
         onSuccess: () => {
           setShowModal(false);
-          toast.success("success", {
-            style: {
-              backgroundColor: "#22c55e",
-              color: "white",
-            },
-          });
+          toast.success("success", {});
           setShowModal(false);
         },
         onError: (err) => {

@@ -67,10 +67,10 @@ const App = () => {
         <div className="" style={{ fontFamily: "Poppins" }}>
           <div className=" ">
             <div className=" bg-gray-200 flex flex-row h-[100vh] overflow-y-scroll ">
-              <div className=" w-1/6 shadow-sm  bg-white  ">
+              <div className=" w-[25%] shadow-sm  bg-white  ">
                 <SideBar />
               </div>
-              <div className="  w-5/6 ">
+              <div className="  w-[100%] ">
                 <div className=" rounded-lg ">
                   <div className="h-20  ml-8 mt-8 border-t mr-8  bg-white shadow-sm pb-4">
                     <NavBar />
