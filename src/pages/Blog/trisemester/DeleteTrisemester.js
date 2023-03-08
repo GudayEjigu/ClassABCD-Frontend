@@ -41,12 +41,6 @@ const DeleteTrisemester = ({
         {
           onSuccess: (responseData) => {
             setDeleteTrisemesterId(null);
-            toast({
-              title: "Category deleted successfully",
-              status: "success",
-              duration: 5000,
-              isClosable: true,
-            });
           },
           onError: (responseData) => {
             toast({

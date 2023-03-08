@@ -18,8 +18,8 @@ const AddTrisemester = ({ setShowModal }) => {
 
   const { token, user } = useAuth();
   const headers = {
-    "Content-Type": "application/json",
-    Accept: "application/json",
+    "Content-Type": "multipart/form-data",
+    Accept: "multipart/form-data",
     Authorization: `Bearer ${token}`,
   };
 

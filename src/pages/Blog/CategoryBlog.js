@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useAuth } from "../../context/auth";
 import { useMutation, useQuery } from "react-query";
 import axios from "axios";
-
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import { toast } from "react-toastify";
 import DeleteModal from "../../components/DeleteCategoryModal";
 import DeleteCategoryModal from "../../components/DeleteCategoryModal";
@@ -46,6 +47,10 @@ const CategoryBlog = () => {
       retry: false,
       enabled: !!token,
       onSuccess: () => {
+        if (deleteCategoryId == 1) {
+          toast.success("Delete Success");
+        }
+        setDeleteCategoryId(null);
         console.log(categoryData?.data?.data?.data[1]?.name?.amharic);
       },
       onError: (res) => {
@@ -101,13 +106,39 @@ const CategoryBlog = () => {
         },
         onError: (err) => {
           console.log({ err });
-          toast.error(err?.response?.data?.message ?? "category add failed");
+          toast.error(
+            err?.response?.data?.message ?? (
+              <p>English or Amharic name already exists.</p>
+            )
+          );
         },
       });
     } catch (err) {
       console.log(err);
     }
   };
+
+  const formik = useFormik({
+    initialValues: {
+      englishName: "",
+      amharicName: "",
+      type: "",
+      images: "",
+    },
+    validationSchema: Yup.object({
+      englishName: Yup.string().required("EnglishName is required"),
+      amharicName: Yup.string().required("Amharic Name is required"),
+      type: Yup.number()
+        .min(1)
+        .max(3)
+        .required("type is required and must be between 0 and 4"),
+      images: Yup.string().required("image is required"),
+    }),
+    onSubmit: (values) => {
+      addCategoryHandler();
+      setCategoryDatas();
+    },
+  });
 
   return (
     <>
@@ -129,50 +160,76 @@ const CategoryBlog = () => {
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
               {/*content*/}
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                {/*header*/}
-                <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                  <h3 className="text-3xl font-semibold">Add Blog Category</h3>
-                  <button
-                    className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                    onClick={() => setShowModal(false)}
-                  >
-                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                      ×
-                    </span>
-                  </button>
-                </div>
-                {/*body*/}
-                <div className="relative p-6 flex-auto">
-                  <form className=" px-8 pt-6 pb-8 w-full">
+              <form
+                className=" px-8 pt-6 pb-8 w-full"
+                onSubmit={formik.handleSubmit}
+              >
+                <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                  {/*header*/}
+                  <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+                    <h3 className="text-3xl font-semibold">
+                      Add Blog Category
+                    </h3>
+                    <button
+                      className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                      onClick={() => setShowModal(false)}
+                    >
+                      <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                        ×
+                      </span>
+                    </button>
+                  </div>
+                  {/*body*/}
+                  <div className="relative p-6 flex-auto">
                     <label className="block text-black text-sm font-base mb-1">
                       English Name
                     </label>
                     <input
+                      id="englishName"
                       className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
                       onChange={(e) => {
+                        formik.handleChange(e);
                         setEnglishName(e.target.value);
                       }}
                     />
+                    {formik.touched.englishName && formik.errors.englishName ? (
+                      <div className="text-[13px] font-medium capitalize text-red-500">
+                        {formik.errors.englishName}{" "}
+                      </div>
+                    ) : null}
                     <label className="block text-black text-sm font-base mb-1">
                       Amharic Name
                     </label>
                     <input
+                      id="amharicName"
                       className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
                       onChange={(e) => {
+                        formik.handleChange(e);
                         setAmharicName(e.target.value);
                       }}
                     />
+                    {formik.touched.amharicName && formik.errors.amharicName ? (
+                      <div className="text-[13px] font-medium capitalize text-red-500">
+                        {formik.errors.amharicName}
+                      </div>
+                    ) : null}
                     <label className="block text-black text-sm font-base mb-1">
                       Type
                     </label>
                     <input
+                      id="type"
                       type="number"
                       className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
                       onChange={(e) => {
+                        formik.handleChange(e);
                         setType(e.target.value);
                       }}
                     />
+                    {formik.touched.type && formik.errors.type ? (
+                      <div className="text-[13px] font-medium capitalize text-red-500">
+                        {formik.errors.type}{" "}
+                      </div>
+                    ) : null}
                     <label
                       class="block mb-2 text-sm font-medium text-gray-900"
                       for="file_input"
@@ -180,45 +237,45 @@ const CategoryBlog = () => {
                       Category Image file
                     </label>
                     <input
-                      required
+                      id="images"
                       class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50"
                       aria-describedby="file_input_help"
-                      id="file_input"
                       onChange={(e) => {
+                        formik.handleChange(e);
                         setCategoryImage(e.target.files[0]);
                       }}
                       type="file"
                     />
+                    {formik.touched.images && formik.errors.images ? (
+                      <div className="text-[13px] font-medium capitalize text-red-500">
+                        {formik.errors.images}{" "}
+                      </div>
+                    ) : null}
                     <p class="mt-1 text-sm text-gray-500 " id="file_input_help">
                       SVG, PNG, JPG or GIF (MAX. 800x400px).
                     </p>
-                  </form>
+                  </div>
+                  {/*footer*/}
+                  <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                    <button
+                      className="text-gray-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      type="button"
+                      onClick={() => setShowModal(false)}
+                    >
+                      Close
+                    </button>
+                    <button
+                      disabled={addCategoryMutation.isLoading}
+                      className="bg-[#636ab1] text-white active:bg-[#636ab1] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      type="submit"
+                    >
+                      {addCategoryMutation.isLoading
+                        ? "saving.."
+                        : "Save Changes"}
+                    </button>
+                  </div>
                 </div>
-                {/*footer*/}
-                <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
-                  <button
-                    className="text-gray-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="button"
-                    onClick={() => setShowModal(false)}
-                  >
-                    Close
-                  </button>
-                  <button
-                    disabled={addCategoryMutation.isLoading}
-                    className="bg-[#636ab1] text-white active:bg-[#636ab1] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="button"
-                    onClick={() => {
-                      addCategoryHandler();
-                      setCategoryDatas();
-                      // window.location.reload(false);
-                    }}
-                  >
-                    {addCategoryMutation.isLoading
-                      ? "saving.."
-                      : "Save Changes"}
-                  </button>
-                </div>
-              </div>
+              </form>
             </div>
           </div>
           <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
