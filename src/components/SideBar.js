@@ -392,22 +392,6 @@ const SideBar = () => {
                   <div className="bg-gray-50 ">
                     <li>
                       <NavLink
-                        to="/appointment"
-                        className={({ isActive }) => [
-                          "flex items-center pl-6  pt-1 pb-1 text-xs font-normal rounded-sm   ",
-                          isActive
-                            ? " bg-[#636ab1] pt-1 pb-1 mt-1 mb-1 text-white text-lg hover:text-gray-200"
-                            : "text-gray-900  hover:bg-gray-200 hover:text-[#636ab1] ",
-                        ]}
-                      >
-                        Appointment{" "}
-                      </NavLink>
-                    </li>
-                  </div>
-
-                  <div className="bg-gray-50 ">
-                    <li>
-                      <NavLink
                         to="/exercises"
                         className={({ isActive }) => [
                           "flex items-center pl-6  pt-1 pb-1 text-xs font-normal rounded-sm   ",
@@ -417,6 +401,139 @@ const SideBar = () => {
                         ]}
                       >
                         Exercises
+                      </NavLink>
+                    </li>
+                  </div>
+                  <div className="bg-gray-50 ">
+                    <li>
+                      <NavLink
+                        to="/mood-icons"
+                        className={({ isActive }) => [
+                          "flex items-center pl-6  pt-1 pb-1 text-xs font-normal rounded-sm   ",
+                          isActive
+                            ? " bg-[#636ab1] pt-1 pb-1 mt-1 mb-1 text-white text-lg hover:text-gray-200"
+                            : "text-gray-900  hover:bg-gray-200 hover:text-[#636ab1] ",
+                        ]}
+                      >
+                        Mood - Icons{" "}
+                      </NavLink>
+                    </li>
+                  </div>
+                  <div className="bg-gray-50 ">
+                    <li>
+                      <NavLink
+                        to="/locations"
+                        className={({ isActive }) => [
+                          "flex items-center pl-6  pt-1 pb-1 text-xs font-normal rounded-sm   ",
+                          isActive
+                            ? " bg-[#636ab1] pt-1 pb-1 mt-1 mb-1 text-white text-lg hover:text-gray-200"
+                            : "text-gray-900  hover:bg-gray-200 hover:text-[#636ab1] ",
+                        ]}
+                      >
+                        Locations{" "}
+                      </NavLink>
+                    </li>
+                  </div>
+                  <div className="bg-gray-50 ">
+                    <li>
+                      <NavLink
+                        to="/hobby-icons"
+                        className={({ isActive }) => [
+                          "flex items-center pl-6  pt-1 pb-1 text-xs font-normal rounded-sm   ",
+                          isActive
+                            ? " bg-[#636ab1] pt-1 pb-1 mt-1 mb-1 text-white text-lg hover:text-gray-200"
+                            : "text-gray-900  hover:bg-gray-200 hover:text-[#636ab1] ",
+                        ]}
+                      >
+                        Hobby Icons{" "}
+                      </NavLink>
+                    </li>
+                  </div>
+                  <div className="bg-gray-50 ">
+                    <li>
+                      <NavLink
+                        to="/weather-icons"
+                        className={({ isActive }) => [
+                          "flex items-center pl-6  pt-1 pb-1 text-xs font-normal rounded-sm   ",
+                          isActive
+                            ? " bg-[#636ab1] pt-1 pb-1 mt-1 mb-1 text-white text-lg hover:text-gray-200"
+                            : "text-gray-900  hover:bg-gray-200 hover:text-[#636ab1] ",
+                        ]}
+                      >
+                        Weather - Icons{" "}
+                      </NavLink>
+                    </li>
+                  </div>
+                  <div className="bg-gray-50 ">
+                    <li>
+                      <NavLink
+                        to="/social-icons"
+                        className={({ isActive }) => [
+                          "flex items-center pl-6  pt-1 pb-1 text-xs font-normal rounded-sm   ",
+                          isActive
+                            ? " bg-[#636ab1] pt-1 pb-1 mt-1 mb-1 text-white text-lg hover:text-gray-200"
+                            : "text-gray-900  hover:bg-gray-200 hover:text-[#636ab1] ",
+                        ]}
+                      >
+                        Social - Icons{" "}
+                      </NavLink>
+                    </li>
+                  </div>
+                </AccordionBody>
+              </Accordion>
+              <Accordion open={open === 7}>
+                <AccordionHeader onClick={() => handleOpen(7)}>
+                  <li>
+                    <div class="flex items-center  pl-2 text-sm font-normal text-gray-900 rounded-lg hover:text-[#636ab1] active:text-[#636ab1] ">
+                      <FaTools className="mr-2 text-xl" />
+                      Expert
+                    </div>
+                  </li>
+                </AccordionHeader>
+                <AccordionBody>
+                  <div className="bg-gray-50 ">
+                    <li>
+                      <NavLink
+                        to="/speciality"
+                        className={({ isActive }) => [
+                          "flex items-center pl-6  pt-1 pb-1 text-xs font-normal rounded-sm   ",
+                          isActive
+                            ? " bg-[#636ab1] pt-1 pb-1 mt-1 mb-1 text-white text-lg hover:text-gray-200"
+                            : "text-gray-900  hover:bg-gray-200 hover:text-[#636ab1] ",
+                        ]}
+                      >
+                        Speciality{" "}
+                      </NavLink>
+                    </li>
+                  </div>
+
+                  <div className="bg-gray-50 ">
+                    <li>
+                      <NavLink
+                        to="/manage-expert"
+                        className={({ isActive }) => [
+                          "flex items-center pl-6  pt-1 pb-1 text-xs font-normal rounded-sm   ",
+                          isActive
+                            ? " bg-[#636ab1] pt-1 pb-1 mt-1 mb-1 text-white text-lg hover:text-gray-200"
+                            : "text-gray-900  hover:bg-gray-200 hover:text-[#636ab1] ",
+                        ]}
+                      >
+                        Manage Expert
+                      </NavLink>
+                    </li>
+                  </div>
+                  <div className="bg-gray-50 ">
+                    <li>
+                      <NavLink
+                        to="/appointment"
+                        className={({ isActive }) => [
+                          "flex items-center pl-6  pt-1 pb-1 text-xs font-normal rounded-sm   ",
+                          isActive
+                            ? " bg-[#636ab1] pt-1 pb-1 mt-1 mb-1 text-white text-lg hover:text-gray-200"
+                            : "text-gray-900  hover:bg-gray-200 hover:text-[#636ab1] ",
+                        ]}
+                      >
+                        Appointment
                       </NavLink>
                     </li>
                   </div>

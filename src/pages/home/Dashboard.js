@@ -1,123 +1,157 @@
-import React, { useState, Component } from "react";
-import axios from "axios";
+import * as React from "react";
+import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import MuiDrawer from "@mui/material/Drawer";
+import Box from "@mui/material/Box";
+import MuiAppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import List from "@mui/material/List";
+import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import Badge from "@mui/material/Badge";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import Link from "@mui/material/Link";
+import MenuIcon from "@mui/icons-material/Menu";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import Chart from "./Chart";
+import Deposits from "./Deposits";
+import Orders from "./Orders";
 
-import { Bars } from "react-loader-spinner";
-import { useQuery } from "react-query";
-import Select from "react-select";
-import { useAuth } from "../../context/auth";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-const myDefault = [{ id: 0, name: "select an option" }];
-
-function Dashboard() {
-  const [selectedOptions, setSelectedOptions] = useState(null);
-  const [showModal, setShowModal] = useState(false);
-  const [deleteBlogId, setDeleteBlogId] = useState(false);
-  const [editBlogId, setEditBlogId] = useState(false);
-  const [editBloId, setEditBloId] = useState(false);
-  const { token, user } = useAuth();
-  const headers = {
-    "Content-Type": "application/json",
-    Accept: "application/json",
-    Authorization: `Bearer ${token}`,
-  };
-
-  const BlogData = useQuery(
-    ["BlogDataApi", showModal, deleteBlogId, editBlogId, editBloId],
-    async () =>
-      await axios.get(`${process.env.REACT_APP_BACKEND_URL}admin/blogs`, {
-        headers,
-      }),
-    {
-      keepPreviousData: true,
-      refetchOnWindowFocus: false,
-      retry: false,
-      enabled: !!token,
-      onSuccess: () => {
-        //  console.log(categoryData?.data?.data?.data[1]?.name?.amharic);
-      },
-      onError: (res) => {
-        if (res?.response?.status == 401) {
-          console.log(res.message);
-        }
-      },
-    }
-  );
-
-  const setHandle = (e) => {
-    setSelectedOptions(Array.isArray(e) ? e.map((hotel) => hotel.label) : []);
-  };
-
-  let tempObj = [];
-
-  BlogData?.data?.data?.data?.map((item) => {
-    tempObj.push({ id: item.id, name: item.title.english });
-  });
-  const options = [
-    ...tempObj,
-    { id: 2, name: "Ilaa Beach Maldives" },
-    { id: 3, name: "Finolhu" },
-    { id: 4, name: "Arena" },
-    { id: 5, name: "Kaani Beach Hotel" },
-  ];
-
-  const notify = () => {
-    toast("Default Notification !");
-
-    toast.success("Success Notification !", {
-      position: toast.POSITION.TOP_CENTER,
-    });
-
-    toast.error("Error Notification !", {
-      position: toast.POSITION.TOP_LEFT,
-    });
-
-    toast.warn("Warning Notification !", {
-      position: toast.POSITION.BOTTOM_LEFT,
-    });
-
-    toast.info("Info Notification !", {
-      position: toast.POSITION.BOTTOM_CENTER,
-    });
-
-    toast("Custom Style Notification with css class!", {
-      position: toast.POSITION.BOTTOM_RIGHT,
-      className: "foo-bar",
-    });
-  };
-
+function Copyright(props) {
   return (
-    <div className="mx-auto container py-8">
-      <h1 className="text-sm">Select Hotels</h1>
-      <div className="flex flex-wrap items-center lg:justify-between justify-center">
-        <div className=" px-2	">
-          {" "}
-          <button onClick={notify} className="text-red-500">
-            Notify
-          </button>
-          <Select
-            isMulti={true}
-            styles={{
-              menuPortal: (base) => ({
-                zIndex: 999999,
-              }),
-            }}
-            getOptionLabel={(option) => option.name}
-            getOptionValue={(option) => option.id}
-            defaultValue={myDefault}
-            options={options}
-            onChange={(newSelection) => {
-              console.log({ newSelection });
-            }}
-          />
-        </div>
-        <div>{selectedOptions}</div>
-      </div>
-      ;
-      <ToastContainer />
-    </div>
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
+      {"Copyright © "}
+      <Link color="inherit" href="https://mui.com/">
+        Your Website
+      </Link>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
   );
 }
 
-export default Dashboard;
+const drawerWidth = 240;
+
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ theme, open }) => ({
+  zIndex: theme.zIndex.drawer + 1,
+  transition: theme.transitions.create(["width", "margin"], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(["width", "margin"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
+}));
+
+const Drawer = styled(MuiDrawer, {
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ theme, open }) => ({
+  "& .MuiDrawer-paper": {
+    position: "relative",
+    whiteSpace: "nowrap",
+    width: drawerWidth,
+    transition: theme.transitions.create("width", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    boxSizing: "border-box",
+    ...(!open && {
+      overflowX: "hidden",
+      transition: theme.transitions.create("width", {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      width: theme.spacing(7),
+      [theme.breakpoints.up("sm")]: {
+        width: theme.spacing(9),
+      },
+    }),
+  },
+}));
+
+const mdTheme = createTheme();
+
+function DashboardContent() {
+  const [open, setOpen] = React.useState(true);
+  const toggleDrawer = () => {
+    setOpen(!open);
+  };
+
+  return (
+    <ThemeProvider theme={mdTheme}>
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
+        <Box
+          component="main"
+          sx={{
+            backgroundColor: (theme) =>
+              theme.palette.mode === "light"
+                ? theme.palette.grey[100]
+                : theme.palette.grey[900],
+            flexGrow: 1,
+            height: "100vh",
+            overflow: "auto",
+          }}
+        >
+          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+            <Grid container spacing={3}>
+              {/* Chart */}
+              <Grid item xs={12} md={8} lg={9}>
+                <Paper
+                  sx={{
+                    p: 2,
+                    display: "flex",
+                    flexDirection: "column",
+                    height: 240,
+                  }}
+                >
+                  <Chart />
+                </Paper>
+              </Grid>
+              {/* Recent Deposits */}
+              <Grid item xs={12} md={4} lg={3}>
+                <Paper
+                  sx={{
+                    p: 2,
+                    display: "flex",
+                    flexDirection: "column",
+                    height: 240,
+                  }}
+                >
+                  <Deposits />
+                </Paper>
+              </Grid>
+              {/* Recent Orders */}
+              <Grid item xs={12}>
+                <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+                  <Orders />
+                </Paper>
+              </Grid>
+            </Grid>
+            <Copyright sx={{ pt: 4 }} />
+          </Container>
+        </Box>
+      </Box>
+    </ThemeProvider>
+  );
+}
+
+export default function Dashboard() {
+  return <DashboardContent />;
+}

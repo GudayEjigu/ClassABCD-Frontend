@@ -75,7 +75,7 @@ const AddTag = ({ setShowModal }) => {
       amharicName: "",
     },
     validationSchema: Yup.object({
-      englishName: Yup.string().required("EnglishName is required"),
+      englishName: Yup.string().required("English Name is required"),
       amharicName: Yup.string().required("Amharic Name is required"),
     }),
     onSubmit: (values) => {

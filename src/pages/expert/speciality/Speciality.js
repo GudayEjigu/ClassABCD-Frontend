@@ -3,30 +3,34 @@ import React, { useState } from "react";
 import { Bars } from "react-loader-spinner";
 import { useQuery } from "react-query";
 import { useAuth } from "../../../context/auth";
-import GroupAdd from "./GroupAdd";
+import AddSpeciality from "./AddSpeciality";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import GroupTable from "./GroupTable";
+import SpecialityTable from "./SpecialityTable";
 
-const Group = () => {
+const Speciality = () => {
   const [showModal, setShowModal] = useState(false);
-  const [deleteGroupId, setDeleteGroupId] = useState(false);
-  const [editGroupId, setEditGroupId] = useState(false);
-
-  const [viewGroupId, setViewGroupId] = useState(false);
-  const [editGroId, setEditGroId] = useState(false);
-
+  const [deleteSpecialityId, setDeleteSpecialityId] = useState(false);
+  const [editSpecialityId, setEditSpecialityId] = useState(false);
+  const [editSpecId, setEditSpecId] = useState(false);
   const { token, user } = useAuth();
+
   const headers = {
     "Content-Type": "application/json",
     Accept: "application/json",
     Authorization: `Bearer ${token}`,
   };
 
-  const GroupData = useQuery(
-    ["GroupDataApi", showModal, deleteGroupId, editGroupId, editGroId],
+  const SpecialityData = useQuery(
+    [
+      "SpecialityDataApi",
+      showModal,
+      deleteSpecialityId,
+      editSpecialityId,
+      editSpecId,
+    ],
     async () =>
-      await axios.get(`${process.env.REACT_APP_BACKEND_URL}admin/groups`, {
+      await axios.get(`${process.env.REACT_APP_BACKEND_URL}admin/specaility`, {
         headers,
       }),
     {
@@ -35,11 +39,10 @@ const Group = () => {
       retry: false,
       enabled: !!token,
       onSuccess: () => {
-        //  console.log(categoryData?.data?.data?.data[1]?.name?.amharic);
-        if (deleteGroupId == 1) {
+        if (deleteSpecialityId == 1) {
           toast.success("Delete Success");
         }
-        setDeleteGroupId(null);
+        setDeleteSpecialityId(null);
       },
       onError: (res) => {
         if (res?.response?.status == 401) {
@@ -48,26 +51,27 @@ const Group = () => {
       },
     }
   );
+
   return (
     <div>
       <h2 class="mb-4 ml-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl">
-        Group
+        Speciality
       </h2>
       {/* modal */}
       <div className="flex justify-end p-2">
         <button
-          className=" block    text-white bg-[#636ab1] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm px-10 py-2.5 text-center"
+          className=" block text-white bg-[#636ab1] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm px-10  py-2.5 text-center"
           type="button"
           onClick={() => setShowModal(true)}
         >
-          Add Group
+          Add Speciality
         </button>
       </div>
-      {showModal ? <GroupAdd setShowModal={setShowModal} /> : null}
-      {GroupData.error ? (
+      {showModal ? <AddSpeciality setShowModal={setShowModal} /> : null}
+      {SpecialityData.error ? (
         <div className="text-red-700 text-4xl">Error!</div>
       ) : null}
-      {GroupData.isLoading ? (
+      {SpecialityData.isLoading ? (
         <div className="h-44 flex items-center justify-center min-h-0">
           <Bars
             height="40"
@@ -85,20 +89,19 @@ const Group = () => {
             <table class="w-full text-sm text-left text-gray-500">
               <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
-                  <th class="px-6 py-3">Group Name</th>
+                  <th class="px-6 py-3">Specialit</th>
 
-                  <th class="px-6 py-3 mr-8 flex justify-end">Actions</th>
+                  <th class="px-6 py-3 mr-16 flex justify-end">Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {GroupData?.data?.data?.data.map((group, id) => (
-                  <GroupTable
-                    group={group}
+                {SpecialityData?.data?.data?.data.map((speciality, id) => (
+                  <SpecialityTable
+                    speciality={speciality}
                     id={id}
-                    setDeleteGroupId={setDeleteGroupId}
-                    setEditGroupId={setEditGroupId}
-                    setEditGroId={setEditGroId}
-                    setViewGroupId={setViewGroupId}
+                    setDeleteSpecialityId={setDeleteSpecialityId}
+                    setEditSpecialityId={setEditSpecialityId}
+                    setEditSpecId={setEditSpecId}
                   />
                 ))}
               </tbody>
@@ -111,4 +114,4 @@ const Group = () => {
   );
 };
 
-export default Group;
+export default Speciality;

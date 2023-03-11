@@ -1,35 +1,21 @@
 import React, { useState } from "react";
 import { RiDeleteBin2Fill, RiEdit2Fill } from "react-icons/ri";
-import AccountsDelete from "./AccountsDelete";
-import AccountsEdit from "./AccountsEdit";
-const AccountsTable = ({
-  account,
+import DeleteSpeciality from "./DeleteSpeciality";
+import EditSpeciality from "./EditSpeciality";
+
+const SpecialityTable = ({
+  speciality,
   id,
-  setDeleteAccountId,
-  setEditAccountId,
-  setEditAccId,
+  setDeleteSpecialityId,
+  setEditSpecialityId,
+  setEditSpecId,
 }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   return (
-    <tr key={id} class="bg-white border-b">
+    <tr key={id} class="bg-white border-b ">
       <td class="px-6 py-4">
-        <p>{account?.account_name?.amharic}</p>
-      </td>
-
-      <td class="px-6 py-4">
-        <p>{account?.account_name?.english}</p>
-      </td>
-
-      <td class="px-6 py-4">
-        <p>{account?.account_type}</p>
-      </td>
-      <td class="px-6 py-4">
-        <p>{account?.account_number}</p>
-      </td>
-
-      <td class="px-6 py-4">
-        <p>{account?.status}</p>
+        <p>{speciality?.speciality}</p>
       </td>
 
       <td class="px-6 py-4">
@@ -37,10 +23,10 @@ const AccountsTable = ({
           <div>
             {showDeleteModal ? (
               <>
-                <AccountsDelete
-                  account={account}
+                <DeleteSpeciality
+                  speciality={speciality}
                   setShowDeleteModal={setShowDeleteModal}
-                  setDeleteAccountId={setDeleteAccountId}
+                  setDeleteSpecialityId={setDeleteSpecialityId}
                 />
               </>
             ) : null}
@@ -48,30 +34,30 @@ const AccountsTable = ({
           <div>
             {showEditModal ? (
               <>
-                <AccountsEdit
+                <EditSpeciality
                   showEditModal={showEditModal}
                   setShowEditModal={setShowEditModal}
-                  account={account}
+                  speciality={speciality}
                   id={id}
-                  setEditAccountId={setEditAccountId}
-                  setEditAccId={setEditAccId}
+                  setEditSpecialityId={setEditSpecialityId}
+                  setEditSpecId={setEditSpecId}
                 />
               </>
             ) : null}
           </div>
-          <div className="">
-            {/*  <button
+          <div className="w-32">
+            <button
               onClick={() => {
                 setShowEditModal(true);
-                setEditAccountId(account?.id);
+                setEditSpecialityId(speciality?.id);
               }}
             >
               <RiEdit2Fill className="text-gray-500 mr-2 text-2xl" />
-            </button> */}
+            </button>
             <button
               onClick={() => {
                 setShowDeleteModal(true);
-                setDeleteAccountId(account?.id);
+                setDeleteSpecialityId(speciality?.id);
               }}
             >
               <RiDeleteBin2Fill className="text-gray-500 text-2xl" />
@@ -83,4 +69,4 @@ const AccountsTable = ({
   );
 };
 
-export default AccountsTable;
+export default SpecialityTable;

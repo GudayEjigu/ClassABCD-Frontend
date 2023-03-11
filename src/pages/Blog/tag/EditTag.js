@@ -116,7 +116,7 @@ const EditTag = ({
                       setEnglishTagName(e.target.value);
                     }}
                   />
-                  {formik.touched.englishName && formik.errors.amharicName ? (
+                  {formik.touched.englishName && formik.errors.englishName ? (
                     <div className="text-[13px] font-medium capitalize text-red-500">
                       {formik.errors.englishName}
                     </div>

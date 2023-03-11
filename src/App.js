@@ -28,7 +28,7 @@ import Products from "./pages/Ecommerce/products/Products";
 
 import Reason from "./pages/report/reason/Reason";
 import Banner from "./pages/banner/Banner";
-import AppointmentManagment from "./pages/tools/appointment/AppointmentManagment";
+import AppointmentManagment from "./pages/expert/appointment/AppointmentManagment";
 
 import Exercises from "./pages/tools/exercises/Exercises";
 import QuestionAnswerReports from "./pages/report/reports/questionAnswerReports/QuestionAnswerReports";
@@ -40,6 +40,13 @@ import Unit from "./pages/Ecommerce/product unit/Unit";
 import OrderView from "./pages/Ecommerce/orders/OrderView";
 import Accounts from "./pages/Ecommerce/accounts/Accounts";
 import ProductsView from "./pages/Ecommerce/products/ProductsView";
+import Speciality from "./pages/expert/speciality/Speciality";
+import ManageExpert from "./pages/expert/manage expert/ManageExpert";
+import MoodIcons from "./pages/tools/mood icons/MoodIcons";
+import Locations from "./pages/tools/locations/Locations";
+import HobbyIcons from "./pages/tools/hobby icons/HobbyIcons";
+import WeatherIcons from "./pages/tools/weather icons/WeatherIcons";
+import SocialIcons from "./pages/tools/social icons/SocialIcons";
 
 const App = () => {
   const { token, user, checked } = useAuth();
@@ -132,6 +139,13 @@ const App = () => {
                         path="/report-managment-community"
                         element={<ReportManagmentCommunity />}
                       />
+                      <Route path="/speciality" element={<Speciality />} />
+                      <Route path="/manage-expert" element={<ManageExpert />} />
+                      <Route path="/mood-icons" element={<MoodIcons />} />
+                      <Route path="/locations" element={<Locations />} />
+                      <Route path="/hobby-icons" element={<HobbyIcons />} />
+                      <Route path="/weather-icons" element={<WeatherIcons />} />
+                      <Route path="/social-icons" element={<SocialIcons />} />
                     </Routes>
                   </div>
                 </div>
