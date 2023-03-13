@@ -1,21 +1,24 @@
 import React, { useState } from "react";
 import { RiDeleteBin2Fill, RiEdit2Fill } from "react-icons/ri";
-import SpecialityDelete from "./SpecialityDelete";
-import SpecialityEdit from "./SpecialityEdit";
+import LocationsDelete from "./LocationsDelete";
+import LocationsEdit from "./LocationsEdit";
 
-const SpecialityTable = ({
-  speciality,
+const LocationsTable = ({
+  locations,
   id,
-  setDeleteSpecialityId,
-  setEditSpecialityId,
-  setEditSpecId,
+  setDeleteLocationsId,
+  setEditLocationsId,
+  setEditLocId,
 }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   return (
     <tr key={id} class="bg-white border-b ">
       <td class="px-6 py-4">
-        <p>{speciality?.speciality}</p>
+        <p>{locations?.name?.english}</p>
+      </td>
+      <td class="px-6 py-4">
+        <p>{locations?.name?.amharic}</p>
       </td>
 
       <td class="px-6 py-4">
@@ -23,10 +26,10 @@ const SpecialityTable = ({
           <div>
             {showDeleteModal ? (
               <>
-                <SpecialityDelete
-                  speciality={speciality}
+                <LocationsDelete
+                  locations={locations}
                   setShowDeleteModal={setShowDeleteModal}
-                  setDeleteSpecialityId={setDeleteSpecialityId}
+                  setDeleteLocationsId={setDeleteLocationsId}
                 />
               </>
             ) : null}
@@ -34,13 +37,13 @@ const SpecialityTable = ({
           <div>
             {showEditModal ? (
               <>
-                <SpecialityEdit
+                <LocationsEdit
                   showEditModal={showEditModal}
                   setShowEditModal={setShowEditModal}
-                  speciality={speciality}
+                  locations={locations}
                   id={id}
-                  setEditSpecialityId={setEditSpecialityId}
-                  setEditSpecId={setEditSpecId}
+                  setEditLocationsId={setEditLocationsId}
+                  setEditLocId={setEditLocId}
                 />
               </>
             ) : null}
@@ -49,7 +52,7 @@ const SpecialityTable = ({
             <button
               onClick={() => {
                 setShowEditModal(true);
-                setEditSpecialityId(speciality?.id);
+                setEditLocationsId(locations?.id);
               }}
             >
               <RiEdit2Fill className="text-gray-500 mr-2 text-2xl" />
@@ -57,7 +60,7 @@ const SpecialityTable = ({
             <button
               onClick={() => {
                 setShowDeleteModal(true);
-                setDeleteSpecialityId(speciality?.id);
+                setDeleteLocationsId(locations?.id);
               }}
             >
               <RiDeleteBin2Fill className="text-gray-500 text-2xl" />
@@ -69,4 +72,4 @@ const SpecialityTable = ({
   );
 };
 
-export default SpecialityTable;
+export default LocationsTable;

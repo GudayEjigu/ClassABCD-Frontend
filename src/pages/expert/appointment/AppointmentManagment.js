@@ -55,7 +55,7 @@ const AppintmentManagment = () => {
   return (
     <div>
       <h2 class="mb-4 ml-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl">
-        Appintment
+        Appointment
       </h2>
       <div className="flex justify-end p-2">
         <button

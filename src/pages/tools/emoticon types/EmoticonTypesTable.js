@@ -2,36 +2,42 @@ import React, { useState } from "react";
 import { AiFillEye } from "react-icons/ai";
 import { RiDeleteBin2Fill, RiEdit2Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import ExercisesDelete from "./ExercisesDelete";
-import ExercisesEdit from "./ExercisesEdit";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const ExercisesTable = ({
-  exercise,
+import EmoticonTypesDelete from "./EmoticonTypesDelete";
+import EmoticonTypesEdit from "./EmoticonTypesEdit";
+const EmoticonTypesTable = ({
+  emoticonType,
   id,
-  setDeleteExerciseId,
-  setEditExerciseId,
-  setViewExerciseId,
-  setEditExeId,
+  setDeleteEmoticonTypeId,
+  setEditEmoticonTypeId,
+  setViewEmoticonTypeId,
+  setEditEmoTypId,
 }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showViewModal, setShowViewModal] = useState(false);
+  const [success, setSuccess] = useState(null);
   const navigate = useNavigate();
+
   return (
     <tr key={id} class="bg-white border-b">
       <td class="px-6 py-4">
-        <p>{exercise?.title?.english}</p>
-      </td>
-
+        <p>{emoticonType?.name}</p>
+      </td>{" "}
+      <td class="px-6 py-4">
+        <p>{emoticonType?.description}</p>
+      </td>{" "}
       <td class="px-6 py-4">
         <div className="flex justify-end">
           <div>
             {showDeleteModal ? (
               <>
-                <ExercisesDelete
-                  exercise={exercise}
+                <EmoticonTypesDelete
+                  emoticonType={emoticonType}
                   setShowDeleteModal={setShowDeleteModal}
-                  setDeleteExerciseId={setDeleteExerciseId}
+                  setDeleteEmoticonTypeId={setDeleteEmoticonTypeId}
                 />
               </>
             ) : null}
@@ -39,41 +45,41 @@ const ExercisesTable = ({
           <div>
             {showEditModal ? (
               <>
-                <ExercisesEdit
+                <EmoticonTypesEdit
                   showEditModal={showEditModal}
                   setShowEditModal={setShowEditModal}
-                  exercise={exercise}
+                  emoticonType={emoticonType}
                   id={id}
-                  setEditExerciseId={setEditExerciseId}
-                  setEditExeId={setEditExeId}
+                  setEditEmoticonTypeId={setEditEmoticonTypeId}
+                  setEditEmoTypId={setEditEmoTypId}
                 />
               </>
             ) : null}
           </div>
-          <div className="">
-            <button
+          <div className="w-24">
+            {/*   <button
               onClick={() => {
                 setShowViewModal(true);
-                setViewExerciseId(exercise?.id);
+                setViewEmoticonTypeId(emoticonType?.id);
               }}
             >
               <AiFillEye
-                onClick={() => navigate(`/posts/${exercise.id}`)}
+                onClick={() => navigate(`/emoticon-Types/${emoticonType.id}`)}
                 className="text-gray-500 mr-2 text-2xl"
               />
-            </button>
+            </button> */}
             <button
               onClick={() => {
                 setShowEditModal(true);
-                setEditExerciseId(exercise?.id);
+                setEditEmoticonTypeId(emoticonType?.id);
               }}
             >
-              <RiEdit2Fill className="text-gray-500 text-2xl" />
+              <RiEdit2Fill className="text-gray-500 mr-2 text-2xl" />
             </button>
             <button
               onClick={() => {
                 setShowDeleteModal(true);
-                setDeleteExerciseId(exercise?.id);
+                setDeleteEmoticonTypeId(emoticonType?.id);
               }}
             >
               <RiDeleteBin2Fill className="text-gray-500 text-2xl" />
@@ -85,4 +91,4 @@ const ExercisesTable = ({
   );
 };
 
-export default ExercisesTable;
+export default EmoticonTypesTable;

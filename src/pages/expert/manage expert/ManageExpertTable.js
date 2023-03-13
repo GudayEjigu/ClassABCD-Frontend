@@ -2,36 +2,51 @@ import React, { useState } from "react";
 import { AiFillEye } from "react-icons/ai";
 import { RiDeleteBin2Fill, RiEdit2Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import ExercisesDelete from "./ExercisesDelete";
-import ExercisesEdit from "./ExercisesEdit";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const ExercisesTable = ({
-  exercise,
+import ManageExpertDelete from "./ManageExpertDelete";
+import ManageExpertEdit from "./ManageExpertEdit";
+const ManageExpertTable = ({
+  expert,
   id,
-  setDeleteExerciseId,
-  setEditExerciseId,
-  setViewExerciseId,
-  setEditExeId,
+  setDeleteProductId,
+  setEditProductId,
+  setViewProductId,
+  setEditExpId,
 }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showViewModal, setShowViewModal] = useState(false);
+  const [success, setSuccess] = useState(null);
   const navigate = useNavigate();
+
   return (
     <tr key={id} class="bg-white border-b">
       <td class="px-6 py-4">
-        <p>{exercise?.title?.english}</p>
+        <p>{expert?.user?.name}</p>
+      </td>{" "}
+      <td class="px-6 py-4">
+        <p>{expert?.user?.phone}</p>
+      </td>{" "}
+      <td class="px-6 py-4">
+        <p>{expert?.speciality?.speciality}</p>
+      </td>{" "}
+      <td class="px-6 py-4">
+        <p>{expert?.patient_count}</p>
       </td>
-
+      <td class="px-6 py-4">
+        <p>{expert?.babies_count}</p>
+      </td>
       <td class="px-6 py-4">
         <div className="flex justify-end">
           <div>
             {showDeleteModal ? (
               <>
-                <ExercisesDelete
-                  exercise={exercise}
+                <ManageExpertDelete
+                  expert={expert}
                   setShowDeleteModal={setShowDeleteModal}
-                  setDeleteExerciseId={setDeleteExerciseId}
+                  setDeleteProductId={setDeleteProductId}
                 />
               </>
             ) : null}
@@ -39,41 +54,41 @@ const ExercisesTable = ({
           <div>
             {showEditModal ? (
               <>
-                <ExercisesEdit
+                <ManageExpertEdit
                   showEditModal={showEditModal}
                   setShowEditModal={setShowEditModal}
-                  exercise={exercise}
+                  expert={expert}
                   id={id}
-                  setEditExerciseId={setEditExerciseId}
-                  setEditExeId={setEditExeId}
+                  setEditProductId={setEditProductId}
+                  setEditExpId={setEditExpId}
                 />
               </>
             ) : null}
           </div>
-          <div className="">
+          <div className="w-24">
             <button
               onClick={() => {
                 setShowViewModal(true);
-                setViewExerciseId(exercise?.id);
+                setViewProductId(expert?.id);
               }}
             >
               <AiFillEye
-                onClick={() => navigate(`/posts/${exercise.id}`)}
+                onClick={() => navigate(`/experts/${expert.id}`)}
                 className="text-gray-500 mr-2 text-2xl"
               />
             </button>
             <button
               onClick={() => {
                 setShowEditModal(true);
-                setEditExerciseId(exercise?.id);
+                setEditProductId(expert?.id);
               }}
             >
-              <RiEdit2Fill className="text-gray-500 text-2xl" />
+              <RiEdit2Fill className="text-gray-500 mr-2 text-2xl" />
             </button>
             <button
               onClick={() => {
                 setShowDeleteModal(true);
-                setDeleteExerciseId(exercise?.id);
+                setDeleteProductId(expert?.id);
               }}
             >
               <RiDeleteBin2Fill className="text-gray-500 text-2xl" />
@@ -85,4 +100,4 @@ const ExercisesTable = ({
   );
 };
 
-export default ExercisesTable;
+export default ManageExpertTable;

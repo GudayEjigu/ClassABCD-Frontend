@@ -407,7 +407,7 @@ const SideBar = () => {
                   <div className="bg-gray-50 ">
                     <li>
                       <NavLink
-                        to="/mood-icons"
+                        to="/emoticons"
                         className={({ isActive }) => [
                           "flex items-center pl-6  pt-1 pb-1 text-xs font-normal rounded-sm   ",
                           isActive
@@ -415,7 +415,7 @@ const SideBar = () => {
                             : "text-gray-900  hover:bg-gray-200 hover:text-[#636ab1] ",
                         ]}
                       >
-                        Mood - Icons{" "}
+                        Emoticons{" "}
                       </NavLink>
                     </li>
                   </div>
@@ -437,7 +437,7 @@ const SideBar = () => {
                   <div className="bg-gray-50 ">
                     <li>
                       <NavLink
-                        to="/hobby-icons"
+                        to="/emoticon-types"
                         className={({ isActive }) => [
                           "flex items-center pl-6  pt-1 pb-1 text-xs font-normal rounded-sm   ",
                           isActive
@@ -445,37 +445,7 @@ const SideBar = () => {
                             : "text-gray-900  hover:bg-gray-200 hover:text-[#636ab1] ",
                         ]}
                       >
-                        Hobby Icons{" "}
-                      </NavLink>
-                    </li>
-                  </div>
-                  <div className="bg-gray-50 ">
-                    <li>
-                      <NavLink
-                        to="/weather-icons"
-                        className={({ isActive }) => [
-                          "flex items-center pl-6  pt-1 pb-1 text-xs font-normal rounded-sm   ",
-                          isActive
-                            ? " bg-[#636ab1] pt-1 pb-1 mt-1 mb-1 text-white text-lg hover:text-gray-200"
-                            : "text-gray-900  hover:bg-gray-200 hover:text-[#636ab1] ",
-                        ]}
-                      >
-                        Weather - Icons{" "}
-                      </NavLink>
-                    </li>
-                  </div>
-                  <div className="bg-gray-50 ">
-                    <li>
-                      <NavLink
-                        to="/social-icons"
-                        className={({ isActive }) => [
-                          "flex items-center pl-6  pt-1 pb-1 text-xs font-normal rounded-sm   ",
-                          isActive
-                            ? " bg-[#636ab1] pt-1 pb-1 mt-1 mb-1 text-white text-lg hover:text-gray-200"
-                            : "text-gray-900  hover:bg-gray-200 hover:text-[#636ab1] ",
-                        ]}
-                      >
-                        Social - Icons{" "}
+                        Emoticon types{" "}
                       </NavLink>
                     </li>
                   </div>

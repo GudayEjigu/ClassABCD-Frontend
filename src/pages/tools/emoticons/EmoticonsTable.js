@@ -2,36 +2,51 @@ import React, { useState } from "react";
 import { AiFillEye } from "react-icons/ai";
 import { RiDeleteBin2Fill, RiEdit2Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import ExercisesDelete from "./ExercisesDelete";
-import ExercisesEdit from "./ExercisesEdit";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const ExercisesTable = ({
-  exercise,
+import EmoticonsDelete from "./EmoticonsDelete";
+import EmoticonsEdit from "./EmoticonsEdit";
+const EmoticonsTable = ({
+  emoticon,
   id,
-  setDeleteExerciseId,
-  setEditExerciseId,
-  setViewExerciseId,
-  setEditExeId,
+  setDeleteEmoticonId,
+  setEditEmoticonId,
+  setViewEmoticonId,
+  setEditEmoId,
 }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showViewModal, setShowViewModal] = useState(false);
+  const [success, setSuccess] = useState(null);
   const navigate = useNavigate();
+
   return (
     <tr key={id} class="bg-white border-b">
       <td class="px-6 py-4">
-        <p>{exercise?.title?.english}</p>
-      </td>
-
+        <p>{emoticon?.name}</p>
+      </td>{" "}
       <td class="px-6 py-4">
-        <div className="flex justify-end">
+        <p>{emoticon?.description}</p>
+      </td>{" "}
+      <td class="px-6 py-4">
+        <p>{emoticon?.type}</p>
+      </td>{" "}
+      <td class="px-6 py-4">
+        <p>{emoticon?.emoticon_type?.name}</p>
+      </td>{" "}
+      <td class="px-6 py-4">
+        <p>{emoticon?.emoticon_type.description}</p>
+      </td>
+      <td class="px-6 py-4">
+        <div className="flex pl-6 justify-end">
           <div>
             {showDeleteModal ? (
               <>
-                <ExercisesDelete
-                  exercise={exercise}
+                <EmoticonsDelete
+                  emoticon={emoticon}
                   setShowDeleteModal={setShowDeleteModal}
-                  setDeleteExerciseId={setDeleteExerciseId}
+                  setDeleteEmoticonId={setDeleteEmoticonId}
                 />
               </>
             ) : null}
@@ -39,41 +54,41 @@ const ExercisesTable = ({
           <div>
             {showEditModal ? (
               <>
-                <ExercisesEdit
+                <EmoticonsEdit
                   showEditModal={showEditModal}
                   setShowEditModal={setShowEditModal}
-                  exercise={exercise}
+                  emoticon={emoticon}
                   id={id}
-                  setEditExerciseId={setEditExerciseId}
-                  setEditExeId={setEditExeId}
+                  setEditEmoticonId={setEditEmoticonId}
+                  setEditEmoId={setEditEmoId}
                 />
               </>
             ) : null}
           </div>
-          <div className="">
-            <button
+          <div className="w-24">
+            {/*  <button
               onClick={() => {
                 setShowViewModal(true);
-                setViewExerciseId(exercise?.id);
+                setViewEmoticonId(emoticon?.id);
               }}
             >
               <AiFillEye
-                onClick={() => navigate(`/posts/${exercise.id}`)}
+                onClick={() => navigate(`/emoticons/${emoticon.id}`)}
                 className="text-gray-500 mr-2 text-2xl"
               />
-            </button>
+            </button> */}
             <button
               onClick={() => {
                 setShowEditModal(true);
-                setEditExerciseId(exercise?.id);
+                setEditEmoticonId(emoticon?.id);
               }}
             >
-              <RiEdit2Fill className="text-gray-500 text-2xl" />
+              <RiEdit2Fill className="text-gray-500 mr-2 text-2xl" />
             </button>
             <button
               onClick={() => {
                 setShowDeleteModal(true);
-                setDeleteExerciseId(exercise?.id);
+                setDeleteEmoticonId(emoticon?.id);
               }}
             >
               <RiDeleteBin2Fill className="text-gray-500 text-2xl" />
@@ -85,4 +100,4 @@ const ExercisesTable = ({
   );
 };
 
-export default ExercisesTable;
+export default EmoticonsTable;

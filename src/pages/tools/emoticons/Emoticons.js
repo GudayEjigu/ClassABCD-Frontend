@@ -3,18 +3,18 @@ import React, { useState } from "react";
 import { Bars } from "react-loader-spinner";
 import { useQuery } from "react-query";
 import { useAuth } from "../../../context/auth";
-import ManageExpertAdd from "./ManageExpertAdd";
-import ManageExpertTable from "./ManageExpertTable";
+import EmoticonsAdd from "./EmoticonsAdd";
+import EmoticonsTable from "./EmoticonsTable";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const ManageExpert = () => {
+const Emoticons = () => {
   const [showModal, setShowModal] = useState(false);
-  const [deleteExpertId, setDeleteExpertId] = useState(false);
-  const [editExpertId, setEditExpertId] = useState(false);
+  const [deleteEmoticonId, setDeleteEmoticonId] = useState(false);
+  const [editEmoticonId, setEditEmoticonId] = useState(false);
 
-  const [viewExpertId, setViewExpertId] = useState(false);
-  const [editExpId, setEditExpId] = useState(null);
+  const [viewEmoticonId, setViewEmoticonId] = useState(false);
+  const [editEmoId, setEditEmoId] = useState(null);
 
   const { token, user } = useAuth();
   const headers = {
@@ -23,10 +23,10 @@ const ManageExpert = () => {
     Authorization: `Bearer ${token}`,
   };
 
-  const ExpertData = useQuery(
-    ["ExpertDataApi", showModal, deleteExpertId, editExpertId, editExpId],
+  const EmoticonData = useQuery(
+    ["EmoticonDataApi", showModal, deleteEmoticonId, editEmoticonId, editEmoId],
     async () =>
-      await axios.get(`${process.env.REACT_APP_BACKEND_URL}admin/experts`, {
+      await axios.get(`${process.env.REACT_APP_BACKEND_URL}admin/emoticons`, {
         headers,
       }),
     {
@@ -36,10 +36,10 @@ const ManageExpert = () => {
       enabled: !!token,
       onSuccess: () => {
         //  console.log(categoryData?.data?.data?.data[1]?.name?.amharic);
-        if (deleteExpertId == 1) {
+        if (deleteEmoticonId == 1) {
           toast.success("Delete Success");
         }
-        setDeleteExpertId(null);
+        setDeleteEmoticonId(null);
       },
       onError: (res) => {
         if (res?.response?.status == 401) {
@@ -55,7 +55,7 @@ const ManageExpert = () => {
         class="mb-4 ml-4 
     text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl"
       >
-        ManageExpert{" "}
+        Emoticons{" "}
       </h2>
       {/* modal */}
       <div className="flex justify-end p-2">
@@ -64,14 +64,14 @@ const ManageExpert = () => {
           type="button"
           onClick={() => setShowModal(true)}
         >
-          Add Expert
+          Add Emoticon
         </button>
       </div>
-      {showModal ? <ManageExpertAdd setShowModal={setShowModal} /> : null}
-      {ExpertData.error ? (
+      {showModal ? <EmoticonsAdd setShowModal={setShowModal} /> : null}
+      {EmoticonData.error ? (
         <div className="text-red-700 text-4xl">Error!</div>
       ) : null}
-      {ExpertData.isLoading ? (
+      {EmoticonData.isLoading ? (
         <div className="h-44 flex items-center justify-center min-h-0">
           <Bars
             height="40"
@@ -89,24 +89,24 @@ const ManageExpert = () => {
             <table class="w-full text-sm text-left text-gray-500">
               <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
-                  <th class="px-6 py-3">Expert Name </th>
-                  <th class="px-6 py-3">Phone</th>
-                  <th class="px-6 py-3">Speciality</th>
-                  <th class="px-6 py-3">Patients</th>
-                  <th class="px-6 py-3">Babies</th>
+                  <th class="px-6 py-3">Name </th>
+                  <th class="px-6 py-3">Description </th>
+                  <th class="px-6 py-3">type</th>
+                  <th class="px-6 py-3">Emoticon type name </th>
+                  <th class="px-6 py-3">Emoticon type description</th>
 
-                  <th class="px-6 py-3 pr-12 flex justify-end">Actions</th>
+                  <th class="px-6 py-3 flex justify-center">Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {ExpertData?.data?.data?.data.map((expert, id) => (
-                  <ManageExpertTable
-                    expert={expert}
+                {EmoticonData?.data?.data?.data.map((emoticon, id) => (
+                  <EmoticonsTable
+                    emoticon={emoticon}
                     id={id}
-                    setDeleteExpertId={setDeleteExpertId}
-                    setEditExpertId={setEditExpertId}
-                    setEditExpId={setEditExpId}
-                    setViewExpertId={setViewExpertId}
+                    setDeleteEmoticonId={setDeleteEmoticonId}
+                    setEditEmoticonId={setEditEmoticonId}
+                    setEditEmoId={setEditEmoId}
+                    setViewEmoticonId={setViewEmoticonId}
                   />
                 ))}
               </tbody>
@@ -119,4 +119,4 @@ const ManageExpert = () => {
   );
 };
 
-export default ManageExpert;
+export default Emoticons;
