@@ -1,5 +1,5 @@
 {
-  "name": "yeabrak-pregnancy",
+  "name": "classABCD",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,6 +12,7 @@
     "@mui/icons-material": "^5.11.9",
     "@mui/material": "^5.11.10",
     "@popperjs/core": "2.9.1",
+    "@react-google-maps/api": "^2.18.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -32,6 +33,7 @@
     "react-select": "^5.7.0",
     "react-toastify": "^9.1.1",
     "recharts": "^2.4.3",
+    "sass": "^1.62.0",
     "swiper": "^9.0.1",
     "web-vitals": "^2.1.4",
     "yup": "^1.0.2"

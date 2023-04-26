@@ -23,7 +23,7 @@ export function AuthProvider({ children }) {
     setToken(token);
     setUser(user);
     localStorage.setItem(
-      "yeabrak_data",
+      "classABCD_data",
       JSON.stringify({
         token,
         user,
@@ -34,13 +34,13 @@ export function AuthProvider({ children }) {
   const logout = useCallback(() => {
     setToken(null);
     setUser(null);
-    localStorage.removeItem("yeabrak_data");
+    localStorage.removeItem("classABCD_data");
   }, []);
 
   let loginData;
 
   useEffect(() => {
-    const storedData = JSON.parse(localStorage.getItem("yeabrak_data"));
+    const storedData = JSON.parse(localStorage.getItem("classABCD_data"));
     if (storedData) {
       if (storedData?.token) {
         loginData = login(storedData?.token, storedData?.user);
