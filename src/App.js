@@ -15,7 +15,10 @@ const App = () => {
   function LoginComp() {
     return (
       <Routes>
-        <Route path="*" element={<Navigate to="/login" />} />
+        <Route path="*" element={<Login />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="/details" element={<Details />} />
       </Routes>
     );
   }
@@ -40,7 +43,6 @@ const App = () => {
             <Route path="/search" element={<SearchPage />} />
             <Route path="/details" element={<Details />} />
           </Routes>
-          
         </div>
       </>
     );

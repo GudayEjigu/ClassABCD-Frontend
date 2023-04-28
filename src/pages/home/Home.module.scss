@@ -69,14 +69,53 @@
   background: rgba(255, 255, 255, 0.2);
   border-radius: 15px;
 }
-.Rectangle31 {
+
+.RectangleScolarship {
   /* Rectangle 31 */
 
   position: absolute;
   width: 126.91px;
   height: 38.63px;
-  left: 825.85px;
-  top: 84.19px;
+  left: 0px;
+  top: -5px;
+  padding-top: 5px;
+  background: #deeafe;
+  border-radius: 11px;
+}
+.RectangleAmharic {
+  /* Rectangle 31 */
+
+  position: absolute;
+  width: 126.91px;
+  height: 38.63px;
+  left: -20px;
+  top: -5px;
+  padding-top: 5px;
+
+  background: #deeafe;
+  border-radius: 11px;
+}
+.RectangleEnglish {
+  /* Rectangle 31 */
+
+  position: absolute;
+  width: 126.91px;
+  height: 38.63px;
+  left: -20px;
+  top: -5px;
+  padding-top: 5px;
+  background: #deeafe;
+  border-radius: 11px;
+}
+.RectangleChinese {
+  /* Rectangle 31 */
+
+  position: absolute;
+  width: 126.91px;
+  height: 38.63px;
+  left: -40px;
+  top: -5px;
+  padding-top: 5px;
 
   background: #deeafe;
   border-radius: 11px;
@@ -216,6 +255,24 @@
   color: #f97316;
 }
 
+.modal {
+  /* Language */
+
+  position: absolute;
+ 
+  left: 1467.18px;
+  top: 115.03px;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  text-decoration-line: underline;
+
+  color: #000
+}
+
 .Rectangle37 {
   position: absolute;
   width: 1019.32px;
@@ -298,44 +355,38 @@
 
   color: #000000;
 }
-.TheclassABCD{
-    
-position: absolute;
-width: 263.29px;
-height: 105px;
-left: 154.04px;
-top: 17.81px;
+.TheclassABCD {
+  position: absolute;
+  width: 263.29px;
+  height: 105px;
+  left: 154.04px;
+  top: 17.81px;
 
-font-family: 'Poppins';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-line-height: 21px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
 
-color: #000000;
-
+  color: #000000;
 }
 
+.date {
+  position: absolute;
+  width: 82px;
+  height: 21px;
+  left: 154.04px;
+  top: 122.81px;
 
-.date{
-    position: absolute;
-    width: 82px;
-    height: 21px;
-    left: 154.04px;
-    top: 122.81px;
-    
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 21px;
-    /* identical to box height */
-    
-    
-    color: #A9A9A9;
-    
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  /* identical to box height */
+
+  color: #a9a9a9;
 }
-
 
 .Mostpopular2 {
   /* Most popular */

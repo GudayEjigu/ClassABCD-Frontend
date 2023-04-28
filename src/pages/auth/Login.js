@@ -63,7 +63,7 @@ const Login = () => {
               responseData?.data?.data?.user
             );
             console.log({ user: responseData?.data?.data });
-            navigate("/dashboard");
+            navigate("/");
 
             toast.success("Login success!", {
               position: toast.POSITION.TOP_RIGHT,
@@ -129,11 +129,14 @@ const Login = () => {
           onClick={LoginHandler}
           type="submit"
           className={styles.Rectangle25}
-        ></button>
+        >
+          <p className={styles.login}>Login</p>
+        </button>
       )}
-      <p className={styles.login}>Login</p>
-      <button className={styles.Rectangle21}></button>
+      <button className={styles.Rectangle21}>
+        
       <div className={styles.Register}>Register</div>
+      </button>
       <img className={styles.frame} alt="frame" src={frame} />
 
       <Button onClick={handleOpen}>verification</Button>
