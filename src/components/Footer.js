@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./Footer.module.scss";
 import vector from "../assets/Vector.png";
+import { TokenContext } from "../context/TokenContext";
+import { useNavigate } from "react-router-dom";
+
 
 const Footer = () => {
+  const {myToken} = useContext(TokenContext)
+  const navigate = useNavigate()
   return (
     <>
-      <div className={styles.Rectangle32}></div>
+    {myToken ?
+      (<><div className={styles.Rectangle32}></div>
       <img className={styles.vector} alt="Vector" src={vector} />
       <p className={styles.classABCD}>classABCD</p>
       <p className={styles.learning}>Learning Center</p>
@@ -20,7 +26,7 @@ const Footer = () => {
       <p className={styles.english}>English</p>
       <p className={styles.chinese}>chinese</p>
       <p className={styles.scolarship}>scholarship</p>
-      <p className={styles.allrights}>2023 classABCD.All Rights reserved</p>
+      <p className={styles.allrights}>2023 classABCD.All Rights reserved</p> </>): navigate("/login")}
     </>
   );
 };

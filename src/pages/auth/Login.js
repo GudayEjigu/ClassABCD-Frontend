@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useMutation } from "react-query";
 import styles from "./Login.module.scss";
 import { useNavigate } from "react-router-dom/dist";
@@ -14,10 +14,13 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import { TokenContext } from "../../context/TokenContext";
+
 
 const Login = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+ const { setMyToken} = useContext(TokenContext)
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -58,11 +61,9 @@ const Login = () => {
         { phone: userName, password },
         {
           onSuccess: (responseData) => {
-            login(
-              responseData?.data?.data?.token,
-              responseData?.data?.data?.user
-            );
-            console.log({ user: responseData?.data?.data });
+            login(responseData?.data?.token, responseData?.data);
+            console.log({ user: responseData?.data?.token });
+            setMyToken(responseData?.data?.token)
             navigate("/");
 
             toast.success("Login success!", {
@@ -134,8 +135,7 @@ const Login = () => {
         </button>
       )}
       <button className={styles.Rectangle21}>
-        
-      <div className={styles.Register}>Register</div>
+        <div className={styles.Register}>Register</div>
       </button>
       <img className={styles.frame} alt="frame" src={frame} />
 

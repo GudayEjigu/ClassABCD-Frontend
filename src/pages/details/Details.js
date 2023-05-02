@@ -1,146 +1,987 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./Details.module.scss";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import vector2 from "../../assets/Vector2.png";
 import vector3 from "../../assets/Vector3.png";
 import vector4 from "../../assets/Vector4.png";
 import unsplash from "../../assets/unsplash.png";
 import unsplash2 from "../../assets/unsplash2.png";
 import Footer from "../../components/Footer";
+import { useQuery } from "react-query";
+import axios from "axios";
+import { useAuth } from "../../context/auth";
+import { Button, Menu, MenuItem } from "@mui/material";
+import ClampLines from "react-clamp-lines";
+import unsplash4 from "../../assets/unsplash4.png";
+import unsplash5 from "../../assets/unsplash5.png";
+import { LanguageContext } from "../../context/LanguageContext";
 
 const Details = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
+  const {
+    isEnglishLang,
+    setIsEnglishLang,
+    isAmharicLang,
+    setIsAmharicLang,
+    isOromoLang,
+    setIsOromoLang,
+  } = useContext(LanguageContext);
+  const [isScholarship, setIsScolarship] = useState(true);
+  const [isAmharic, setIsAmharic] = useState(false);
+
+  const [isEnglish, setIsEnglish] = useState(false);
+  const [isChinese, setIsChinese] = useState(false);
+  const [next, setNext] = useState(false);
+  const [prev, setPrev] = useState(true);
+  const { token, user } = useAuth();
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const headers = {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+    Authorization: `Bearer ${token}`,
+  };
+
+  const DetailData = useQuery(
+    ["DetailDataApi"],
+    async () =>
+      await axios.get(`${process.env.REACT_APP_BACKEND_URL}show-post/${id}`, {
+        headers,
+      }),
+    {
+      keepPreviousData: true,
+      refetchOnWindowFocus: false,
+      retry: false,
+      enabled: !!token,
+      onSuccess: () => {
+        //  console.log(categoryData?.data?.data?.data[1]?.name?.amharic);
+      },
+      onError: (res) => {
+        if (res?.response?.status == 401) {
+          console.log(res.message);
+        }
+      },
+    }
+  );
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [DetailData]);
+  console.log(DetailData?.data?.data?.post?.boddy?.english);
+
+  const HomePageData = useQuery(
+    ["HomePageDataApi"],
+    async () =>
+      await axios.get(`${process.env.REACT_APP_BACKEND_URL}homepage`, {
+        headers,
+      }),
+    {
+      keepPreviousData: true,
+      refetchOnWindowFocus: false,
+      retry: false,
+      enabled: !!token,
+      onSuccess: (res) => {
+        console.log(res);
+      },
+      onError: (res) => {
+        if (res?.response?.status == 401) {
+          console.log(res.message);
+        }
+      },
+    }
+  );
+
+  const Category1 = useQuery(
+    ["Category1Api"],
+    async () =>
+      await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}posts-by-category/1`,
+        {
+          headers,
+        }
+      ),
+    {
+      keepPreviousData: true,
+      refetchOnWindowFocus: false,
+      retry: false,
+      enabled: !!token,
+      onSuccess: (res) => {
+        console.log(res);
+      },
+      onError: (res) => {
+        if (res?.response?.status == 401) {
+          console.log(res.message);
+        }
+      },
+    }
+  );
+
+  const Category2 = useQuery(
+    ["Category2Api"],
+    async () =>
+      await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}posts-by-category/2`,
+        {
+          headers,
+        }
+      ),
+    {
+      keepPreviousData: true,
+      refetchOnWindowFocus: false,
+      retry: false,
+      enabled: !!token,
+      onSuccess: (res) => {
+        console.log(res);
+      },
+      onError: (res) => {
+        if (res?.response?.status == 401) {
+          console.log(res.message);
+        }
+      },
+    }
+  );
+  const Category3 = useQuery(
+    ["Category3Api"],
+    async () =>
+      await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}posts-by-category/3`,
+        {
+          headers,
+        }
+      ),
+    {
+      keepPreviousData: true,
+      refetchOnWindowFocus: false,
+      retry: false,
+      enabled: !!token,
+      onSuccess: (res) => {
+        console.log(res);
+      },
+      onError: (res) => {
+        if (res?.response?.status == 401) {
+          console.log(res.message);
+        }
+      },
+    }
+  );
   return (
     <div>
       {" "}
       <div className={styles.Rectangle1}></div>
       <button onClick={() => navigate("/")}>
-                           
-      <img className={styles.vector2} alt="Vector" src={vector2} />
-      <p className={styles.classABCD}>classABCD</p>
-      <p className={styles.learning}>Learning Center</p>
+        <img className={styles.vector2} alt="Vector" src={vector2} />
+        <p className={styles.classABCD}>ClassABCD</p>
+        <p className={styles.learning}>Learning Center</p>
       </button>
       <div className={styles.Rectangle30}></div>
-      <div className={styles.Rectangle33}></div>
-      <button className={styles.Scolarship}>Scolarship</button>
-      <button className={styles.Amharic}>Amharic</button>
-      <button className={styles.English}>English</button>
-      <button className={styles.Chinese}>Chinese</button>
-      <button onClick={() => navigate("/search")}>
-        <div className={styles.Rectangle36}></div>
-        <img className={styles.vector3} alt="Vector" src={vector3} />
+      <div className={styles.Rectangle31}></div>
+      <button
+        className={styles.Scolarship}
+        onClick={() => {
+          setIsScolarship(true);
+          setIsAmharic(false);
+          setIsEnglish(false);
+          setIsChinese(false);
+        }}
+      >
+        {!isScholarship ? (
+          <>Scholarship</>
+        ) : (
+          <>
+            <div className={styles.RectangleScolarship}>Scholarship</div>
+          </>
+        )}{" "}
       </button>
-      <img className={styles.vector4} alt="Vector" src={vector4} />
-      <p className={styles.Language}>Language </p>
-      <img className={styles.unsplash2} alt="unsplash2" src={unsplash2} />
-      <div className={styles.Rectangle48}> </div>
-      <p className={styles.EnglishPro}> English pronouncation</p>
-      <div className={styles.Rectangle49}> </div>
-      <div className={styles.Rectangle50}> </div>
-      <p className={styles.Apply}> Apply </p>
-      <p className={styles.Mostpopular}> Most popular </p>
-      <div className={styles.Frame13}>
-        <img className={styles.unsplash} alt="unsplash" src={unsplash} />
+      <button
+        className={styles.English}
+        onClick={() => {
+          setIsScolarship(false);
+          setIsAmharic(false);
+          setIsEnglish(true);
+          setIsChinese(false);
+        }}
+      >
+        {!isEnglish ? (
+          <>English</>
+        ) : (
+          <>
+            <div className={styles.RectangleEnglish}>English</div>
+          </>
+        )}
+      </button>
+      <button
+        className={styles.Chinese}
+        onClick={() => {
+          setIsScolarship(false);
+          setIsAmharic(false);
+          setIsEnglish(false);
+          setIsChinese(true);
+        }}
+      >
+        {!isChinese ? (
+          <>Chinese</>
+        ) : (
+          <>
+            <div className={styles.RectangleChinese}>Chinese</div>
+          </>
+        )}{" "}
+      </button>
+      <div className="flex flex-row">
+        <button onClick={() => navigate("/search")}>
+          <div className={styles.Rectangle36}></div>
+          <img className={styles.vector3} alt="Vector" src={vector3} />
+        </button>
 
-        <p className={styles.EnglishWriting}> English Writing </p>
-        <p className={styles.TheclassABCD}>
-          {" "}
-          The classABCD is an online language education website teaching English
-          and Chinese. It is the best platform to learn English, Chinese and
-          many other languages{" "}
-        </p>
+        <Button
+          id="basic-button"
+          aria-controls={open ? "basic-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+          onClick={handleClick}
+        >
+          <img className={styles.vector4} alt="Vector" src={vector4} />
+          <p className={styles.Language}>Language </p>
+        </Button>
+
+        <Menu
+          id="basic-menu"
+          sx={{ left: "1267.18px", top: "85.03px" }}
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          MenuListProps={{
+            "aria-labelledby": "basic-button",
+          }}
+        >
+          <MenuItem
+            onClick={() => {
+              handleClose();
+              setIsEnglishLang(true);
+              setIsAmharicLang(false);
+              setIsOromoLang(false);
+            }}
+          >
+            English
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              handleClose();
+              setIsEnglishLang(false);
+              setIsAmharicLang(true);
+              setIsOromoLang(true);
+            }}
+          >
+            Amharic
+          </MenuItem>
+
+          <MenuItem
+            onClick={() => {
+              handleClose();
+              setIsEnglishLang(false);
+              setIsAmharicLang(false);
+              setIsOromoLang(true);
+            }}
+          >
+            Oromiffa
+          </MenuItem>
+        </Menu>
       </div>
-      <p className={styles.EnglishPro2}> English pronouncation</p>
-      <div className={styles.Rectangle51}>
-        <p className={styles.Messi}>
-          {" "}
-          Messi began football at a young age and his potential was quickly seen
-          by Barcelona. He left Newell's Old Boys' youth team in September 2000
-          and moved with his family to Europe in February 2001. He officially
-          signed with Barcelona in December 2000 on a napkin. They moved to
-          Spain because Barcelona offered their help to treat his growth hormone
-          deficiency, and Newell's didn't offer any help.[9] Messi played his
-          first professional match at 16 years old on 16 November 2003 against
-          Porto. He played the 2003-04 season with the Barcelona B team. He was
-          promoted to the A team for the 2004-05 season, and made his league
-          debut on 16 October 2004 against Espanyol as a substitute. He made his
-          league debut at age 17, and became the youngest player to play for
-          Barcelona's first team in an official competition. He scored his first
-          professional goal on 1 May 2005 against Albacete Balompie from a
-          sublime assist by Ronaldinho. The goal made him the youngest-ever
-          scorer for the club at that time. Barcelona won the La Liga that
-          season for the first time in 6 years, and won the league for a second
-          time in a row along with the Spanish Super Cup and UEFA Champions
-          League in 2006. His first breakthrough season was in the 2006–07
-          season; he became a first team regular by scoring his first hat-trick
-          of his career in El Clásico. On 18 April 2007, he scored a goal almost
-          exactly identical to Maradona's "Goal of the Century" against England
-          in the 1986 World Cup, where Maradona got the ball behind the halfway
-          line on the right side and beat 4 defenders and the goalie to score.
-          Messi's goal was similar to this; he received a pass from Xavi on the
-          right side behind half-field, and then nut-megged an opponent and 4
-          others including the goalie before finishing off with his right foot
-          inside the penalty box.[10] In 2019, Barcelona fans voted it as the
-          best goal in the club's history, receiving 45% of votes.[11] After
-          Ronaldinho left the club at the end of the 2007-08 season, Messi was
-          handed the number 10 shirt. The 2008-09 season was arguably one of the
-          most successful seasons in his stellar career. In this season, Messi
-          scored 38 goals in all competitions, including one in the Champions
-          League final against Manchester United that Barcelona won 2–0 as part
-          of their treble. In the following 2009–10 season, Messi scored 47
-          goals in all competitions. That levelled to Ronaldo Nazario's record
-          total for Barcelona. Messi also won his first Ballon d'Or in December
-          2009, and also won his second a year later. He scored again in the
-          2011 Champions League final against their same opponent two years
-          earlier, Manchester United. Barcelona won 3-1. Messi won his third
-          Ballon d'Or in a row that year.
-        </p>
-      </div>
-      <div className={styles.Rectangle52}>
-        <p className={styles.Messi}>
-          {" "}
-          Messi began football at a young age and his potential was quickly seen
-          by Barcelona. He left Newell's Old Boys' youth team in September 2000
-          and moved with his family to Europe in February 2001. He officially
-          signed with Barcelona in December 2000 on a napkin. They moved to
-          Spain because Barcelona offered their help to treat his growth hormone
-          deficiency, and Newell's didn't offer any help.[9] Messi played his
-          first professional match at 16 years old on 16 November 2003 against
-          Porto. He played the 2003-04 season with the Barcelona B team. He was
-          promoted to the A team for the 2004-05 season, and made his league
-          debut on 16 October 2004 against Espanyol as a substitute. He made his
-          league debut at age 17, and became the youngest player to play for
-          Barcelona's first team in an official competition. He scored his first
-          professional goal on 1 May 2005 against Albacete Balompie from a
-          sublime assist by Ronaldinho. The goal made him the youngest-ever
-          scorer for the club at that time. Barcelona won the La Liga that
-          season for the first time in 6 years, and won the league for a second
-          time in a row along with the Spanish Super Cup and UEFA Champions
-          League in 2006. His first breakthrough season was in the 2006–07
-          season; he became a first team regular by scoring his first hat-trick
-          of his career in El Clásico. On 18 April 2007, he scored a goal almost
-          exactly identical to Maradona's "Goal of the Century" against England
-          in the 1986 World Cup, where Maradona got the ball behind the halfway
-          line on the right side and beat 4 defenders and the goalie to score.
-          Messi's goal was similar to this; he received a pass from Xavi on the
-          right side behind half-field, and then nut-megged an opponent and 4
-          others including the goalie before finishing off with his right foot
-          inside the penalty box.[10] In 2019, Barcelona fans voted it as the
-          best goal in the club's history, receiving 45% of votes.[11] After
-          Ronaldinho left the club at the end of the 2007-08 season, Messi was
-          handed the number 10 shirt. The 2008-09 season was arguably one of the
-          most successful seasons in his stellar career. In this season, Messi
-          scored 38 goals in all competitions, including one in the Champions
-          League final against Manchester United that Barcelona won 2–0 as part
-          of their treble. In the following 2009–10 season, Messi scored 47
-          goals in all competitions. That levelled to Ronaldo Nazario's record
-          total for Barcelona. Messi also won his first Ballon d'Or in December
-          2009, and also won his second a year later. He scored again in the
-          2011 Champions League final against their same opponent two years
-          earlier, Manchester United. Barcelona won 3-1. Messi won his third
-          Ballon d'Or in a row that year.
-        </p>
-      </div>
+      <img
+        className={styles.unsplash2}
+        alt="unsplash2"
+        src={DetailData?.data?.data?.post?.thumbnail?.link}
+      />
+      <div className={styles.Rectangle48}> </div>
+      {isEnglishLang ? (
+        <>
+          <p className={styles.EnglishPro}>
+            {" "}
+            {DetailData?.data?.data?.post?.title?.english}
+          </p>
+          <div className={styles.Rectangle49}> </div>
+
+          <p className={styles.EnglishPro2}>
+            {" "}
+            {DetailData?.data?.data?.post?.title?.english}
+          </p>
+          <div className={styles.Rectangle51}>
+            <p className={styles.Messi}>
+              {DetailData?.data?.data?.post?.body?.english}
+            </p>
+          </div>
+        </>
+      ) : isAmharicLang ? (
+        <>
+          <p className={styles.EnglishPro}>
+            {" "}
+            {DetailData?.data?.data?.post?.title?.amharic}
+          </p>
+          <div className={styles.Rectangle49}> </div>
+
+          <p className={styles.EnglishPro2}>
+            {" "}
+            {DetailData?.data?.data?.post?.title?.amharic}
+          </p>
+          <div className={styles.Rectangle51}>
+            <p className={styles.Messi}>
+              {DetailData?.data?.data?.post?.body?.amharic}
+            </p>
+          </div>
+        </>
+      ) : (
+        <>
+          <p className={styles.EnglishPro}>
+            {" "}
+            {DetailData?.data?.data?.post?.title?.oromiffa}
+          </p>
+          <div className={styles.Rectangle49}> </div>
+
+          <p className={styles.EnglishPro2}>
+            {" "}
+            {DetailData?.data?.data?.post?.title?.oromiffa}
+          </p>
+          <div className={styles.Rectangle51}>
+            <p className={styles.Messi}>
+              {DetailData?.data?.data?.post?.body?.oromiffa}
+            </p>
+          </div>
+        </>
+      )}
+      <p className={styles.MostRecent}> Most Recent </p>
+      <div className="flex flex-col col-5">
+        <div className={styles.frame26position}>
+          {HomePageData?.data?.data?.popularPosts?.map((item, i) => {
+            return i < 4 ? (
+              <>
+                <div key={item}>
+                  <div className="flex flex-col m-2">
+                    <div className={styles.Frame26}>
+                      <div className="flex flex-row">
+                        {isEnglishLang ? (
+                          <>
+                            {" "}
+                            <img
+                              className={styles.unsplash4}
+                              alt="unsplash"
+                              src={item.thumbnail.link}
+                            />
+                            <div className="flex flex-col">
+                              <button
+                                onClick={() => {
+                                  navigate(`/details/${item.id}`);
+                                  window.location.reload(true);
+                                }}
+                              >
+                                <p className={styles.subtitlemini}>
+                                  <ClampLines
+                                    text={item.body.english}
+                                    id="really-unique-id"
+                                    lines={4}
+                                    ellipsis="..."
+                                    moreText=""
+                                    lessText=""
+                                    className="custom-class"
+                                    innerElement="p"
+                                  />
+                                </p>
+                              </button>
+                              <p className={styles.Datemini}> {item.created_at}</p>
+                            </div>
+                          </>
+                        ) : isAmharicLang ? (
+                          <>
+                            {" "}
+                            <img
+                              className={styles.unsplash4}
+                              alt="unsplash"
+                              src={item.thumbnail.link}
+                            />
+                            <div className="flex flex-col">
+                              <button
+                                onClick={() => {
+                                  navigate(`/details/${item.id}`);
+                                  window.location.reload(true);
+                                }}
+                              >
+                                <p className={styles.subtitlemini}>
+                                  <ClampLines
+                                    text={item.body.amharic}
+                                    id="really-unique-id"
+                                    lines={4}
+                                    ellipsis="..."
+                                    moreText=""
+                                    lessText=""
+                                    className="custom-class"
+                                    innerElement="p"
+                                  />
+                                </p>
+                              </button>
+                              <p className={styles.Datemini}> {item.created_at}</p>
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            {" "}
+                            <img
+                              className={styles.unsplash4}
+                              alt="unsplash"
+                              src={item.thumbnail.link}
+                            />
+                            <div className="flex flex-col">
+                              <button
+                                onClick={() => {
+                                  navigate(`/details/${item.id}`);
+                                  window.location.reload(true);
+                                }}
+                              >
+                                <p className={styles.subtitlemini}>
+                                  <ClampLines
+                                    text={item.body.oromiffa}
+                                    id="really-unique-id"
+                                    lines={4}
+                                    ellipsis="..."
+                                    moreText=""
+                                    lessText=""
+                                    className="custom-class"
+                                    innerElement="p"
+                                  />
+                                </p>
+                              </button>
+                              <p className={styles.Datemini}> {item.created_at}</p>
+                            </div>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : null;
+          })}
+        </div>
+      </div>{" "}
+      {isScholarship ? (
+        <>
+          {prev ? (
+            <div className={styles.Toprated2}>
+              Scholarship Category
+              <div className="flex flex-row">
+                {Category1?.data?.data?.data?.map((item, i) => {
+                  return i < 4 ? (
+                    <>
+                      <div key={item}>
+                        <div className="flex flex-col m-2">
+                          <button
+                            onClick={() => {
+                              navigate(`/details/${item.id}`);
+                              window.location.reload(true);
+                            }}
+                          >
+                            <div className={styles.img}>
+                              <img alt="unsplash" src={item.thumbnail.link} />
+                            </div>
+
+                            <p className={styles.date}>
+                              {item.category.created_at}
+                            </p>
+
+                            {isEnglishLang ? (
+                              <>
+                                {" "}
+                                <p className={styles.title}>
+                                  {item.title.english}
+                                </p>
+                              </>
+                            ) : isAmharicLang ? (
+                              <>
+                                {" "}
+                                <p className={styles.title}>
+                                  {item.title.amharic}
+                                </p>
+                              </>
+                            ) : (
+                              <>
+                                {" "}
+                                <p className={styles.title}>
+                                  {item.title.oromiffa}
+                                </p>
+                              </>
+                            )}
+                            {isEnglishLang ? (
+                              <>
+                                {" "}
+                                <p className={styles.subtitle}>
+                                  {item.body.english}
+                                </p>
+                              </>
+                            ) : isAmharicLang ? (
+                              <>
+                                {" "}
+                                <p className={styles.subtitle}>
+                                  {item.body.amharic}
+                                </p>
+                              </>
+                            ) : (
+                              <>
+                                <p className={styles.subtitle}>
+                                  {item.body.oromiffa}
+                                </p>
+                              </>
+                            )}
+                          </button>
+                        </div>
+                      </div>
+                    </>
+                  ) : null;
+                })}
+              </div>
+            </div>
+          ) : null}
+          {next ? (
+            <div className={styles.Toprated2}>
+              Scolarship Category
+              <div className="flex flex-row">
+                {Category1?.data?.data?.data?.map((item, i) => {
+                  return i > 5 && i < 10 ? (
+                    <>
+                      <div key={item}>
+                        <div className="flex flex-col m-2">
+                          <button
+                            onClick={() => {
+                              navigate(`/details/${item.id}`);
+                              window.location.reload(true);
+                            }}
+                          >
+                            <div className={styles.img}>
+                              <img alt="unsplash" src={item.thumbnail.link} />
+                            </div>
+
+                            <p className={styles.date}>
+                              {item.category.created_at}
+                            </p>
+                            {isEnglishLang ? (
+                              <>
+                                {" "}
+                                <p className={styles.title}>
+                                  {item.title.english}
+                                </p>
+                              </>
+                            ) : isAmharicLang ? (
+                              <>
+                                {" "}
+                                <p className={styles.title}>
+                                  {item.title.amharic}
+                                </p>
+                              </>
+                            ) : (
+                              <>
+                                {" "}
+                                <p className={styles.title}>
+                                  {item.title.oromiffa}
+                                </p>
+                              </>
+                            )}
+                            {isEnglishLang ? (
+                              <>
+                                {" "}
+                                <p className={styles.subtitle}>
+                                  {item.body.english}
+                                </p>
+                              </>
+                            ) : isAmharicLang ? (
+                              <>
+                                {" "}
+                                <p className={styles.subtitle}>
+                                  {item.body.amharic}
+                                </p>
+                              </>
+                            ) : (
+                              <>
+                                <p className={styles.subtitle}>
+                                  {item.body.oromiffa}
+                                </p>
+                              </>
+                            )}
+                          </button>
+                        </div>
+                      </div>
+                    </>
+                  ) : null;
+                })}
+              </div>
+            </div>
+          ) : null}
+          <button
+            className={styles.next}
+            onClick={() => {
+              setNext(true);
+
+              setPrev(false);
+            }}
+          >
+            2
+          </button>
+          <button
+            className={styles.prev}
+            onClick={() => {
+              setNext(false);
+              setPrev(true);
+            }}
+          >
+            1
+          </button>
+        </>
+      ) : null}
+      {isEnglish ? (
+        <>
+          {prev ? (
+            <div className={styles.Toprated2}>
+              English Category
+              <div className="flex flex-row">
+                {Category2?.data?.data?.data?.map((item, i) => {
+                  return i < 4 ? (
+                    <>
+                      <div key={item}>
+                        <div className="flex flex-col m-2">
+                          <button
+                            onClick={() => {
+                              navigate(`/details/${item.id}`);
+                              window.location.reload(true);
+                            }}
+                          >
+                            <div className={styles.img}>
+                              <img alt="unsplash" src={item.thumbnail.link} />
+                            </div>
+
+                            <p className={styles.date}>
+                              {item.category.created_at}
+                            </p>
+                            {isEnglishLang ? (
+                              <>
+                                {" "}
+                                <p className={styles.title}>
+                                  {item.title.english}
+                                </p>
+                              </>
+                            ) : isAmharicLang ? (
+                              <>
+                                {" "}
+                                <p className={styles.title}>
+                                  {item.title.amharic}
+                                </p>
+                              </>
+                            ) : (
+                              <>
+                                {" "}
+                                <p className={styles.title}>
+                                  {item.title.oromiffa}
+                                </p>
+                              </>
+                            )}
+                            {isEnglishLang ? (
+                              <>
+                                {" "}
+                                <p className={styles.subtitle}>
+                                  {item.body.english}
+                                </p>
+                              </>
+                            ) : isAmharicLang ? (
+                              <>
+                                {" "}
+                                <p className={styles.subtitle}>
+                                  {item.body.amharic}
+                                </p>
+                              </>
+                            ) : (
+                              <>
+                                <p className={styles.subtitle}>
+                                  {item.body.oromiffa}
+                                </p>
+                              </>
+                            )}
+                          </button>
+                        </div>
+                      </div>
+                    </>
+                  ) : null;
+                })}
+              </div>
+            </div>
+          ) : null}
+          {next ? (
+            <div className={styles.Toprated2}>
+              English Category
+              <div className="flex flex-row">
+                {Category2?.data?.data?.data?.map((item, i) => {
+                  return i > 5 && i < 10 ? (
+                    <>
+                      <div key={item}>
+                        <div className="flex flex-col m-2">
+                          <button
+                            onClick={() => {
+                              navigate(`/details/${item.id}`);
+                              window.location.reload(true);
+                            }}
+                          >
+                            <div className={styles.img}>
+                              <img alt="unsplash" src={item.thumbnail.link} />
+                            </div>
+
+                            <p className={styles.date}>
+                              {item.category.created_at}
+                            </p>
+                            {isEnglishLang ? (
+                              <>
+                                {" "}
+                                <p className={styles.title}>
+                                  {item.title.english}
+                                </p>
+                              </>
+                            ) : isAmharicLang ? (
+                              <>
+                                {" "}
+                                <p className={styles.title}>
+                                  {item.title.amharic}
+                                </p>
+                              </>
+                            ) : (
+                              <>
+                                {" "}
+                                <p className={styles.title}>
+                                  {item.title.oromiffa}
+                                </p>
+                              </>
+                            )}
+                            {isEnglishLang ? (
+                              <>
+                                {" "}
+                                <p className={styles.subtitle}>
+                                  {item.body.english}
+                                </p>
+                              </>
+                            ) : isAmharicLang ? (
+                              <>
+                                {" "}
+                                <p className={styles.subtitle}>
+                                  {item.body.amharic}
+                                </p>
+                              </>
+                            ) : (
+                              <>
+                                <p className={styles.subtitle}>
+                                  {item.body.oromiffa}
+                                </p>
+                              </>
+                            )}
+                          </button>
+                        </div>
+                      </div>
+                    </>
+                  ) : null;
+                })}
+              </div>
+            </div>
+          ) : null}
+          <button
+            className={styles.next}
+            onClick={() => {
+              setNext(true);
+
+              setPrev(false);
+            }}
+          >
+            2
+          </button>
+          <button
+            className={styles.prev}
+            onClick={() => {
+              setNext(false);
+              setPrev(true);
+            }}
+          >
+            1
+          </button>
+        </>
+      ) : null}
+      {isChinese ? (
+        <>
+          {prev ? (
+            <div className={styles.Toprated2}>
+              Chineese Category
+              <div className="flex flex-row">
+                {Category3?.data?.data?.data?.map((item, i) => {
+                  return i < 4 ? (
+                    <>
+                      <div key={item}>
+                        <div className="flex flex-col m-2">
+                          <button
+                            onClick={() => {
+                              navigate(`/details/${item.id}`);
+                              window.location.reload(true);
+                            }}
+                          >
+                            <div className={styles.img}>
+                              <img alt="unsplash" src={item.thumbnail.link} />
+                            </div>
+
+                            <p className={styles.date}>
+                              {item.category.created_at}
+                            </p>
+                            {isEnglishLang ? (
+                              <>
+                                {" "}
+                                <p className={styles.title}>
+                                  {item.title.english}
+                                </p>
+                              </>
+                            ) : isAmharicLang ? (
+                              <>
+                                {" "}
+                                <p className={styles.title}>
+                                  {item.title.amharic}
+                                </p>
+                              </>
+                            ) : (
+                              <>
+                                {" "}
+                                <p className={styles.title}>
+                                  {item.title.oromiffa}
+                                </p>
+                              </>
+                            )}
+                            {isEnglishLang ? (
+                              <>
+                                {" "}
+                                <p className={styles.subtitle}>
+                                  {item.body.english}
+                                </p>
+                              </>
+                            ) : isAmharicLang ? (
+                              <>
+                                {" "}
+                                <p className={styles.subtitle}>
+                                  {item.body.amharic}
+                                </p>
+                              </>
+                            ) : (
+                              <>
+                                <p className={styles.subtitle}>
+                                  {item.body.oromiffa}
+                                </p>
+                              </>
+                            )}
+                          </button>
+                        </div>
+                      </div>
+                    </>
+                  ) : null;
+                })}
+              </div>
+            </div>
+          ) : null}
+          {next ? (
+            <div className={styles.Toprated2}>
+              Chineese Category
+              <div className="flex flex-row">
+                {Category3?.data?.data?.data?.map((item, i) => {
+                  return i > 5 && i < 10 ? (
+                    <>
+                      <div key={item}>
+                        <div className="flex flex-col m-2">
+                          <button
+                            onClick={() => {
+                              navigate(`/details/${item.id}`);
+                              window.location.reload(true);
+                            }}
+                          >
+                            <div className={styles.img}>
+                              <img alt="unsplash" src={item.thumbnail.link} />
+                            </div>
+
+                            <p className={styles.date}>
+                              {item.category.created_at}
+                            </p>
+                            {isEnglishLang ? (
+                              <>
+                                {" "}
+                                <p className={styles.title}>
+                                  {item.title.english}
+                                </p>
+                              </>
+                            ) : isAmharicLang ? (
+                              <>
+                                {" "}
+                                <p className={styles.title}>
+                                  {item.title.amharic}
+                                </p>
+                              </>
+                            ) : (
+                              <>
+                                {" "}
+                                <p className={styles.title}>
+                                  {item.title.oromiffa}
+                                </p>
+                              </>
+                            )}
+                            {isEnglishLang ? (
+                              <>
+                                {" "}
+                                <p className={styles.subtitle}>
+                                  {item.body.english}
+                                </p>
+                              </>
+                            ) : isAmharicLang ? (
+                              <>
+                                {" "}
+                                <p className={styles.subtitle}>
+                                  {item.body.amharic}
+                                </p>
+                              </>
+                            ) : (
+                              <>
+                                <p className={styles.subtitle}>
+                                  {item.body.oromiffa}
+                                </p>
+                              </>
+                            )}
+                          </button>
+                        </div>
+                      </div>
+                    </>
+                  ) : null;
+                })}
+              </div>
+            </div>
+          ) : null}
+          <button
+            className={styles.next}
+            onClick={() => {
+              setNext(true);
+
+              setPrev(false);
+            }}
+          >
+            2
+          </button>
+          <button
+            className={styles.prev}
+            onClick={() => {
+              setNext(false);
+              setPrev(true);
+            }}
+          >
+            1
+          </button>
+        </>
+      ) : null}
       <Footer />
     </div>
   );

@@ -2,7 +2,7 @@
   /* Rectangle 1 */
 
   position: absolute;
-  width: 1921.07px;
+  width: fill;
   height: 3165.67px;
   left: -1.07px;
   top: 0px;
@@ -13,7 +13,13 @@
     rgba(217, 217, 217, 0) 134.19%
   );
 }
-
+.unsplash4 {
+  width: 164px;
+  height: 146px;
+  padding: 4px;
+  object-fit: cover;
+  border-radius: 29px;
+}
 .vector2 {
   /* Vector */
 
@@ -63,7 +69,7 @@
   /* Rectangle 30 */
 
   position: absolute;
-  width: 466.2px;
+  width: 366.2px;
   height: 49.05px;
   left: 634.65px;
   top: 74.14px;
@@ -114,7 +120,7 @@
   position: absolute;
   width: 63px;
   height: 27px;
-  left: 901.33px;
+  left: 801.33px;
   top: 85.17px;
 
   font-family: "Poppins";
@@ -132,7 +138,7 @@
   position: absolute;
   width: 71px;
   height: 27px;
-  left: 1009.52px;
+  left: 909.52px;
   top: 85.17px;
 
   font-family: "Poppins";
@@ -458,4 +464,93 @@
   left: 475.218017578125px;
   top: 199.57974243164062px;
   border-radius: 0px;
+}
+.Frame26 {
+  width: 850px;
+  height: 146px;
+
+  background: #f2f7ff;
+  border-radius: 29px;
+}
+.frame26position {
+  position: absolute;
+
+  left: 211px;
+  top: 428px;
+}
+.subtitlemini {
+  margin: 4px;
+  margin-top: 16px;
+  width: 657.81px;
+  height: 94.99px;
+  padding-left: 15px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+
+  color: #000000;
+}
+.Datemini {
+  /* 2023-10-21᎐ */
+
+  width: 182px;
+  height: 11px;
+  padding-left: 20px;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 21px;
+  /* identical to box height */
+
+  color: #383838;
+}
+
+.Frame262 {
+ 
+  width: 600px;
+  height: 146px;
+ 
+
+  background: #f97316;
+  border-radius: 29px;
+}
+.frame26position2{
+  position: absolute;
+  
+  left: 1241px;
+  top: 448px;
+}
+.subtitlemini2 {
+  margin: 4px;
+  margin-top:16px;
+  width: 407.81px;
+  height: 94.99px;
+  padding-left: 15px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+
+  color: #000000;
+}
+.Datemini2 {
+  /* 2023-10-21᎐ */
+
+  width: 182px;
+  height: 11px;
+  padding-left: 25px;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 21px;
+  /* identical to box height */
+
+  color: #383838;
 }
