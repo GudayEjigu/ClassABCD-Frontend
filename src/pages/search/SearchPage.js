@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./SearchPage.module.scss";
 import { useNavigate } from "react-router-dom";
 import vector2 from "../../assets/Vector2.png";
@@ -13,15 +13,23 @@ import unsplash4 from "../../assets/unsplash4.png";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { ThreeCircles } from "react-loader-spinner";
+import { LanguageContext } from "../../context/LanguageContext";
+import { Button, Menu, MenuItem } from "@mui/material";
 
 const SearchPage = () => {
   const navigate = useNavigate();
+  const {isEnglishLang, setIsEnglishLang, isAmharicLang, setIsAmharicLang, isOromoLang, setIsOromoLang} = useContext(LanguageContext)
   const [search, setSearch] = useState(null);
   const [SearchApi, setSearchApi] = useState(null);
 
-  const [isEnglishLang, setIsEnglishLang] = useState(true);
-  const [isAmharicLang, setIsAmharicLang] = useState(false);
-  const [isOromoLang, setIsOromoLang] = useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const { token, user } = useAuth();
   const headers = {
@@ -101,8 +109,61 @@ const SearchPage = () => {
         <div className={styles.Rectangle36}></div>
         <img className={styles.vector3} alt="Vector" src={vector3} />
       </button>
-      <img className={styles.vector4} alt="Vector" src={vector4} />
-      <p className={styles.Language}>Language </p>
+      <div>
+            <Button
+              id="basic-button"
+              aria-controls={open ? "basic-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={handleClick}
+            >
+              <img className={styles.vector4} alt="Vector" src={vector4} />
+              <p className={styles.Language}>Language </p>
+            </Button>
+
+            <Menu
+              id="basic-menu"
+              sx={{ left: "1267.18px", top: "85.03px" }}
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
+              }}
+            >
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  setIsEnglishLang(true);
+                  setIsAmharicLang(false);
+                  setIsOromoLang(false);
+                }}
+              >
+                English
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  setIsEnglishLang(false);
+                  setIsAmharicLang(true);
+                  setIsOromoLang(true);
+                }}
+              >
+                Amharic
+              </MenuItem>
+
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  setIsEnglishLang(false);
+                  setIsAmharicLang(false);
+                  setIsOromoLang(true);
+                }}
+              >
+                Oromiffa
+              </MenuItem>
+            </Menu>
+          </div>
       <input
         className={styles.RectangleSearch}
         onChange={(e) => {
@@ -310,7 +371,7 @@ const SearchPage = () => {
                                   navigate(`/details/${item.id}`);
                                 }}
                               >
-                                <p className={styles.subtitlemini}>
+                                <p className={styles.subtitlemini2}>
                                   <ClampLines
                                     text={item.body.amharic}
                                     id="really-unique-id"
@@ -343,7 +404,7 @@ const SearchPage = () => {
                                   navigate(`/details/${item.id}`);
                                 }}
                               >
-                                <p className={styles.subtitlemini}>
+                                <p className={styles.subtitlemini2}>
                                   <ClampLines
                                     text={item.body.oromiffa}
                                     id="really-unique-id"
