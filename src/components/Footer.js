@@ -9,7 +9,7 @@ const Footer = () => {
   const navigate = useNavigate();
   return (
     <>
-      {/* {myToken ? (*/} 
+      {myToken ? (
         <>
           <div className={styles.Rectangle32}>
             <img className={styles.vector} alt="Vector" src={vector} />
@@ -25,40 +25,40 @@ const Footer = () => {
             <button className={styles.faqs}>FAQs</button>
             <p className={styles.languages}>Categories:</p>
             <button
-        className={styles.Scolarship}
-        onClick={() => {
-          navigate("/english");
-          window.scrollTo(0, 0)
-        }}
-      >
-            <p className={styles.english}>English</p>
+              className={styles.Scolarship}
+              onClick={() => {
+                navigate("/english");
+                window.scrollTo(0, 0);
+              }}
+            >
+              <p className={styles.english}>English</p>
             </button>
             <button
-        className={styles.Scolarship}
-        onClick={() => {
-          navigate("/chineese");
-          window.scrollTo(0, 0)
-        }}
-      >
-            <p className={styles.chinese}>Chineese</p>
+              className={styles.Scolarship}
+              onClick={() => {
+                navigate("/chineese");
+                window.scrollTo(0, 0);
+              }}
+            >
+              <p className={styles.chinese}>Chineese</p>
             </button>
             <button
-        className={styles.Scolarship}
-        onClick={() => {
-          navigate("/scolarship");
-          window.scrollTo(0, 0)
-        }}
-      >
-            <p className={styles.scolarship}>Scholarship</p>
+              className={styles.Scolarship}
+              onClick={() => {
+                navigate("/scolarship");
+                window.scrollTo(0, 0);
+              }}
+            >
+              <p className={styles.scolarship}>Scholarship</p>
             </button>
             <p className={styles.allrights}>
               2023 classABCD.All Rights reserved
             </p>
           </div>{" "}
         </>
-      {/* ) : ( null
-         navigate("/login") 
-      )} */}
+      ) : (
+        navigate("/login")
+      )}
     </>
   );
 };
