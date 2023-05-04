@@ -81,8 +81,8 @@ const Login = () => {
     }
   };
   return (
-    <div>
-      <div className={styles.Rectangle1}></div>
+    <>
+      <div className={styles.Rectangle1}>
       <img className={styles.vector2} alt="vector2" src={vector2} />
       <p className={styles.classABCD}>classABCD</p>
       <p className={styles.learning}>Learning Center</p>
@@ -137,7 +137,12 @@ const Login = () => {
       <button className={styles.Rectangle21}>
         <div className={styles.Register}>Register</div>
       </button>
+      <div className="invisible lg:visible">
+        
       <img className={styles.frame} alt="frame" src={frame} />
+        
+        
+      </div>
 
       <Button onClick={handleOpen}>verification</Button>
       <Modal open={open} onClose={handleClose}>
@@ -197,6 +202,7 @@ const Login = () => {
 
       <ToastContainer />
     </div>
+    </>
   );
 };
 

@@ -34,6 +34,7 @@ const Details = () => {
   const [isChinese, setIsChinese] = useState(false);
   const [next, setNext] = useState(false);
   const [prev, setPrev] = useState(true);
+  const [after, setAfter] = useState(false);
   const { token, user } = useAuth();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -173,9 +174,10 @@ const Details = () => {
     }
   );
   return (
-    <div>
+    <div className="">
+      <div className={styles.Rectangle1}>
+    <div className="h-[3000px]">
       {" "}
-      <div className={styles.Rectangle1}></div>
       <button onClick={() => navigate("/")}>
         <img className={styles.vector2} alt="Vector" src={vector2} />
         <p className={styles.classABCD}>ClassABCD</p>
@@ -186,53 +188,32 @@ const Details = () => {
       <button
         className={styles.Scolarship}
         onClick={() => {
-          setIsScolarship(true);
-          setIsAmharic(false);
-          setIsEnglish(false);
-          setIsChinese(false);
+          navigate("/scolarship")
         }}
       >
-        {!isScholarship ? (
-          <>Scholarship</>
-        ) : (
-          <>
+       
             <div className={styles.RectangleScolarship}>Scholarship</div>
-          </>
-        )}{" "}
+       
       </button>
       <button
         className={styles.English}
         onClick={() => {
-          setIsScolarship(false);
-          setIsAmharic(false);
-          setIsEnglish(true);
-          setIsChinese(false);
+          navigate("/english")
         }}
       >
-        {!isEnglish ? (
-          <>English</>
-        ) : (
-          <>
+       
             <div className={styles.RectangleEnglish}>English</div>
-          </>
-        )}
+         
       </button>
       <button
         className={styles.Chinese}
         onClick={() => {
-          setIsScolarship(false);
-          setIsAmharic(false);
-          setIsEnglish(false);
-          setIsChinese(true);
+          navigate("/chineese")
         }}
       >
-        {!isChinese ? (
-          <>Chinese</>
-        ) : (
-          <>
+        
             <div className={styles.RectangleChinese}>Chinese</div>
-          </>
-        )}{" "}
+         
       </button>
       <div className="flex flex-row">
         <button onClick={() => navigate("/search")}>
@@ -253,7 +234,8 @@ const Details = () => {
 
         <Menu
           id="basic-menu"
-          sx={{ left: "1267.18px", top: "85.03px" }}
+          sx={{ left:{xs:"480px", lg:"1267.18px"}, top: {xs:"120px", lg:"85.03px"} }}
+          
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose}
@@ -355,6 +337,7 @@ const Details = () => {
           </div>
         </>
       )}
+      <div className="invisible lg:visible">
       <p className={styles.MostRecent}> Most Recent </p>
       <div className="flex flex-col col-5">
         <div className={styles.frame26position}>
@@ -468,8 +451,7 @@ const Details = () => {
           })}
         </div>
       </div>{" "}
-      {isScholarship ? (
-        <>
+    
           {prev ? (
             <div className={styles.Toprated2}>
               Scholarship Category
@@ -547,103 +529,6 @@ const Details = () => {
           ) : null}
           {next ? (
             <div className={styles.Toprated2}>
-              Scolarship Category
-              <div className="flex flex-row">
-                {Category1?.data?.data?.data?.map((item, i) => {
-                  return i > 5 && i < 10 ? (
-                    <>
-                      <div key={item}>
-                        <div className="flex flex-col m-2">
-                          <button
-                            onClick={() => {
-                              navigate(`/details/${item.id}`);
-                              window.location.reload(true);
-                            }}
-                          >
-                            <div className={styles.img}>
-                              <img alt="unsplash" src={item.thumbnail.link} />
-                            </div>
-
-                            <p className={styles.date}>
-                              {item.category.created_at}
-                            </p>
-                            {isEnglishLang ? (
-                              <>
-                                {" "}
-                                <p className={styles.title}>
-                                  {item.title.english}
-                                </p>
-                              </>
-                            ) : isAmharicLang ? (
-                              <>
-                                {" "}
-                                <p className={styles.title}>
-                                  {item.title.amharic}
-                                </p>
-                              </>
-                            ) : (
-                              <>
-                                {" "}
-                                <p className={styles.title}>
-                                  {item.title.oromiffa}
-                                </p>
-                              </>
-                            )}
-                            {isEnglishLang ? (
-                              <>
-                                {" "}
-                                <p className={styles.subtitle}>
-                                  {item.body.english}
-                                </p>
-                              </>
-                            ) : isAmharicLang ? (
-                              <>
-                                {" "}
-                                <p className={styles.subtitle}>
-                                  {item.body.amharic}
-                                </p>
-                              </>
-                            ) : (
-                              <>
-                                <p className={styles.subtitle}>
-                                  {item.body.oromiffa}
-                                </p>
-                              </>
-                            )}
-                          </button>
-                        </div>
-                      </div>
-                    </>
-                  ) : null;
-                })}
-              </div>
-            </div>
-          ) : null}
-          <button
-            className={styles.next}
-            onClick={() => {
-              setNext(true);
-
-              setPrev(false);
-            }}
-          >
-            2
-          </button>
-          <button
-            className={styles.prev}
-            onClick={() => {
-              setNext(false);
-              setPrev(true);
-            }}
-          >
-            1
-          </button>
-        </>
-      ) : null}
-      {isEnglish ? (
-        <>
-          {prev ? (
-            <div className={styles.Toprated2}>
               English Category
               <div className="flex flex-row">
                 {Category2?.data?.data?.data?.map((item, i) => {
@@ -716,104 +601,7 @@ const Details = () => {
               </div>
             </div>
           ) : null}
-          {next ? (
-            <div className={styles.Toprated2}>
-              English Category
-              <div className="flex flex-row">
-                {Category2?.data?.data?.data?.map((item, i) => {
-                  return i > 5 && i < 10 ? (
-                    <>
-                      <div key={item}>
-                        <div className="flex flex-col m-2">
-                          <button
-                            onClick={() => {
-                              navigate(`/details/${item.id}`);
-                              window.location.reload(true);
-                            }}
-                          >
-                            <div className={styles.img}>
-                              <img alt="unsplash" src={item.thumbnail.link} />
-                            </div>
-
-                            <p className={styles.date}>
-                              {item.category.created_at}
-                            </p>
-                            {isEnglishLang ? (
-                              <>
-                                {" "}
-                                <p className={styles.title}>
-                                  {item.title.english}
-                                </p>
-                              </>
-                            ) : isAmharicLang ? (
-                              <>
-                                {" "}
-                                <p className={styles.title}>
-                                  {item.title.amharic}
-                                </p>
-                              </>
-                            ) : (
-                              <>
-                                {" "}
-                                <p className={styles.title}>
-                                  {item.title.oromiffa}
-                                </p>
-                              </>
-                            )}
-                            {isEnglishLang ? (
-                              <>
-                                {" "}
-                                <p className={styles.subtitle}>
-                                  {item.body.english}
-                                </p>
-                              </>
-                            ) : isAmharicLang ? (
-                              <>
-                                {" "}
-                                <p className={styles.subtitle}>
-                                  {item.body.amharic}
-                                </p>
-                              </>
-                            ) : (
-                              <>
-                                <p className={styles.subtitle}>
-                                  {item.body.oromiffa}
-                                </p>
-                              </>
-                            )}
-                          </button>
-                        </div>
-                      </div>
-                    </>
-                  ) : null;
-                })}
-              </div>
-            </div>
-          ) : null}
-          <button
-            className={styles.next}
-            onClick={() => {
-              setNext(true);
-
-              setPrev(false);
-            }}
-          >
-            2
-          </button>
-          <button
-            className={styles.prev}
-            onClick={() => {
-              setNext(false);
-              setPrev(true);
-            }}
-          >
-            1
-          </button>
-        </>
-      ) : null}
-      {isChinese ? (
-        <>
-          {prev ? (
+          {after ? (
             <div className={styles.Toprated2}>
               Chineese Category
               <div className="flex flex-row">
@@ -887,102 +675,43 @@ const Details = () => {
               </div>
             </div>
           ) : null}
-          {next ? (
-            <div className={styles.Toprated2}>
-              Chineese Category
-              <div className="flex flex-row">
-                {Category3?.data?.data?.data?.map((item, i) => {
-                  return i > 5 && i < 10 ? (
-                    <>
-                      <div key={item}>
-                        <div className="flex flex-col m-2">
-                          <button
-                            onClick={() => {
-                              navigate(`/details/${item.id}`);
-                              window.location.reload(true);
-                            }}
-                          >
-                            <div className={styles.img}>
-                              <img alt="unsplash" src={item.thumbnail.link} />
-                            </div>
-
-                            <p className={styles.date}>
-                              {item.category.created_at}
-                            </p>
-                            {isEnglishLang ? (
-                              <>
-                                {" "}
-                                <p className={styles.title}>
-                                  {item.title.english}
-                                </p>
-                              </>
-                            ) : isAmharicLang ? (
-                              <>
-                                {" "}
-                                <p className={styles.title}>
-                                  {item.title.amharic}
-                                </p>
-                              </>
-                            ) : (
-                              <>
-                                {" "}
-                                <p className={styles.title}>
-                                  {item.title.oromiffa}
-                                </p>
-                              </>
-                            )}
-                            {isEnglishLang ? (
-                              <>
-                                {" "}
-                                <p className={styles.subtitle}>
-                                  {item.body.english}
-                                </p>
-                              </>
-                            ) : isAmharicLang ? (
-                              <>
-                                {" "}
-                                <p className={styles.subtitle}>
-                                  {item.body.amharic}
-                                </p>
-                              </>
-                            ) : (
-                              <>
-                                <p className={styles.subtitle}>
-                                  {item.body.oromiffa}
-                                </p>
-                              </>
-                            )}
-                          </button>
-                        </div>
-                      </div>
-                    </>
-                  ) : null;
-                })}
-              </div>
-            </div>
-          ) : null}
           <button
             className={styles.next}
             onClick={() => {
               setNext(true);
 
               setPrev(false);
+              setAfter(false)
             }}
           >
-            2
+            Englsih
           </button>
           <button
             className={styles.prev}
             onClick={() => {
               setNext(false);
               setPrev(true);
+              setAfter(false)
             }}
           >
-            1
+            Scolarship
           </button>
-        </>
-      ) : null}
+          <button
+            className={styles.after}
+            onClick={() => {
+              setNext(false);
+              setPrev(false);
+              setAfter(true)
+            }}
+          >
+            Chineese
+          </button>
+      
+          </div>
+     
+    </div>
       <Footer />
+    </div>
     </div>
   );
 };

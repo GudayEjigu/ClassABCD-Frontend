@@ -554,3 +554,463 @@
 
   color: #383838;
 }
+
+.RectangleScolarship {
+  /* Rectangle 31 */
+  &:hover {
+    position: absolute;
+    width: 126.91px;
+    height: 38.63px;
+    left: 0px;
+    top: -5px;
+    padding-top: 5px;
+    background: #deeafe;
+    border-radius: 11px;
+  
+}}
+
+.RectangleEnglish {
+  /* Rectangle 31 */
+  &:hover {
+    position: absolute;
+    width: 126.91px;
+    height: 38.63px;
+    left: -30px;
+    top: -5px;
+    padding-top: 5px;
+    background: #deeafe;
+    border-radius: 11px;
+  
+}}
+.RectangleChinese {
+  /* Rectangle 31 */
+  &:hover {
+    position: absolute;
+    width: 126.91px;
+    height: 38.63px;
+    left: -40px;
+    top: -5px;
+    padding-top: 5px;
+
+    background: #deeafe;
+    border-radius: 11px;
+  
+}}
+@media only screen and (max-width: 600px) {
+  
+  .Rectangle1 {
+    /* Rectangle 1 */
+  
+    position: absolute;
+    width: 600px;
+    height: 6500px;
+    left: -1.07px;
+    top: 0px;
+    object-fit:cover;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  
+    background: linear-gradient(
+      117.07deg,
+      #3b82f6 -29.07%,
+      rgba(217, 217, 217, 0) 134.19%
+    );
+  }
+    .vector2 {
+      position: absolute;
+      height: 96.37989807128906px;
+      width: 89.98941802978516px;
+      left:40px;
+      top: 66.45687866210938px;
+      border-radius: 0px;
+    }
+    .classABCD {
+      /* classABCD */
+    
+      position: absolute;
+      width: 176.64px;
+      height: 26.85px;
+      left: 139.5px;
+      top: 73.63px;
+    
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 25px;
+      line-height: 30px;
+    
+      color: #000000;
+    }
+
+    .learning {
+      /* Learning Center */
+    
+      position: absolute;
+      width: 197.75px;
+      height: 26.85px;
+      left: 139.5px;
+      top: 94.17px;
+    
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 25px;
+      line-height: 30px;
+    
+      color: #f97316;
+    }
+
+    .Rectangle36 {
+      /* Rectangle 36 */
+    
+      position: absolute;
+      width: 59.52px;
+      height: 49.05px;
+      left: 444.7px;
+      top: 78.98px;
+    
+      background: #f97316;
+      border-radius: 15px;
+    }
+    .vector3 {
+      /* Vector */
+    
+      position: absolute;
+      height: 20.619569778442383px;
+      width: 20.60748291015625px;
+      left: 466px;
+      top: 93.19103240966797px;
+      border-radius: 0px;
+    }
+    .vector4 {
+      /* Vector */
+    
+      position: absolute;
+      height: 23.505882263183594px;
+      width: 43.03125px;
+      left: 526px;
+      top: 57.560546875px;
+      border-radius: 0px;
+    }
+    .Language {
+      /* Language */
+    
+      position: absolute;
+      width: 62px;
+      height: 16.62px;
+      left: 516px;
+      top: 82.560546875px;
+    
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 18px;
+      text-decoration-line: underline;
+    
+      color: #f97316;
+    }
+    .Rectangle30 {
+      /* Rectangle 30 */
+    
+      position: absolute;
+      width: 386.2px;
+      height: 49.05px;
+      left: 160.24px;
+      top: 178.98px;
+    
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+    }
+
+    .RectangleScolarship {
+      /* Rectangle 31 */
+      &:hover {
+        position: absolute;
+        width: 126.91px;
+        height: 38.63px;
+        left: 0px;
+        top: -5px;
+        padding-top: 5px;
+        background: #deeafe;
+        border-radius: 11px;
+      
+    }}
+    
+    .RectangleEnglish {
+      /* Rectangle 31 */
+      &:hover {
+        position: absolute;
+        width: 126.91px;
+        height: 38.63px;
+        left: -30px;
+        top: -5px;
+        padding-top: 5px;
+        background: #deeafe;
+        border-radius: 11px;
+      
+    }}
+    .RectangleChinese {
+      /* Rectangle 31 */
+      &:hover {
+        position: absolute;
+        width: 126.91px;
+        height: 38.63px;
+        left: -40px;
+        top: -5px;
+        padding-top: 5px;
+    
+        background: #deeafe;
+        border-radius: 11px;
+      
+    }}
+    
+.Scolarship {
+  /* Scholarship */
+
+  position: absolute;
+  width: 106px;
+  height: 27px;
+  left: 170.71px;
+  top: 190px;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  /* identical to box height */
+
+  color: #000000;
+}
+
+.English {
+  /* English */
+
+  position: absolute;
+  width: 63px;
+  height: 27px;
+  left: 327.92px;
+  top: 190px;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  /* identical to box height */
+
+  color: #000000;
+}
+.Chinese {
+  /* chinese */
+
+  position: absolute;
+  width: 71px;
+  height: 27px;
+  left: 456.11px;
+  top: 190px;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  /* identical to box height */
+
+  color: #000000;
+}
+.next {
+  /* Top rated */
+
+  position: absolute;
+  width: 43px;
+  height: 41px;
+  left: 863px;
+  top: 4634.52px;
+  border: solid;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 27px;
+  line-height: 40px;
+  /* identical to box height */
+
+  color: #000000;
+  &:focus {
+    background: #f97316;
+  }
+}
+
+
+
+.next {
+  /* Top rated */
+
+  position: absolute;
+  width: 43px;
+  height: 41px;
+  left: 423px;
+  top: 6334.52px;
+  border: solid;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 27px;
+  line-height: 40px;
+  /* identical to box height */
+
+  color: #000000;
+  &:focus {
+    background: #f97316;
+  }
+}
+
+.prev {
+  /* Top rated */
+
+  position: absolute;
+  width: 43px;
+  height: 41px;
+  left: 113px;
+  top: 6334.52px;
+  border: solid;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 27px;
+  line-height: 40px;
+  /* identical to box height */
+
+  color: #000000;
+  &:focus {
+    background: #f97316;
+  }
+
+}
+
+
+.Toprated2 {
+  /* Top rated */
+
+  position: absolute;
+  width: 1583px;
+  height: 41px;
+  top: 250px;
+  left: 100px;
+  
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 27px;
+  line-height: 40px;
+  /* identical to box height */
+
+  color: #000000;
+}
+
+.RectangleSearch {
+  /* Rectangle 37 */
+
+  box-sizing: border-box;
+  padding-left: 50px;
+  position: absolute;
+  width: 505.56px;
+  height: 54.44px;
+  left: 57.66px;
+  top: 250.95px;
+
+  background: rgba(255, 255, 255, 0.2);
+
+  border: 1px solid #000000;
+  border-radius: 15px;
+}
+
+.vector5 {
+  position: absolute;
+  height: 20.619569778442383px;
+  width: 22.233932495117188px;
+  left: 77.66px;
+  top: 268.95px;
+  border-radius: 0px;
+}
+.Rectangle31 {
+  /* Rectangle 31 */
+
+  position: absolute;
+  width: 142.67px;
+  height: 46.66px;
+  left: 417.66px;
+  top: 254.95px;
+
+  background: #f97316;
+  border-radius: 14px;
+}
+.Search {
+  /* Search */
+
+  position: absolute;
+  width: 71.21px;
+  height: 27px;
+  left:447.66px;
+  top: 263.95px;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 27px;
+  /* identical to box height */
+
+  color: #000000;
+}
+.frame26position {
+  position: absolute;
+
+  left: 11px;
+  top: 428px;
+}
+.Results {
+  /* Results */
+
+  position: absolute;
+  width: 94px;
+  height: 38px;
+  left: 46.39px;
+  top: 373.99px;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 38px;
+  /* identical to box height */
+
+  color: #00bbf0;
+}
+.Frame26 {
+  width: 500px;
+  height: 146px;
+
+  background: #f2f7ff;
+  border-radius: 29px;
+}
+.subtitlemini {
+  margin: 4px;
+  margin-top: 16px;
+  width: 317.81px;
+  height: 94.99px;
+  padding-left: 15px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+
+  color: #000000;
+}
+}

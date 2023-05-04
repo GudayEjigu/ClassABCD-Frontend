@@ -498,7 +498,7 @@
 
 .RectangleScolarship {
   /* Rectangle 31 */
-
+  &:hover {
   position: absolute;
   width: 126.91px;
   height: 38.63px;
@@ -508,10 +508,11 @@
   background: #deeafe;
   border-radius: 11px;
 }
+}
 
 .RectangleEnglish {
   /* Rectangle 31 */
-
+  &:hover {
   position: absolute;
   width: 126.91px;
   height: 38.63px;
@@ -521,9 +522,10 @@
   background: #deeafe;
   border-radius: 11px;
 }
+}
 .RectangleChinese {
   /* Rectangle 31 */
-
+  &:hover {
   position: absolute;
   width: 126.91px;
   height: 38.63px;
@@ -533,6 +535,7 @@
 
   background: #deeafe;
   border-radius: 11px;
+}
 }
 
 .Toprated2 {
@@ -621,8 +624,8 @@
   /* Top rated */
 
   position: absolute;
-  width: 43px;
-  height: 41px;
+  width: 163px;
+  height: 61px;
   left: 863px;
   top: 2534.52px;
   border: solid;
@@ -644,9 +647,9 @@
   /* Top rated */
 
   position: absolute;
-  width: 43px;
-  height: 41px;
-  left: 813px;
+  width: 163px;
+  height: 61px;
+  left: 653px;
   top: 2534.52px;
   border: solid;
 
@@ -661,4 +664,356 @@
   &:focus {
     background: #f97316;
   }
+}
+
+
+.after {
+  /* Top rated */
+
+  position: absolute;
+  width: 163px;
+  height: 61px;
+  left: 1063px;
+  top: 2534.52px;
+  border: solid;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 27px;
+  line-height: 40px;
+  /* identical to box height */
+
+  color: #000000;
+  &:focus {
+    background: #f97316;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  
+  .Rectangle1 {
+    /* Rectangle 1 */
+  
+    position: absolute;
+    width: 600px;
+    height: 2000px;
+    left: -1.07px;
+    top: 0px;
+    object-fit:cover;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  
+    background: linear-gradient(
+      117.07deg,
+      #3b82f6 -29.07%,
+      rgba(217, 217, 217, 0) 134.19%
+    );
+  }
+    .vector2 {
+      position: absolute;
+      height: 96.37989807128906px;
+      width: 89.98941802978516px;
+      left:40px;
+      top: 66.45687866210938px;
+      border-radius: 0px;
+    }
+    .classABCD {
+      /* classABCD */
+    
+      position: absolute;
+      width: 176.64px;
+      height: 26.85px;
+      left: 139.5px;
+      top: 73.63px;
+    
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 25px;
+      line-height: 30px;
+    
+      color: #000000;
+    }
+
+    .learning {
+      /* Learning Center */
+    
+      position: absolute;
+      width: 197.75px;
+      height: 26.85px;
+      left: 139.5px;
+      top: 94.17px;
+    
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 25px;
+      line-height: 30px;
+    
+      color: #f97316;
+    }
+
+    .Rectangle36 {
+      /* Rectangle 36 */
+    
+      position: absolute;
+      width: 59.52px;
+      height: 49.05px;
+      left: 444.7px;
+      top: 78.98px;
+    
+      background: #f97316;
+      border-radius: 15px;
+    }
+    .vector3 {
+      /* Vector */
+    
+      position: absolute;
+      height: 20.619569778442383px;
+      width: 20.60748291015625px;
+      left: 466px;
+      top: 93.19103240966797px;
+      border-radius: 0px;
+    }
+    .vector4 {
+      /* Vector */
+    
+      position: absolute;
+      height: 23.505882263183594px;
+      width: 43.03125px;
+      left: 526px;
+      top: 77.560546875px;
+      border-radius: 0px;
+    }
+    .Language {
+      /* Language */
+    
+      position: absolute;
+      width: 62px;
+      height: 16.62px;
+      left: 526px;
+      top: 102.560546875px;
+    
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 18px;
+      text-decoration-line: underline;
+    
+      color: #f97316;
+    }
+    .Rectangle30 {
+      /* Rectangle 30 */
+    
+      position: absolute;
+      width: 386.2px;
+      height: 49.05px;
+      left: 160.24px;
+      top: 178.98px;
+    
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+    }
+
+    .RectangleScolarship {
+      /* Rectangle 31 */
+      &:hover {
+        position: absolute;
+        width: 126.91px;
+        height: 38.63px;
+        left: 0px;
+        top: -5px;
+        padding-top: 5px;
+        background: #deeafe;
+        border-radius: 11px;
+      
+    }}
+    
+    .RectangleEnglish {
+      /* Rectangle 31 */
+      &:hover {
+        position: absolute;
+        width: 126.91px;
+        height: 38.63px;
+        left: -30px;
+        top: -5px;
+        padding-top: 5px;
+        background: #deeafe;
+        border-radius: 11px;
+      
+    }}
+    .RectangleChinese {
+      /* Rectangle 31 */
+      &:hover {
+        position: absolute;
+        width: 126.91px;
+        height: 38.63px;
+        left: -40px;
+        top: -5px;
+        padding-top: 5px;
+    
+        background: #deeafe;
+        border-radius: 11px;
+      
+    }}
+    
+.Scolarship {
+  /* Scholarship */
+
+  position: absolute;
+  width: 106px;
+  height: 27px;
+  left: 170.71px;
+  top: 190px;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  /* identical to box height */
+
+  color: #000000;
+}
+
+.English {
+  /* English */
+
+  position: absolute;
+  width: 63px;
+  height: 27px;
+  left: 327.92px;
+  top: 190px;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  /* identical to box height */
+
+  color: #000000;
+}
+.Chinese {
+  /* chinese */
+
+  position: absolute;
+  width: 71px;
+  height: 27px;
+  left: 456.11px;
+  top: 190px;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  /* identical to box height */
+
+  color: #000000;
+}
+
+.unsplash2 {
+  position: absolute;
+  width: 1920px;
+  height: 567.16px;
+  left: 0px;
+  top: 308.57px;
+  object-fit: cover;
+}
+.Rectangle30 {
+  /* Rectangle 30 */
+
+  position: absolute;
+  width: 386.2px;
+  height: 49.05px;
+  left: 160.24px;
+  top: 178.98px;
+
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+}
+.Rectangle48 {
+  /* Rectangle 1 */
+
+  position: absolute;
+  width: 600px;
+  height: 576.76px;
+  left: 0px;
+  top: 298.98px;
+  background: linear-gradient(
+    117.07deg,
+    #3b82f6 -29.07%,
+    rgba(217, 217, 217, 0) 134.19%
+  );
+}
+.Rectangle49 {
+  /* Rectangle 1 */
+
+  position: absolute;
+  width: 600px;
+  height:1183.03px;
+  left: -5.81px;
+  top: 881.08px;
+
+  background: linear-gradient(
+    117.07deg,
+    #3b82f6 -29.07%,
+    rgba(217, 217, 217, 0) 134.19%
+  );
+}
+.EnglishPro {
+  /* English pronouncation */
+
+  position: absolute;
+  width: 763.65px;
+  height: 98px;
+  left: 28.93px;
+  top: 739.1px;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 65px;
+  line-height: 98px;
+  /* identical to box height */
+
+  color: #ffffff;
+}
+.EnglishPro2 {
+  /* English pronouncation */
+
+  position: absolute;
+  width: 356.62px;
+  height: 38px;
+  left: 98.26px;
+  top: 913.62px;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 38px;
+  /* identical to box height */
+
+  color: #000000;
+}
+
+.Messi {
+  position: absolute;
+  width: 581.93px;
+  height: 420px;
+  left: -90.45px;
+  top: 5.78px;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+
+  color: #000000;
+}
 }
