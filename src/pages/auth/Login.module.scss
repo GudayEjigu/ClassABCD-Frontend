@@ -1,12 +1,6 @@
+
 .Rectangle1 {
-  /* Rectangle 1 */
-
-  position: absolute;
-  width: fill;
-
-  height: fill;
-  left: 0px;
-  top: 0px;
+   
 
   background: linear-gradient(
     117.07deg,
@@ -32,8 +26,7 @@
   position: absolute;
   width: 214.51px;
   height: 37.61px;
-  left: 383.98px;
-  top: 90.47px;
+
 
   font-family: "Inter";
   font-style: normal;
@@ -288,7 +281,7 @@
   position: absolute;
   width: 671px;
   height: 291.07px;
-  left: 585.21px;
+  left: 85.21px;
   top: 370.89px;
 
   background: #82adf3;
@@ -546,17 +539,7 @@
 
 @media only screen and (max-width: 600px) {
   .Rectangle1 {
-    /* Rectangle 1 */
-
-    position: absolute;
-    width: 600px;
-
-    height: 1000px;
-    left: 0px;
-    top: 0px;
-    object-fit: cover;
-    overflow-x: hidden;
-    overflow-y: hidden;
+   
 
     background: linear-gradient(
       117.07deg,
@@ -565,33 +548,13 @@
     );
   }
 
-  .vector2 {
-    /* Vector */
-
-    position: absolute;
-    height: 97.294189453125px;
-    width: 84.61083984375px;
-    left: 141.6689453125px;
-    top: 94.42095184326172px;
-    border-radius: 0px;
-  }
+ 
 
   .classABCD {
     /* classABCD */
-
-    position: absolute;
-    width: 14.51px;
-    height: 37.61px;
-    left: 243.98px;
-    top: 90.47px;
-
     font-family: "Inter";
     font-style: normal;
-    font-weight: 700;
-    font-size: 35px;
-    line-height: 42px;
-
-    color: #000000;
+     color: #000000;
   }
 
   .learning {
@@ -643,22 +606,7 @@
     border-radius: 27px;
   }
 
-  .phoneNo {
-    position: absolute;
-    width: 133px;
-    height: 27px;
-    left: 58.39px;
-    top: 365.64px;
 
-    font-family: "Poppins";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 27px;
-    /* identical to box height */
-
-    color: #000000;
-  }
   .Rectangle22 {
     /* Rectangle 22 */
 
@@ -716,7 +664,8 @@
     left: 64.92px;
     top: 603.9px;
 
-    border: 1px solid #f97316;
+    border: 1px solid #f97316
+    ;
     border-radius: 2px;
   }
 
@@ -836,9 +785,9 @@
     /* Frame 2 */
 
     position: absolute;
-    width: 671px;
+    width: 471px;
     height: 291.07px;
-    left: 585.21px;
+    left: 25.21px;
     top: 370.89px;
 
     background: #82adf3;
@@ -868,7 +817,7 @@
     /* Frame 3 */
 
     position: absolute;
-    width: 670px;
+    width: 470px;
     height: 82px;
     left: 0;
     bottom: 0;
@@ -883,7 +832,7 @@
     position: absolute;
     width: 127px;
     height: 75px;
-    left: 271.5px;
+    left: 171.5px;
     top: 10px;
 
     font-family: "Poppins";
@@ -902,7 +851,7 @@
     position: absolute;
     width: 233px;
     height: 27px;
-    left: 120.88px;
+    left: 20.88px;
     top: 70.68px;
 
     font-family: "Poppins";
@@ -921,7 +870,7 @@
     position: absolute;
     width: 429.24px;
     height: 61.42px;
-    left: 120.88px;
+    left: 20.88px;
     top: 106.54px;
 
     background: rgba(255, 255, 255, 0.5);
@@ -994,9 +943,9 @@
     /* Frame 2 */
 
     position: absolute;
-    width: 617px;
+    width: 517px;
     height: 450px;
-    left: 622px;
+    left: 22px;
     top: 290px;
 
     background: #82adf3;

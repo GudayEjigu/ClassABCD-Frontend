@@ -10,11 +10,12 @@ import Footer from "../../components/Footer";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
-import { Button, Menu, MenuItem } from "@mui/material";
+import { Button, Card, Menu, MenuItem } from "@mui/material";
 import ClampLines from "react-clamp-lines";
 import unsplash4 from "../../assets/unsplash4.png";
 import unsplash5 from "../../assets/unsplash5.png";
 import { LanguageContext } from "../../context/LanguageContext";
+import ReactPlayer from "react-player";
 
 const Details = () => {
   const { id } = useParams();
@@ -174,545 +175,332 @@ const Details = () => {
     }
   );
   return (
-    <div className="">
-      <div className={styles.Rectangle1}>
-    <div className="h-[3000px]">
-      {" "}
-      <button onClick={() => navigate("/")}>
-        <img className={styles.vector2} alt="Vector" src={vector2} />
-        <p className={styles.classABCD}>ClassABCD</p>
-        <p className={styles.learning}>Learning Center</p>
-      </button>
-      <div className={styles.Rectangle30}></div>
-      <div className={styles.Rectangle31}></div>
-      <button
-        className={styles.Scolarship}
-        onClick={() => {
-          navigate("/scolarship")
-        }}
-      >
-       
-            <div className={styles.RectangleScolarship}>Scholarship</div>
-       
-      </button>
-      <button
-        className={styles.English}
-        onClick={() => {
-          navigate("/english")
-        }}
-      >
-       
-            <div className={styles.RectangleEnglish}>English</div>
-         
-      </button>
-      <button
-        className={styles.Chinese}
-        onClick={() => {
-          navigate("/chineese")
-        }}
-      >
-        
-            <div className={styles.RectangleChinese}>Chinese</div>
-         
-      </button>
-      <div className="flex flex-row">
-        <button onClick={() => navigate("/search")}>
-          <div className={styles.Rectangle36}></div>
-          <img className={styles.vector3} alt="Vector" src={vector3} />
-        </button>
-
-        <Button
-          id="basic-button"
-          aria-controls={open ? "basic-menu" : undefined}
-          aria-haspopup="true"
-          aria-expanded={open ? "true" : undefined}
-          onClick={handleClick}
-        >
-          <img className={styles.vector4} alt="Vector" src={vector4} />
-          <p className={styles.Language}>Language </p>
-        </Button>
-
-        <Menu
-          id="basic-menu"
-          sx={{ left:{xs:"480px", lg:"1267.18px"}, top: {xs:"120px", lg:"85.03px"} }}
-          
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-          MenuListProps={{
-            "aria-labelledby": "basic-button",
-          }}
-        >
-          <MenuItem
-            onClick={() => {
-              handleClose();
-              setIsEnglishLang(true);
-              setIsAmharicLang(false);
-              setIsOromoLang(false);
-            }}
-          >
-            English
-          </MenuItem>
-          <MenuItem
-            onClick={() => {
-              handleClose();
-              setIsEnglishLang(false);
-              setIsAmharicLang(true);
-              setIsOromoLang(true);
-            }}
-          >
-            Amharic
-          </MenuItem>
-
-          <MenuItem
-            onClick={() => {
-              handleClose();
-              setIsEnglishLang(false);
-              setIsAmharicLang(false);
-              setIsOromoLang(true);
-            }}
-          >
-            Oromiffa
-          </MenuItem>
-        </Menu>
-      </div>
-      <img
-        className={styles.unsplash2}
-        alt="unsplash2"
-        src={DetailData?.data?.data?.post?.thumbnail?.link}
-      />
-      <div className={styles.Rectangle48}> </div>
-      {isEnglishLang ? (
-        <>
-          <p className={styles.EnglishPro}>
-            {" "}
-            {DetailData?.data?.data?.post?.title?.english}
-          </p>
-          <div className={styles.Rectangle49}> </div>
-
-          <p className={styles.EnglishPro2}>
-            {" "}
-            {DetailData?.data?.data?.post?.title?.english}
-          </p>
-          <div className={styles.Rectangle51}>
-            <p className={styles.Messi}>
-              {DetailData?.data?.data?.post?.body?.english}
-            </p>
-          </div>
-        </>
-      ) : isAmharicLang ? (
-        <>
-          <p className={styles.EnglishPro}>
-            {" "}
-            {DetailData?.data?.data?.post?.title?.amharic}
-          </p>
-          <div className={styles.Rectangle49}> </div>
-
-          <p className={styles.EnglishPro2}>
-            {" "}
-            {DetailData?.data?.data?.post?.title?.amharic}
-          </p>
-          <div className={styles.Rectangle51}>
-            <p className={styles.Messi}>
-              {DetailData?.data?.data?.post?.body?.amharic}
-            </p>
-          </div>
-        </>
-      ) : (
-        <>
-          <p className={styles.EnglishPro}>
-            {" "}
-            {DetailData?.data?.data?.post?.title?.oromiffa}
-          </p>
-          <div className={styles.Rectangle49}> </div>
-
-          <p className={styles.EnglishPro2}>
-            {" "}
-            {DetailData?.data?.data?.post?.title?.oromiffa}
-          </p>
-          <div className={styles.Rectangle51}>
-            <p className={styles.Messi}>
-              {DetailData?.data?.data?.post?.body?.oromiffa}
-            </p>
-          </div>
-        </>
-      )}
-      <div className="invisible lg:visible">
-      <p className={styles.MostRecent}> Most Recent </p>
-      <div className="flex flex-col col-5">
-        <div className={styles.frame26position}>
-          {HomePageData?.data?.data?.popularPosts?.map((item, i) => {
-            return i < 4 ? (
-              <>
-                <div key={item}>
-                  <div className="flex flex-col m-2">
-                    <div className={styles.Frame26}>
-                      <div className="flex flex-row">
-                        {isEnglishLang ? (
-                          <>
-                            {" "}
-                            <img
-                              className={styles.unsplash4}
-                              alt="unsplash"
-                              src={item.thumbnail.link}
-                            />
-                            <div className="flex flex-col">
-                              <button
-                                onClick={() => {
-                                  navigate(`/details/${item.id}`);
-                                  window.location.reload(true);
-                                }}
-                              >
-                                <p className={styles.subtitlemini}>
-                                  <ClampLines
-                                    text={item.body.english}
-                                    id="really-unique-id"
-                                    lines={4}
-                                    ellipsis="..."
-                                    moreText=""
-                                    lessText=""
-                                    className="custom-class"
-                                    innerElement="p"
-                                  />
-                                </p>
-                              </button>
-                              <p className={styles.Datemini}> {item.created_at}</p>
-                            </div>
-                          </>
-                        ) : isAmharicLang ? (
-                          <>
-                            {" "}
-                            <img
-                              className={styles.unsplash4}
-                              alt="unsplash"
-                              src={item.thumbnail.link}
-                            />
-                            <div className="flex flex-col">
-                              <button
-                                onClick={() => {
-                                  navigate(`/details/${item.id}`);
-                                  window.location.reload(true);
-                                }}
-                              >
-                                <p className={styles.subtitlemini}>
-                                  <ClampLines
-                                    text={item.body.amharic}
-                                    id="really-unique-id"
-                                    lines={4}
-                                    ellipsis="..."
-                                    moreText=""
-                                    lessText=""
-                                    className="custom-class"
-                                    innerElement="p"
-                                  />
-                                </p>
-                              </button>
-                              <p className={styles.Datemini}> {item.created_at}</p>
-                            </div>
-                          </>
-                        ) : (
-                          <>
-                            {" "}
-                            <img
-                              className={styles.unsplash4}
-                              alt="unsplash"
-                              src={item.thumbnail.link}
-                            />
-                            <div className="flex flex-col">
-                              <button
-                                onClick={() => {
-                                  navigate(`/details/${item.id}`);
-                                  window.location.reload(true);
-                                }}
-                              >
-                                <p className={styles.subtitlemini}>
-                                  <ClampLines
-                                    text={item.body.oromiffa}
-                                    id="really-unique-id"
-                                    lines={4}
-                                    ellipsis="..."
-                                    moreText=""
-                                    lessText=""
-                                    className="custom-class"
-                                    innerElement="p"
-                                  />
-                                </p>
-                              </button>
-                              <p className={styles.Datemini}> {item.created_at}</p>
-                            </div>
-                          </>
-                        )}
-                      </div>
+    <>
+      <div className="w-[100%] h-[100%]  overflow-hidden">
+        <div className={styles.Rectangle1}>
+          <div className="flex font-inter ">
+            <div className="flex flex-col w-[100%] ">
+              <div className="flex flex-row lg:ml-[4%]">
+                <div>
+                  <button onClick={() => navigate("/")}>
+                    <img
+                      className=" w-[90%] my-[4%] lg:m-[1%] ml-[6%] lg:ml-]|[0%] mt-[16%] lg:mt-[70%] "
+                      alt="Vector"
+                      src={vector2}
+                    />
+                  </button>
+                </div>
+                <div className="pl-[0%] pt-[8%] flex flex-col lg:pt-[5%] lg:pl-[0%]">
+                  <p className="font-inter xs:text-4xl sm:text-3xl md:text-3xl lg:text-2xl">
+                    <button onClick={() => navigate("/")}>ClassABCD</button>
+                  </p>
+                  <p className=" font-inter xs:text-4xl sm:text-3xl md:text-3xl lg:text-2xl  text-[#f97316] ">
+                    <button onClick={() => navigate("/")}>
+                      Learning Center
+                    </button>
+                  </p>
+                </div>
+                <div className=" hidden w-[0%] h-[0%]  lg:w-[60%]  lg:block  lg:px-[10%] lg:py-[2%] lg:my-[2%]">
+                  <div className="bg-blue-100 bg-opacity-50  rounded-lg bg-clip-padding">
+                    <div className=" flex flex-row justify-center  px-[10%] py-[2%] my-[2%] lg:text-2xl">
+                      <button
+                        className=" mx-[1%]"
+                        onClick={() => {
+                          navigate("/scolarship");
+                        }}
+                      >
+                        Scholarship
+                      </button>
+                      <button
+                        className=" mx-[10%]"
+                        onClick={() => {
+                          navigate("/english");
+                        }}
+                      >
+                        English
+                      </button>
+                      <button
+                        className=" mx-[1%]"
+                        onClick={() => {
+                          navigate("/chineese");
+                        }}
+                      >
+                        Chineese
+                      </button>
                     </div>
                   </div>
                 </div>
-              </>
-            ) : null;
-          })}
-        </div>
-      </div>{" "}
-    
-          {prev ? (
-            <div className={styles.Toprated2}>
-              Scholarship Category
-              <div className="flex flex-row">
-                {Category1?.data?.data?.data?.map((item, i) => {
-                  return i < 4 ? (
-                    <>
-                      <div key={item}>
-                        <div className="flex flex-col m-2">
-                          <button
-                            onClick={() => {
-                              navigate(`/details/${item.id}`);
-                              window.location.reload(true);
-                            }}
-                          >
-                            <div className={styles.img}>
-                              <img alt="unsplash" src={item.thumbnail.link} />
-                            </div>
+                <button
+                  className=" ml-[8%] lg:ml-[1%]   px-[4%] lg:px-[2%] my-[6%] lg:my-[4%] rounded-lg bg-[#f97316]"
+                  onClick={() => navigate("/search")}
+                >
+                  <img className="w-[500%]" alt="Vector" src={vector3} />
+                </button>
 
-                            <p className={styles.date}>
-                              {item.category.created_at}
-                            </p>
+                <Button
+                  className=" ml-[6%]  px-[4%]  my-[4%] rounded-lg flex flex-col"
+                  id="basic-button"
+                  aria-controls={open ? "basic-menu" : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? "true" : undefined}
+                  onClick={handleClick}
+                >
+                  <img alt="Vector" src={vector4} />
+                  <p className="text-[#f97316]">Language </p>
+                </Button>
+                <Menu
+                  id="basic-menu"
+                  sx={{
+                    left: { xs: "0%", lg: "0%" },
+                    top: { xs: "0%", lg: "-10%" },
+                  }}
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  MenuListProps={{
+                    "aria-labelledby": "basic-button",
+                  }}
+                >
+                  <MenuItem
+                    onClick={() => {
+                      handleClose();
+                      setIsEnglishLang(true);
+                      setIsAmharicLang(false);
+                      setIsOromoLang(false);
+                    }}
+                  >
+                    English
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      handleClose();
+                      setIsEnglishLang(false);
+                      setIsAmharicLang(true);
+                      setIsOromoLang(true);
+                    }}
+                  >
+                    Amharic
+                  </MenuItem>
 
-                            {isEnglishLang ? (
-                              <>
-                                {" "}
-                                <p className={styles.title}>
-                                  {item.title.english}
-                                </p>
-                              </>
-                            ) : isAmharicLang ? (
-                              <>
-                                {" "}
-                                <p className={styles.title}>
-                                  {item.title.amharic}
-                                </p>
-                              </>
-                            ) : (
-                              <>
-                                {" "}
-                                <p className={styles.title}>
-                                  {item.title.oromiffa}
-                                </p>
-                              </>
-                            )}
-                            {isEnglishLang ? (
-                              <>
-                                {" "}
-                                <p className={styles.subtitle}>
-                                  {item.body.english}
-                                </p>
-                              </>
-                            ) : isAmharicLang ? (
-                              <>
-                                {" "}
-                                <p className={styles.subtitle}>
-                                  {item.body.amharic}
-                                </p>
-                              </>
-                            ) : (
-                              <>
-                                <p className={styles.subtitle}>
-                                  {item.body.oromiffa}
-                                </p>
-                              </>
-                            )}
-                          </button>
-                        </div>
+                  <MenuItem
+                    onClick={() => {
+                      handleClose();
+                      setIsEnglishLang(false);
+                      setIsAmharicLang(false);
+                      setIsOromoLang(true);
+                    }}
+                  >
+                    Oromiffa
+                  </MenuItem>
+                </Menu>
+              </div>
+
+              <div className=" lg:hidden lg:w-[0%] lg:h-[0%] px-[10%] py-[2%] my-[2%]">
+                <div className=" bg-blue-100 bg-opacity-50  rounded-lg bg-clip-border">
+                  <div className=" flex flex-row justify-center  px-[10%] py-[2%] my-[2%]">
+                    <button
+                      className=" mx-[1%]"
+                      onClick={() => {
+                        navigate("/scolarship");
+                      }}
+                    >
+                      Scholarship
+                    </button>
+                    <button
+                      className=" mx-[5%]"
+                      onClick={() => {
+                        navigate("/english");
+                      }}
+                    >
+                      English
+                    </button>
+                    <button
+                      className=" mx-[1%]"
+                      onClick={() => {
+                        navigate("/chineese");
+                      }}
+                    >
+                      Chineese
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div className="lg:flex lg:flex-row lg:h-[25%]">
+                <div className="lg:flex lg:flex-col lg:w-[70%]  lg:pr-[18%]">
+                  <div className="flex justify-center lg:justify-start lg:pl-[2%] text-3xl my-[2%]">
+                    Detail
+                  </div>
+                  <div className=" h-[100%] p-[2%] lg:p-[6%] flex justify-center  lg:justify-start lg:max-h-[100%] lg:max-w-[100%]   ">
+                    <img
+                      className=" h-[100%] w-[90%] rounded-lg object-cover lg:overflow-clip lg:h-[100%] lg:w-[100%]  "
+                      alt="unsplash"
+                      src={DetailData?.data?.data?.post?.thumbnail?.link}
+                    />
+                  </div>
+                  <div className=" ml-[8%] text-sm lg:ml-[2%]">
+                    {DetailData?.data?.data?.post?.created_at}
+                  </div>
+                  <div className="flex justify-center  lg:justify-start  text-2xl my-[1%] lg:ml-[2%]">
+                    {isEnglishLang ? (
+                      <>{DetailData?.data?.data?.post?.title?.english}</>
+                    ) : isAmharicLang ? (
+                      <>{DetailData?.data?.data?.post?.title?.amharic}</>
+                    ) : (
+                      <>{DetailData?.data?.data?.post?.title?.oromiffa}</>
+                    )}
+                  </div>
+                  <div className="flex justify-center lg:w-[90%]  lg:justify-start text-lg mx-[6%] lg:mx-[6%] ">
+                    {" "}
+                    {isEnglishLang ? (
+                      <>{DetailData?.data?.data?.post?.body?.english}</>
+                    ) : isAmharicLang ? (
+                      <>{DetailData?.data?.data?.post?.body?.english}</>
+                    ) : (
+                      <>{DetailData?.data?.data?.post?.body?.english}</>
+                    )}
+                  </div>
+                  <div>
+                    <p class="pt-[10%] pb-4">
+                      <b>Video:</b>
+                    </p>
+                    {DetailData?.data?.data?.post?.file?.type?.startsWith("video") ? (
+                      <div className="flex justify-center">
+                        <Card
+                          sx={{ width: "70%", height: "16%"  }}
+                          raised={true}
+                        >
+                         {/* <img  alt={"s"} src={DetailData?.data?.data?.post?.file?.link}/> */}
+
+                           <ReactPlayer
+                            url={DetailData?.data?.data?.post?.file?.link}
+                            controls
+                          /> 
+                        </Card>
+
+                       
                       </div>
-                    </>
-                  ) : null;
-                })}
+                    ): <p className="flex justify-center lg:pt-[10%]">No Video</p>}
+                  </div>{" "}
+                </div>
+                <div className=" hidden  w-[30%] lg:flex  lg:flex-col">
+                  <p>Most Recent</p>
+                  <div className=" lg:block">
+                    <div>
+                      {HomePageData?.data?.data?.popularPosts?.map(
+                        (item, i) => {
+                          return i < 4 ? (
+                            <>
+                              <div key={item}>
+                                <div className="flex flex-col bg-white lg:my-[8%] lg:mr-[4%] lg:p-[2%] rounded lg">
+                                  <div>
+                                    <div className="flex flex-row">
+                                      {" "}
+                                      <div
+                                        className="   lg:max-w-[30%] 
+                                            "
+                                      >
+                                        <img
+                                          className="   rounded-lg object-cover lg:overflow-clip lg:max-h-[100%] lg:w-[100%]"
+                                          alt="unsplash"
+                                          src={item?.thumbnail?.link}
+                                        />
+                                      </div>
+                                      {isEnglishLang ? (
+                                        <>
+                                          <div className="flex flex-col lg:h-[100%] ">
+                                            <button
+                                              onClick={() => {
+                                                navigate(`/details/${item.id}`);
+                                              }}
+                                            >
+                                              <p>
+                                                <ClampLines
+                                                  className=" lg:w-[100%] lg:h-[0%] lg:pr-[0%] lg:text-sm "
+                                                  text={item.body.english}
+                                                  id="really-unique-id"
+                                                  lines={3}
+                                                  ellipsis="..."
+                                                  moreText=""
+                                                  lessText=""
+                                                  innerElement="p"
+                                                />
+                                              </p>
+                                            </button>
+                                            <p className="lg:text-xs lg:ml-[2%]">
+                                              {" "}
+                                              {item.created_at}
+                                            </p>
+                                          </div>
+                                        </>
+                                      ) : isAmharicLang ? (
+                                        <>
+                                          {" "}
+                                          <div className="flex flex-col">
+                                            <button
+                                              onClick={() => {
+                                                navigate(`/details/${item.id}`);
+                                              }}
+                                            >
+                                              <p>
+                                                <ClampLines
+                                                  className=" lg:w-[100%] lg:h-[0%] lg:pr-[0%] lg:text-sm "
+                                                  text={item.body.amharic}
+                                                  id="really-unique-id"
+                                                  lines={4}
+                                                  ellipsis="..."
+                                                  moreText=""
+                                                  lessText=""
+                                                  innerElement="p"
+                                                />
+                                              </p>
+                                            </button>
+                                            <p> {item.created_at}</p>
+                                          </div>
+                                        </>
+                                      ) : (
+                                        <>
+                                          {" "}
+                                          <div className="flex flex-col">
+                                            <button
+                                              onClick={() => {
+                                                navigate(`/details/${item.id}`);
+                                              }}
+                                            >
+                                              <p>
+                                                <ClampLines
+                                                  className=" lg:w-[100%] lg:h-[0%] lg:pr-[0%] lg:text-sm "
+                                                  text={item.body.oromiffa}
+                                                  id="really-unique-id"
+                                                  lines={4}
+                                                  ellipsis="..."
+                                                  moreText=""
+                                                  lessText=""
+                                                  innerElement="p"
+                                                />
+                                              </p>
+                                            </button>
+                                            <p> {item.created_at}</p>
+                                          </div>
+                                        </>
+                                      )}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </>
+                          ) : null;
+                        }
+                      )}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          ) : null}
-          {next ? (
-            <div className={styles.Toprated2}>
-              English Category
-              <div className="flex flex-row">
-                {Category2?.data?.data?.data?.map((item, i) => {
-                  return i < 4 ? (
-                    <>
-                      <div key={item}>
-                        <div className="flex flex-col m-2">
-                          <button
-                            onClick={() => {
-                              navigate(`/details/${item.id}`);
-                              window.location.reload(true);
-                            }}
-                          >
-                            <div className={styles.img}>
-                              <img alt="unsplash" src={item.thumbnail.link} />
-                            </div>
-
-                            <p className={styles.date}>
-                              {item.category.created_at}
-                            </p>
-                            {isEnglishLang ? (
-                              <>
-                                {" "}
-                                <p className={styles.title}>
-                                  {item.title.english}
-                                </p>
-                              </>
-                            ) : isAmharicLang ? (
-                              <>
-                                {" "}
-                                <p className={styles.title}>
-                                  {item.title.amharic}
-                                </p>
-                              </>
-                            ) : (
-                              <>
-                                {" "}
-                                <p className={styles.title}>
-                                  {item.title.oromiffa}
-                                </p>
-                              </>
-                            )}
-                            {isEnglishLang ? (
-                              <>
-                                {" "}
-                                <p className={styles.subtitle}>
-                                  {item.body.english}
-                                </p>
-                              </>
-                            ) : isAmharicLang ? (
-                              <>
-                                {" "}
-                                <p className={styles.subtitle}>
-                                  {item.body.amharic}
-                                </p>
-                              </>
-                            ) : (
-                              <>
-                                <p className={styles.subtitle}>
-                                  {item.body.oromiffa}
-                                </p>
-                              </>
-                            )}
-                          </button>
-                        </div>
-                      </div>
-                    </>
-                  ) : null;
-                })}
-              </div>
-            </div>
-          ) : null}
-          {after ? (
-            <div className={styles.Toprated2}>
-              Chineese Category
-              <div className="flex flex-row">
-                {Category3?.data?.data?.data?.map((item, i) => {
-                  return i < 4 ? (
-                    <>
-                      <div key={item}>
-                        <div className="flex flex-col m-2">
-                          <button
-                            onClick={() => {
-                              navigate(`/details/${item.id}`);
-                              window.location.reload(true);
-                            }}
-                          >
-                            <div className={styles.img}>
-                              <img alt="unsplash" src={item.thumbnail.link} />
-                            </div>
-
-                            <p className={styles.date}>
-                              {item.category.created_at}
-                            </p>
-                            {isEnglishLang ? (
-                              <>
-                                {" "}
-                                <p className={styles.title}>
-                                  {item.title.english}
-                                </p>
-                              </>
-                            ) : isAmharicLang ? (
-                              <>
-                                {" "}
-                                <p className={styles.title}>
-                                  {item.title.amharic}
-                                </p>
-                              </>
-                            ) : (
-                              <>
-                                {" "}
-                                <p className={styles.title}>
-                                  {item.title.oromiffa}
-                                </p>
-                              </>
-                            )}
-                            {isEnglishLang ? (
-                              <>
-                                {" "}
-                                <p className={styles.subtitle}>
-                                  {item.body.english}
-                                </p>
-                              </>
-                            ) : isAmharicLang ? (
-                              <>
-                                {" "}
-                                <p className={styles.subtitle}>
-                                  {item.body.amharic}
-                                </p>
-                              </>
-                            ) : (
-                              <>
-                                <p className={styles.subtitle}>
-                                  {item.body.oromiffa}
-                                </p>
-                              </>
-                            )}
-                          </button>
-                        </div>
-                      </div>
-                    </>
-                  ) : null;
-                })}
-              </div>
-            </div>
-          ) : null}
-          <button
-            className={styles.next}
-            onClick={() => {
-              setNext(true);
-
-              setPrev(false);
-              setAfter(false)
-            }}
-          >
-            Englsih
-          </button>
-          <button
-            className={styles.prev}
-            onClick={() => {
-              setNext(false);
-              setPrev(true);
-              setAfter(false)
-            }}
-          >
-            Scolarship
-          </button>
-          <button
-            className={styles.after}
-            onClick={() => {
-              setNext(false);
-              setPrev(false);
-              setAfter(true)
-            }}
-          >
-            Chineese
-          </button>
-      
           </div>
-     
-    </div>
-      <Footer />
-    </div>
-    </div>
+          <Footer />
+        </div>
+      </div>
+    </>
   );
 };
 

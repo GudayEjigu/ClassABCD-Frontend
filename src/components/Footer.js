@@ -12,48 +12,64 @@ const Footer = () => {
       {myToken ? (
         <>
           <div className={styles.Rectangle32}>
-            <img className={styles.vector} alt="Vector" src={vector} />
-            <p className={styles.classABCD}>ClassABCD</p>
-            <p className={styles.learning}>Learning Center</p>
-            <p className={styles.ourMission}>
-              Our mission is to prove that learning a language is fun and
-              rewarding.
-            </p>
-            <button className={styles.home}>Home</button>
-            <button className={styles.aboutUs}>About us</button>
-            <button className={styles.contact}>Contact us</button>
-            <button className={styles.faqs}>FAQs</button>
-            <p className={styles.languages}>Categories:</p>
-            <button
-              className={styles.Scolarship}
-              onClick={() => {
-                navigate("/english");
-                window.scrollTo(0, 0);
-              }}
-            >
-              <p className={styles.english}>English</p>
-            </button>
-            <button
-              className={styles.Scolarship}
-              onClick={() => {
-                navigate("/chineese");
-                window.scrollTo(0, 0);
-              }}
-            >
-              <p className={styles.chinese}>Chineese</p>
-            </button>
-            <button
-              className={styles.Scolarship}
-              onClick={() => {
-                navigate("/scolarship");
-                window.scrollTo(0, 0);
-              }}
-            >
-              <p className={styles.scolarship}>Scholarship</p>
-            </button>
-            <p className={styles.allrights}>
-              2023 classABCD.All Rights reserved
-            </p>
+            <div className="flex flex-col  font-inter">
+              <div className="flex flex-row">
+                {" "}
+                <img
+                  className="ml-[12%] w-[20%] mt-[4%] lg:w-[10%]"
+                  alt="Vector"
+                  src={vector}
+                />
+                <div
+                  className="flex flex-col ml-[2%] mt-[7%] 
+            "
+                >
+                  <p className="text-xl font-bold text-white">ClassABCD</p>
+                  <p className="text-3xl font-bold">Learning Center</p>
+              <div className=" hidden lg:block">
+                <p>Our mission is to prove that learning a language is fun and
+                rewarding.</p>
+              </div>
+                </div>
+              </div>
+              <div className="flex justify-center flex-col font-bold pt-[6%] lg:justify-start lg:flex-row lg:px-[4%] lg:text-2xl lg:font-bold lg:text-white ">
+                <button className="lg:px-[2%]">Home</button>
+                <button className="lg:px-[2%]">About us</button>
+                <button className="lg:px-[2%]">Contact us</button>
+                <button className="lg:px-[2%]">FAQs</button>
+              </div>
+              <div className="hidden  sm:hidden md:block  lg:text-white lg:pt-[1%] lg:flex lg:flex-col lg:ml-[6%]">
+                {" "}
+                <p>Categories:</p>
+                <button
+                  onClick={() => {
+                    navigate("/english");
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  <p className="flex lg:pt-[1%]">English</p>
+                </button>
+                <button
+                  onClick={() => {
+                    navigate("/chineese");
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  <p className="flex lg:pt-[1%]">Chineese</p>
+                </button>
+                <button
+                  onClick={() => {
+                    navigate("/scolarship");
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  <p className="flex lg:pt-[1%]">Scholarship</p>
+                </button>
+              </div>
+              <p className="flex mb-[1%] justify-center">
+                2023 classABCD.All Rights reserved
+              </p>
+            </div>{" "}
           </div>{" "}
         </>
       ) : (

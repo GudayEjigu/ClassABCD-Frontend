@@ -16,11 +16,10 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { TokenContext } from "../../context/TokenContext";
 
-
 const Login = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
- const { setMyToken} = useContext(TokenContext)
+  const { setMyToken } = useContext(TokenContext);
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -44,6 +43,12 @@ const Login = () => {
   const LoginHandler = () => {
     loginMutationSubmitHandler();
   };
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      console.log("You must have pressed Enter ");
+      loginMutationSubmitHandler();    }
+  };
+
 
   const loginMutation = useMutation(
     async (newData) =>
@@ -63,7 +68,7 @@ const Login = () => {
           onSuccess: (responseData) => {
             login(responseData?.data?.token, responseData?.data);
             console.log({ user: responseData?.data?.token });
-            setMyToken(responseData?.data?.token)
+            setMyToken(responseData?.data?.token);
             navigate("/");
 
             toast.success("Login success!", {
@@ -83,125 +88,126 @@ const Login = () => {
   return (
     <>
       <div className={styles.Rectangle1}>
-      <img className={styles.vector2} alt="vector2" src={vector2} />
-      <p className={styles.classABCD}>classABCD</p>
-      <p className={styles.learning}>Learning Center</p>
-      <p className={styles.TheclassABCD}>
-        {" "}
-        The classABCD is an online language education website teaching English
-        and Chinese. It is the best platform to learn English, Chinese and many
-        other languages{" "}
-      </p>
-      <div className={styles.Rectangle3}></div>
+        <div className=" w-[100%] h-[100vh] overflow-hidden">
+          <div className=" py-[10%] pb-[24%]  lg:pt-[2%] lg:flex lg:flex-row lg:pb-[2%]">
+            <div className="flex flex-col  ">
+              <div className="flex flex-row justify-center lg:justify-start">
+                <div className=" w-[30%] h-[30%] my-[4%] lg:w-[11%] lg:h-[90%] lg:ml-[8%] lg:flex lg:flex-justify-end lg:my-[2%] ">
+                  <img className=" lg:w-[100%] " alt="vector2" src={vector2} />
+                </div>
 
-      <label className={styles.phoneNo}>Phone no:</label>
-      <input
-        placeholder="+251 91173 90 28"
-        onChange={(e) => {
-          setUserName(e.target.value);
-        }}
-        className={styles.Rectangle22}
-        type="number"
-      />
-      <br />
-      <label className={styles.password}>Password:</label>
-      <input
-        placeholder="Enter Password"
-        className={styles.Rectangle23}
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
-        type="password"
-      />
+                <div className=" pl-[0%] pt-[8%] flex flex-col lg:pt-[4%] lg:ml-[2%] ">
+                  <p className="   font-inter xs:text-4xl sm:text-5xl md:text-4xl ">
+                    classABCD
+                  </p>
+                  <p className="   font-inter xs:text-4xl sm:text-5xl md:text-4xl text-[#f97316] ">
+                    Learning Center
+                  </p>
+                </div>
+              </div>
+              <div className=" flex justify-center my-[6%] lg:justify-start lg:ml-[6%]">
+                <div className="w-[90%] h-[30%] lg:w-[50%] lg:text-base lg:h-[20%] ">
+                  <p>
+                    {" "}
+                    The classABCD is an online language education website
+                    teaching English and Chinese. It is the best platform to
+                    learn English, Chinese and many other languages{" "}
+                  </p>
+                </div>
+              </div>
+              <div className="flex  justify-center lg:justify-start lg:ml-[6%]">
+                <div className=" w-[90%] h-[10%]  lg:w-[50%]">
+                  <div className=" flex flex-col  m-[1%] border border-white rounded-lg lg:m-[0%] ">
+                    <label className="font-Poppins pl-[8%] pt-[8%] lg:text-base">
+                      Phone no:
+                    </label>
+                    <p className="mx-[4%] lg:text-base ">
+                      +251{" "}
+                      <input
+                        placeholder="91173 90 28"
+                        onKeyDown={handleKeyDown}
+                        onChange={(e) => {
+                          setUserName(e.target.value);
+                        }}
+                        className=" bg-gray-200  w-[80%] my-[4%] rounded-lg lg:py-[2%] lg:text-base"
+                        type="number"
+                      />
+                    </p>
+                    <label className="font-Poppins pl-[8%] pt-[4%] lg:text-base">
+                      Password:
+                    </label>
 
-      <checkbox className={styles.checkbox} />
-      <label className={styles.keep}>keep me signed in</label>
-      <button className={styles.forgot}>Forgot Password?</button>
-      <br />
-      {loginMutation.isLoading ? (
-        <>
-          {" "}
-          <button disabled className={styles.Rectangle25}>
-            <p className={styles.login}>Logging</p>
-          </button>
-        </>
-      ) : (
-        <button
-          onClick={LoginHandler}
-          type="submit"
-          className={styles.Rectangle25}
-        >
-          <p className={styles.login}>Login</p>
-        </button>
-      )}
-      <button className={styles.Rectangle21}>
-        <div className={styles.Register}>Register</div>
-      </button>
-      <div className="invisible lg:visible">
-        
-      <img className={styles.frame} alt="frame" src={frame} />
-        
-        
+                    <input
+                      placeholder="Enter Password"
+                      onKeyDown={handleKeyDown}
+                      className=" bg-gray-200 mx-[10%] w-[80%] my-[4%] rounded-lg lg:py-[2%] lg:text-base"
+                      onChange={(e) => {
+                        setPassword(e.target.value);
+                      }}
+                      type="password"
+                    />
+
+                    <div class="flex items-start  mb-4">
+                      <input
+                        id="default-checkbox"
+
+                        type="checkbox"
+                        value=""
+                        class="w-[6%] mt-[1%] ml-[6%] text-blue-600 bg-gray-100 border-[#f97316] rounded focus:ring-blue-500  focus:ring-2 lg:w-[3%] lg:py-[1%] "
+                      />
+                      <label
+                        for="default-checkbox"
+                        class="ml-[2%] text-sm font-medium lg:text-base"
+                      >
+                        Keep me signed in
+                      </label>
+                    </div>
+
+                    {loginMutation.isLoading ? (
+                      <div className="flex justify-center">
+                        {" "}
+                        <button
+                          disabled
+                          className="bg-[#00bbf0] w-[60%] py-[4%] my-[4%] rounded-lg "
+                        >
+                          <p className=" text-white  lg:text-base">Logging</p>
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="flex justify-center">
+                        <button
+                          onClick={LoginHandler}
+                          type="submit"
+                          className="bg-[#00bbf0] w-[60%] py-[4%] my-[4%] rounded-lg"
+                        >
+                          <p className="text-white lg:text-base">Login</p>
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex justify-center">
+                    <button className="bg-[#f97316] px-[40%] my-[2%] py-[4%] rounded-lg">
+                      <div className="text-white lg:text-base">Register</div>
+                    </button>
+                  </div>
+                  <div className="flex justify-center lg:text-base">
+                    <button className="py-[4%]">Forgot Password?</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="hidden  lg:w-[75%] lg:flex lg:justify-center">
+              <img
+                className=" lg:mr-[40%] lg:h-[80%] lg:mt-[10%]"
+                alt="frame"
+                src={frame}
+              />
+            </div>
+          </div>
+        </div>
+
+        <ToastContainer />
       </div>
-
-      <Button onClick={handleOpen}>verification</Button>
-      <Modal open={open} onClose={handleClose}>
-        <Box className={styles.frame4}>
-          <Typography className={styles.forgot2}>Forgot password</Typography>
-          <Typography className={styles.TheclassABCD2}>
-            The classABCD is an online language education website teaching
-            English and Chinese. It is the best platform to learn English,
-            Chinese and many other languages The classABCD
-          </Typography>
-          <Typography className={styles.verification}>
-            verification code
-          </Typography>
-          <input
-            placeholder=" Enter a verification code"
-            type="number"
-            className={styles.Rectangle28}
-          />
-
-          <button className={styles.frame3}>
-            <p className={styles.send}> send</p>
-          </button>
-        </Box>
-      </Modal>
-
-      <Button onClick={handleOpen2}>forgot</Button>
-      <Modal open={open2} onClose={handleClose2}>
-        <Box className={styles.frame2}>
-          <Typography className={styles.forgot2}>Forgot password</Typography>
-          <Typography className={styles.phone2}>Phone number</Typography>
-          <input
-            placeholder=" enter your phone number"
-            type="number"
-            className={styles.Rectangle27}
-          />
-
-          <button className={styles.frame3}>
-            <p className={styles.send}> send</p>
-          </button>
-        </Box>
-      </Modal>
-
-      <Button onClick={handleOpen3}>NewPassword</Button>
-      <Modal open={open3} onClose={handleClose3}>
-        <Box className={styles.frame5}>
-          <Typography className={styles.forgot2}>Forgot password</Typography>
-          <Typography className={styles.create}>Create new password</Typography>
-          <input type="number" className={styles.Rectangle29} />
-          <Typography className={styles.confirm}>Confirm password</Typography>
-          <input type="number" className={styles.Rectangle30} />
-
-          <button className={styles.frame6}>
-            <p className={styles.send2}> Save</p>
-          </button>
-        </Box>
-      </Modal>
-
-      <ToastContainer />
-    </div>
     </>
   );
 };

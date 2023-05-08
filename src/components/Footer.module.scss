@@ -1,11 +1,7 @@
 .Rectangle32 {
   /* Rectangle 32 */
 
-  position: absolute;
-  width: 2030px;;
-  height: 565.63px;
-  left: -23.92px;
- 
+  
 
   background: #f97316;
 }
@@ -16,8 +12,7 @@
   width: 107px;
   height: 45px;
   left: 50px;
-  top:300px;
- 
+  top: 300px;
 
   font-family: "Inter";
   font-style: normal;
@@ -34,7 +29,7 @@
   width: 164px;
   height: 45px;
   left: 200px;
-  top:300px;
+  top: 300px;
 
   font-family: "Inter";
   font-style: normal;
@@ -74,7 +69,7 @@
   position: absolute;
   width: 289.75px;
   height: 55.41px;
-  
+
   left: 300px;
   top: 110px;
 
@@ -105,7 +100,7 @@
   width: 198px;
   height: 45px;
   left: 400px;
-  top:300px;
+  top: 300px;
 
   font-family: "Inter";
   font-style: normal;
@@ -121,7 +116,7 @@
   width: 95px;
   height: 45px;
   left: 650px;
-  top:300px;
+  top: 300px;
 
   font-family: "Inter";
   font-style: normal;
@@ -137,7 +132,7 @@
   width: 87px;
   height: 19px;
   left: 70px;
-  top:370px;
+  top: 370px;
 
   font-family: "Inter";
   font-style: normal;
@@ -152,7 +147,7 @@
   width: 58px;
   height: 19px;
   left: 70px;
-  top:400px;
+  top: 400px;
 
   font-family: "Inter";
   font-style: normal;
@@ -167,7 +162,7 @@
   width: 62px;
   height: 19px;
   left: 70px;
-  top:430px;
+  top: 430px;
 
   font-family: "Inter";
   font-style: normal;
@@ -182,7 +177,7 @@
   width: 92px;
   height: 19px;
   left: 70px;
-  top:460px;
+  top: 460px;
 
   font-family: "Inter";
   font-style: normal;
@@ -199,7 +194,7 @@
   width: 218px;
   height: 15px;
   left: 300px;
-  top:500px;
+  top: 500px;
 
   font-family: "Inter";
   font-style: normal;
@@ -211,17 +206,11 @@
   color: #3d3d3d;
 }
 
-
 @media only screen and (max-width: 600px) {
   .Rectangle32 {
     /* Rectangle 32 */
-  
-    position: absolute;
-    width: 600px;;
-    height: 565.63px;
-    left: 0px;
-   
-  
+
+
     background: #f97316;
   }
   .faqs {
@@ -229,15 +218,15 @@
     width: 95px;
     height: 45px;
     left: 450px;
-    top:400px;
-  
+    top: 400px;
+
     font-family: "Inter";
     font-style: normal;
     font-weight: 700;
     font-size: 37px;
     line-height: 45px;
     /* identical to box height */
-  
+
     color: #ffffff;
   }
 }
