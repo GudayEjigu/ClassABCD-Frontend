@@ -5,7 +5,6 @@ import styles from "./Login.module.scss";
 import { useNavigate } from "react-router-dom/dist";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Logo from "../../assets/Logo";
 import { useAuth } from "../../context/auth";
 import vector2 from "../../assets/Vector2.png";
 import { CheckBox } from "@material-ui/icons";
@@ -46,9 +45,9 @@ const Login = () => {
   const handleKeyDown = (e) => {
     if (e.keyCode === 13) {
       console.log("You must have pressed Enter ");
-      loginMutationSubmitHandler();    }
+      loginMutationSubmitHandler();
+    }
   };
-
 
   const loginMutation = useMutation(
     async (newData) =>
@@ -77,7 +76,7 @@ const Login = () => {
           },
           onError: (err) => {
             console.log({ err });
-            toast(err?.response?.data?.message ?? "user not found");
+            toast(err?.response?.data?.message);
           },
         }
       );
@@ -121,6 +120,21 @@ const Login = () => {
                     <label className="font-Poppins pl-[8%] pt-[8%] lg:text-base">
                       Phone no:
                     </label>
+                    <div class="flex mx-[10%]">
+                      <span class="inline-flex items-center  px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md ">
+                        +251
+                      </span>
+                      <input
+                       placeholder="91173 90 28"
+                       onKeyDown={handleKeyDown}
+                       onChange={(e) => {
+                         setUserName("251" + (e.target.value));
+                       }}
+                        class="rounded-none rounded-r-lg bg-gray-200 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  "
+                        type="number"
+                      />
+                    </div>
+                  {/* 
                     <p className="mx-[4%] lg:text-base ">
                       +251{" "}
                       <input
@@ -132,7 +146,7 @@ const Login = () => {
                         className=" bg-gray-200  w-[80%] my-[4%] rounded-lg lg:py-[2%] lg:text-base"
                         type="number"
                       />
-                    </p>
+                    </p> */}
                     <label className="font-Poppins pl-[8%] pt-[4%] lg:text-base">
                       Password:
                     </label>
@@ -140,7 +154,7 @@ const Login = () => {
                     <input
                       placeholder="Enter Password"
                       onKeyDown={handleKeyDown}
-                      className=" bg-gray-200 mx-[10%] w-[80%] my-[4%] rounded-lg lg:py-[2%] lg:text-base"
+                      className=" bg-gray-200 mx-[10%] w-[80%] my-[4%] rounded-lg  focus:ring-blue-500 focus:border-blue-500 lg:py-[2%] lg:text-base border-gray-300"
                       onChange={(e) => {
                         setPassword(e.target.value);
                       }}
@@ -150,7 +164,6 @@ const Login = () => {
                     <div class="flex items-start  mb-4">
                       <input
                         id="default-checkbox"
-
                         type="checkbox"
                         value=""
                         class="w-[6%] mt-[1%] ml-[6%] text-blue-600 bg-gray-100 border-[#f97316] rounded focus:ring-blue-500  focus:ring-2 lg:w-[3%] lg:py-[1%] "

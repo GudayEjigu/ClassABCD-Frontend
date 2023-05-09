@@ -146,7 +146,7 @@ const English = () => {
   return (
     <>
       <div className="w-[100%] h-[100%]  overflow-hidden">
-        <div className={styles.Rectangle1}>
+        <div className="">
           <div className="flex font-inter ">
             <div className="flex flex-col w-[100%] ">
               <div className="flex flex-row lg:ml-[4%]">
@@ -181,7 +181,7 @@ const English = () => {
                         Scholarship
                       </button>
                       <button
-                        className=" mx-[10%] bg-white px-[5%] rounded-md "
+                        className=" mx-[10%] bg-gray-500 text-white px-[5%] rounded-md "
                         onClick={() => {
                           navigate("/english");
                         }}
@@ -302,7 +302,7 @@ const English = () => {
                   return (
                     <>
                       <div key={item}>
-                        <div className="flex flex-col m-2  m-[4%]  ">
+                        <div className="flex flex-col   m-[4%]  ">
                           <button
                             onClick={() => {
                               navigate(`/details/${item.id}`);
@@ -323,31 +323,21 @@ const English = () => {
                             {isEnglishLang ? (
                               <>
                                 {" "}
-                                <p ClassName="">{item.title.english}</p>
-                              </>
-                            ) : isAmharicLang ? (
-                              <>
-                                {" "}
-                                <p ClassName="">{item.title.amharic}</p>
-                              </>
-                            ) : (
-                              <>
-                                {" "}
-                                <p ClassName="">{item.title.oromiffa}</p>
-                              </>
-                            )}
-                            {isEnglishLang ? (
-                              <>
-                                {" "}
+                                <p ClassName="font-bold"><b>{item.title.english}</b></p>
                                 <p ClassName="">{item.body.english}</p>
                               </>
-                            ) : isAmharicLang ? (
+                            ) :
+                            isAmharicLang ? (
                               <>
                                 {" "}
+                                <p ClassName="font-bold"><b>{item.title.amharic}</b></p>
                                 <p ClassName="">{item.body.amharic}</p>
                               </>
-                            ) : (
+                            ) :
+                             (
                               <>
+                                {" "}
+                                <p ClassName="font-bold"><b>{item.title.oromiffa}</b></p>
                                 <p ClassName="">{item.body.oromiffa}</p>
                               </>
                             )}

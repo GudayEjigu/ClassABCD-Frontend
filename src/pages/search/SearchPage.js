@@ -107,7 +107,7 @@ const SearchPage = () => {
   return (
     <>
       <div className="w-[100%] h-[100%]  overflow-hidden">
-        <div className={styles.Rectangle1}>
+        <div className="">
           <div className="flex font-inter ">
             <div className="flex flex-col w-[100%] ">
               <div className="flex flex-row lg:ml-[4%]">
@@ -258,7 +258,7 @@ const SearchPage = () => {
               </div>
               <div ClassName=" flex  flex-row  ">
                 <input
-                  className="w-[60%] rounded-lg my-[8%] ml-[8%] pl-[2%] lg:h-8"
+                  className="w-[60%] rounded-lg  border border-black  my-[8%] ml-[8%] pl-[2%] lg:h-8"
                   onKeyDown={handleKeyDown}
                   onChange={(e) => {
                     setSearch(e.target.value);
@@ -437,14 +437,15 @@ const SearchPage = () => {
                               <div key={item}>
                                 <div className="flex flex-col bg-white lg:my-[8%] lg:mr-[4%] lg:p-[2%] rounded lg">
                                   <div>
+                                    <div className="flex flex-col">
                                     <div className="flex flex-row">
                                       {" "}
                                       <div
-                                        className="    
+                                        className="    lg:max-w-[30%]
                                             "
                                       >
                                         <img
-                                          className="   rounded-lg object-cover lg:overflow-clip lg:max-h-48 lg:w-48"
+                                          className="   rounded-lg object-cover lg:overflow-clip lg:max-w-[100%] lg:w-w-[100%]"
                                           alt="unsplash"
                                           src={item?.thumbnail?.link}
                                         />
@@ -470,10 +471,7 @@ const SearchPage = () => {
                                                 />
                                               </p>
                                             </button>
-                                            <p className="lg:text-xs lg:ml-[2%]">
-                                              {" "}
-                                              {item.created_at}
-                                            </p>
+                                          
                                           </div>
                                         </>
                                       ) : isAmharicLang ? (
@@ -498,7 +496,6 @@ const SearchPage = () => {
                                                 />
                                               </p>
                                             </button>
-                                            <p> {item.created_at}</p>
                                           </div>
                                         </>
                                       ) : (
@@ -523,10 +520,14 @@ const SearchPage = () => {
                                                 />
                                               </p>
                                             </button>
-                                            <p> {item.created_at}</p>
                                           </div>
                                         </>
                                       )}
+                                    </div>
+  <p className="lg:text-xs lg:ml-[2%]">
+                                              {" "}
+                                              {item.created_at}
+                                            </p>                                      
                                     </div>
                                   </div>
                                 </div>
