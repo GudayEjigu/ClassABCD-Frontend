@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import styles from "./SearchPage.module.scss";
 import { useNavigate } from "react-router-dom";
 import vector2 from "../../assets/Vector2.png";
 import vector3 from "../../assets/Vector3.png";
@@ -14,7 +13,16 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { ThreeCircles } from "react-loader-spinner";
 import { LanguageContext } from "../../context/LanguageContext";
-import { Button, Menu, MenuItem } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  Menu,
+  MenuItem,
+  Select,
+} from "@mui/material";
+import Category from "../category/Category";
 
 const SearchPage = () => {
   const navigate = useNavigate();
@@ -28,14 +36,24 @@ const SearchPage = () => {
   } = useContext(LanguageContext);
   const [search, setSearch] = useState(null);
   const [SearchApi, setSearchApi] = useState(null);
+  const [menu, setMenu] = useState("Menu");
 
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl2, setAnchorEl2] = React.useState(null);
   const open = Boolean(anchorEl);
+  const open2 = Boolean(anchorEl2);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const handleClick2 = (event) => {
+    setAnchorEl2(event.currentTarget);
+  };
+  const handleClose2 = () => {
+    setAnchorEl2(null);
   };
 
   const { token, user } = useAuth();
@@ -130,33 +148,90 @@ const SearchPage = () => {
                     </button>
                   </p>
                 </div>
-                <div className=" hidden w-[0%] h-[0%]  lg:w-[60%]  lg:block  lg:px-[10%] lg:py-[2%] lg:my-[2%]">
+                <div className=" hidden w-[0%] h-[0%]  lg:w-[60%]  lg:block  lg:px-[15%] lg:py-[0%] lg:my-[4%]">
                   <div className="bg-blue-100 bg-opacity-50  rounded-lg bg-clip-padding">
-                    <div className=" flex flex-row justify-center  px-[10%] py-[2%] my-[2%] lg:text-2xl">
+                    <div className=" flex flex-row justify-center  px-[10%] py-[2%] my-[2%] lg:text-base">
                       <button
                         className=" mx-[1%]"
                         onClick={() => {
-                          navigate("/scolarship");
+                          navigate("/");
                         }}
                       >
-                        Scholarship
+                        Home
                       </button>
-                      <button
-                        className=" mx-[10%]"
-                        onClick={() => {
-                          navigate("/english");
-                        }}
-                      >
-                        English
+                      <button className=" mx-[5%]" onClick={() => {}}>
+                        About Us
                       </button>
-                      <button
-                        className=" mx-[1%]"
-                        onClick={() => {
-                          navigate("/chineese");
-                        }}
-                      >
-                        Chineese
-                      </button>
+                      <div className="flex flex-row w-[30%]">
+                        <Box sx={{ minWidth: 100 }}>
+                          <FormControl fullWidth>
+                            <InputLabel
+                              sx={{
+                                fontSize: 16,
+                                fontFamily: "Inter",
+                                color: "black",
+                                pb: 2,
+                              }}
+                              id="demo-simple-select-label"
+                            >
+                              Menu
+                            </InputLabel>
+                            <Select
+                              labelId="demo-simple-select-label"
+                              id="demo-simple-select"
+                              sx={{
+                                boxShadow: "none",
+                                ".MuiOutlinedInput-notchedOutline": { border: 0 },
+                                marginBottom: 0,
+                                width: "100%",
+                                height: "80%",
+                              }}
+                              label="Age"
+                            >
+                              {HomePageData?.data?.data?.postByCategory?.map(
+                                (item, i) => {
+                                  return (
+                                    <>
+                                      <div key={item}>
+                                        <div className="    text-xl mb-[1%]">
+                                          <MenuItem
+                                            onClick={() =>
+                                              navigate(`/category/${item.id}`)
+                                            }
+                                          >
+                                            {" "}
+                                            {isEnglishLang ? (
+                                                <>
+                                                  {" "}
+                                                  <p ClassName="text-sm font-bold">
+                                                    {item.title.english}
+                                                  </p>
+                                                </>
+                                              ) : isAmharicLang ? (
+                                                <>
+                                                  {" "}
+                                                  <p ClassName="text-sm font-bold">
+                                                    {item.title.amharic}
+                                                  </p>
+                                                </>
+                                              ) : (
+                                                <>
+                                                  {" "}
+                                                  <p ClassName="text-sm font-bold">
+                                                    {item.title.oromiffa}
+                                                  </p>
+                                                </>
+                                              )}                                          </MenuItem>
+                                        </div>
+                                      </div>
+                                    </>
+                                  );
+                                }
+                              )}
+                            </Select>
+                          </FormControl>
+                        </Box>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -226,33 +301,87 @@ const SearchPage = () => {
               </div>
 
               <div className=" lg:hidden lg:w-[0%] lg:h-[0%] px-[10%] py-[2%] my-[2%]">
-                <div className=" bg-blue-100 bg-opacity-50  rounded-lg bg-clip-border">
-                  {" "}
-                  <div className=" flex flex-row justify-center  px-[10%] py-[2%] my-[2%]">
+              <div className="bg-blue-100 bg-opacity-50  rounded-lg bg-clip-padding">
+                  <div className=" flex flex-row justify-center  px-[10%] py-[2%] my-[2%] lg:text-2xl">
                     <button
                       className=" mx-[1%]"
                       onClick={() => {
-                        navigate("/scolarship");
+                        navigate("/");
                       }}
                     >
-                      Scholarship
+                      Home
                     </button>
-                    <button
-                      className=" mx-[5%]"
-                      onClick={() => {
-                        navigate("/english");
-                      }}
-                    >
-                      English
+                    <button className=" mx-[5%]" onClick={() => {}}>
+                      About Us
                     </button>
-                    <button
-                      className=" mx-[1%]"
-                      onClick={() => {
-                        navigate("/chineese");
-                      }}
-                    >
-                      Chineese
-                    </button>
+                    <div className="flex flex-row w-[30%]">
+                      <Box sx={{ minWidth: 120 }}>
+                        <FormControl fullWidth>
+                          <InputLabel
+                            sx={{
+                              fontSize: 16,
+                              fontFamily: "Inter",
+                              color: "black",
+                              pb: 2,
+                            }}
+                            id="demo-simple-select-label"
+                          >
+                            Menu
+                          </InputLabel>
+                          <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            sx={{
+                              boxShadow: "none",
+                              '.MuiOutlinedInput-notchedOutline': { border: 0 },
+                              marginTop: 0,
+                              width: "100%",
+                              height: "80%",
+                            }}
+                            label="Age"
+                          >
+                            {HomePageData?.data?.data?.postByCategory?.map(
+                              (item, i) => {
+                                return (
+                                  <div key={item.id}>
+                                    <div className="    text-xl mb-[1%]">
+                                      <MenuItem
+                                        onClick={() =>
+                                          navigate(`/category/${item.id}`)
+                                        }
+                                      >
+                                        {" "}
+                                        {isEnglishLang ? (
+                                                <>
+                                                  {" "}
+                                                  <p ClassName="text-sm font-bold">
+                                                    {item.title.english}
+                                                  </p>
+                                                </>
+                                              ) : isAmharicLang ? (
+                                                <>
+                                                  {" "}
+                                                  <p ClassName="text-sm font-bold">
+                                                    {item.title.amharic}
+                                                  </p>
+                                                </>
+                                              ) : (
+                                                <>
+                                                  {" "}
+                                                  <p ClassName="text-sm font-bold">
+                                                    {item.title.oromiffa}
+                                                  </p>
+                                                </>
+                                              )}                                      </MenuItem>
+                                    </div>
+                                  </div>
+                                );
+                              }
+                            )}
+                          </Select>
+                        </FormControl>
+                      </Box>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -263,12 +392,11 @@ const SearchPage = () => {
                   onChange={(e) => {
                     setSearch(e.target.value);
                   }}
-                  />
+                />
 
                 <button
                   className="w-[20%] ml-[4%] px-[2%] bg-[#f97316] rounded-lg lg:w-[10%] lg:h-16 lg:pl-[3%] "
                   onClick={Search}
-                  
                 >
                   <div>
                     <p ClassName=" bg-[#f97316] p-[40%]  ">Search</p>
@@ -277,7 +405,7 @@ const SearchPage = () => {
               </div>
 
               <div className="lg:flex lg:flex-row lg:h-[25%]">
-                <div className="lg:flex lg:flex-col lg:w-[70%]  lg:pr-[18%]">
+                <div className="lg:flex lg:flex-col lg:w-[70%]  lg:px-[5%]">
                   <div className="flex justify-center lg:justify-start lg:pl-[2%] text-3xl my-[2%]">
                     Results
                   </div>
@@ -306,24 +434,22 @@ const SearchPage = () => {
                     </>
                   ) : SearchData.isFetched ? (
                     <div className="flex flex-col ">
-                      <div ClassName="">
                         {SearchData?.data?.data?.map((item, i) => {
                           return (
                             <>
                               <div key={item}>
                                 <div className="flex flex-col m-2 mb-[16%] lg:mb-[6%] lg:pl-[8%] ">
-                                  <div ClassName="">
                                     <div className="flex flex-col  lg:flex-row ">
                                       {isEnglishLang ? (
                                         <>
                                           <button
-                                            className="flex"
+                                            className="flex flex-col justify-center lg:flex-row first-letter"
                                             onClick={() => {
                                               navigate(`/details/${item.id}`);
                                             }}
                                           >
                                             <img
-                                              className=" h-48 lg:h-48  lg:w-48 object-cover"
+                                              className="   lg:h-48  lg:w-48 object-cover"
                                               alt="unsplash"
                                               src={item?.thumbnail?.link}
                                             />
@@ -416,134 +542,151 @@ const SearchPage = () => {
                                         </>
                                       )}
                                     </div>
-                                  </div>
+                                  
                                 </div>
                               </div>
                             </>
                           );
                         })}
                       </div>
-                    </div>
+                    
                   ) : null}
                 </div>
-                <div className=" hidden  w-[30%] lg:flex  lg:flex-col">
-                  <p>Most Recent</p>
-                  <div className=" lg:block">
-                    <div>
-                      {HomePageData?.data?.data?.popularPosts?.map(
-                        (item, i) => {
-                          return i < 4 ? (
-                            <>
-                              <div key={item}>
-                                <div className="flex flex-col bg-white lg:my-[8%] lg:mr-[4%] lg:p-[2%] rounded lg">
-                                  <div>
-                                    <div className="flex flex-col">
-                                    <div className="flex flex-row">
-                                      {" "}
-                                      <div
-                                        className="    lg:max-w-[30%]
+                <div className=" hidden  w-[40%] lg:flex  lg:flex-col justify-start ">
+                      <p className="font-bold">Most Recent</p>
+                      <div className=" lg:block">
+                        <div>
+                          {HomePageData?.data?.data?.popularPosts?.map(
+                            (item, i) => {
+                              return i < 4 ? (
+                                <>
+                                  <div key={item}>
+                                    <div className="flex flex-col bg-white lg:my-[0%] lg:mr-[4%] lg:p-[2%]    rounded lg">
+                                      <div>
+                                        <div className="flex flex-col shadow-lg">
+                                          <div className="flex flex-row">
+                                            {" "}
+                                            <div
+                                              className="   lg:max-w-[30vh]  
                                             "
-                                      >
-                                        <img
-                                          className="   rounded-lg object-cover lg:overflow-clip lg:max-w-[100%] lg:w-w-[100%]"
-                                          alt="unsplash"
-                                          src={item?.thumbnail?.link}
-                                        />
-                                      </div>
-                                      {isEnglishLang ? (
-                                        <>
-                                          <div className="flex flex-col lg:h-[100%] ">
-                                            <button
-                                              onClick={() => {
-                                                navigate(`/details/${item.id}`);
-                                              }}
                                             >
-                                              <p>
-                                                <ClampLines
-                                                  className=" lg:w-[100%] lg:h-[0%] lg:pr-[0%] lg:text-sm "
-                                                  text={item.body.english}
-                                                  id="really-unique-id"
-                                                  lines={3}
-                                                  ellipsis="..."
-                                                  moreText=""
-                                                  lessText=""
-                                                  innerElement="p"
-                                                />
-                                              </p>
-                                            </button>
-                                          
+                                              <img
+                                                className="   rounded-lg object-cover lg:overflow-clip  lg:pt-[0%] lg:max-h-[15vh] lg:w-[50vh]"
+                                                alt="unsplash"
+                                                src={item?.thumbnail?.link}
+                                              />
+                                            </div>
+                                            {isEnglishLang ? (
+                                              <>
+                                                <div className="flex flex-col lg:h-[100%] ">
+                                                  <button
+                                                    onClick={() => {
+                                                      navigate(
+                                                        `/details/${item.id}`
+                                                      );
+                                                    }}
+                                                  >
+                                                    <p className=" lg:w-[100%]  lg:pr-[0%] lg:text-sm  lg:font-bold">
+                                                      {item.title.english}
+                                                    </p>
+                                                    <p>
+                                                      <ClampLines
+                                                        className=" lg:w-[100%]  lg:pr-[0%] lg:text-xs "
+                                                        text={item.body.english}
+                                                        id="really-unique-id"
+                                                        lines={3}
+                                                        ellipsis="..."
+                                                        moreText=""
+                                                        lessText=""
+                                                        innerElement="p"
+                                                      />
+                                                    </p>
+                                                  </button>
+                                                </div>
+                                              </>
+                                            ) : isAmharicLang ? (
+                                              <>
+                                                {" "}
+                                                <div className="flex flex-col">
+                                                  <button
+                                                    onClick={() => {
+                                                      navigate(
+                                                        `/details/${item.id}`
+                                                      );
+                                                    }}
+                                                  >
+                                                    <p className=" lg:w-[100%]  lg:pr-[0%] lg:text-sm  lg:font-bold">
+                                                      {item.title.amharic}
+                                                    </p>
+                                                    <p>
+                                                      <ClampLines
+                                                        className=" lg:w-[100%]  lg:pr-[0%] lg:text-xs "
+                                                        text={item.body.amharic}
+                                                        id="really-unique-id"
+                                                        lines={4}
+                                                        ellipsis="..."
+                                                        moreText=""
+                                                        lessText=""
+                                                        innerElement="p"
+                                                      />
+                                                    </p>
+                                                  </button>
+                                                </div>
+                                              </>
+                                            ) : (
+                                              <>
+                                                {" "}
+                                                <div className="flex flex-col">
+                                                  <button
+                                                    onClick={() => {
+                                                      navigate(
+                                                        `/details/${item.id}`
+                                                      );
+                                                    }}
+                                                  >
+                                                    <p className=" lg:w-[100%]  lg:pr-[0%] lg:text-sm  lg:font-bold">
+                                                      {item.title.oromiffa}
+                                                    </p>
+                                                    <p>
+                                                      <ClampLines
+                                                        className=" lg:w-[100%]  lg:pr-[0%] lg:text-xs "
+                                                        text={
+                                                          item.body.oromiffa
+                                                        }
+                                                        id="really-unique-id"
+                                                        lines={4}
+                                                        ellipsis="..."
+                                                        moreText=""
+                                                        lessText=""
+                                                        innerElement="p"
+                                                      />
+                                                    </p>
+                                                  </button>
+                                                </div>
+                                              </>
+                                            )}
                                           </div>
-                                        </>
-                                      ) : isAmharicLang ? (
-                                        <>
-                                          {" "}
-                                          <div className="flex flex-col">
-                                            <button
-                                              onClick={() => {
-                                                navigate(`/details/${item.id}`);
-                                              }}
-                                            >
-                                              <p>
-                                                <ClampLines
-                                                  className=" lg:w-[100%] lg:h-[0%] lg:pr-[0%] lg:text-sm "
-                                                  text={item.body.amharic}
-                                                  id="really-unique-id"
-                                                  lines={4}
-                                                  ellipsis="..."
-                                                  moreText=""
-                                                  lessText=""
-                                                  innerElement="p"
-                                                />
-                                              </p>
-                                            </button>
-                                          </div>
-                                        </>
-                                      ) : (
-                                        <>
-                                          {" "}
-                                          <div className="flex flex-col">
-                                            <button
-                                              onClick={() => {
-                                                navigate(`/details/${item.id}`);
-                                              }}
-                                            >
-                                              <p>
-                                                <ClampLines
-                                                  className=" lg:w-[100%] lg:h-[0%] lg:pr-[0%] lg:text-sm "
-                                                  text={item.body.oromiffa}
-                                                  id="really-unique-id"
-                                                  lines={4}
-                                                  ellipsis="..."
-                                                  moreText=""
-                                                  lessText=""
-                                                  innerElement="p"
-                                                />
-                                              </p>
-                                            </button>
-                                          </div>
-                                        </>
-                                      )}
-                                    </div>
-  <p className="lg:text-xs lg:ml-[2%]">
+                                          <div>
+                                            <p className="lg:text-xs lg:ml-[2%]">
                                               {" "}
                                               {item.created_at}
-                                            </p>                                      
+                                            </p>
+                                          </div>
+                                        </div>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                              </div>
-                            </>
-                          ) : null;
-                        }
-                      )}
+                                </>
+                              ) : null;
+                            }
+                          )}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
-          <div className="mt-[50vh] sm:mt-[0%] md:mt-[0%] lg:mt-[0%]"></div>
-          <Footer />
+          <div className=" sm:mt-[0%] md:mt-[0%] lg:mt-[0%]"></div>
         </div>
       </div>
     </>

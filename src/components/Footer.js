@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import styles from "./Footer.module.scss";
 import vector from "../assets/Vector.png";
 import { TokenContext } from "../context/TokenContext";
 import { useNavigate } from "react-router-dom";
@@ -16,13 +15,13 @@ const Footer = () => {
         { logout }
       ) : (
         <>
-          <div className={styles.Rectangle32}>
+          <div className="bg-[#f97316]">
             <div className="flex flex-row font-inter">
               <div className="flex flex-col lg:w-[60%] ">
                 <div className="flex flex-row">
                   {" "}
                   <img
-                    className="ml-[12%] w-[20%] mt-[4%] lg:w-[10%]"
+                    className="ml-[12%] w-[20%] mt-[4%] lg:mt-[4%] lg:w-[15%]"
                     alt="Vector"
                     src={vector}
                   />
@@ -41,8 +40,8 @@ const Footer = () => {
                   </div>
                 </div>
                 <div className="flex flex-row">
-                  <div className="flex justify-end w-[60%] flex-col font-bold pt-[6%] lg:justify-start lg:flex-row lg:px-[4%] lg:text-2xl lg:font-bold lg:text-white ">
-                    <button className="lg:px-[2%]">Home</button>
+                  <div className="flex justify-end w-[60%] flex-col font-bold pt-[6%] lg:w-[80%] lg:my-[4%] lg:justify-start lg:flex-row lg:px-[4%] lg:text-2xl lg:font-bold lg:text-white ">
+                    <button className="lg:px-[2%]" onClick={()=>navigate("/")}>Home</button>
                     <button className="lg:px-[2%]">About us</button>
                     <button className="lg:px-[2%]">Contact us</button>
                     <button className="lg:px-[2%]">FAQs</button>
@@ -54,34 +53,7 @@ const Footer = () => {
                     </button>
                   </div>
                 </div>
-                <div className="hidden  sm:hidden md:block  lg:text-white lg:pt-[1%] lg:flex lg:flex-col lg:ml-[6%]">
-                  {" "}
-                  <p>Categories:</p>
-                  <button
-                    onClick={() => {
-                      navigate("/english");
-                      window.scrollTo(0, 0);
-                    }}
-                  >
-                    <p className="flex lg:pt-[1%]">English</p>
-                  </button>
-                  <button
-                    onClick={() => {
-                      navigate("/chineese");
-                      window.scrollTo(0, 0);
-                    }}
-                  >
-                    <p className="flex lg:pt-[1%]">Chineese</p>
-                  </button>
-                  <button
-                    onClick={() => {
-                      navigate("/scolarship");
-                      window.scrollTo(0, 0);
-                    }}
-                  >
-                    <p className="flex lg:pt-[1%]">Scholarship</p>
-                  </button>
-                </div>
+                
                 <p className="flex mb-[1%] justify-center">
                   2023 classABCD.All Rights reserved
                 </p>

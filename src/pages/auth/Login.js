@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
 import { useMutation } from "react-query";
-import styles from "./Login.module.scss";
 import { useNavigate } from "react-router-dom/dist";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -86,7 +85,7 @@ const Login = () => {
   };
   return (
     <>
-      <div className={styles.Rectangle1}>
+      <div className="">
         <div className=" w-[100%] h-[100vh] overflow-hidden">
           <div className=" py-[10%] pb-[24%]  lg:pt-[2%] lg:flex lg:flex-row lg:pb-[2%]">
             <div className="flex flex-col  ">
@@ -183,7 +182,7 @@ const Login = () => {
                           disabled
                           className="bg-[#00bbf0] w-[60%] py-[4%] my-[4%] rounded-lg "
                         >
-                          <p className=" text-white  lg:text-base">Logging</p>
+                          <p className=" text-white  lg:text-base">Logging in</p>
                         </button>
                       </div>
                     ) : (

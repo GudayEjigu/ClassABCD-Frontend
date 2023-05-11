@@ -1,29 +1,23 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useContext, useState } from "react";
+
 import vector2 from "../../assets/Vector2.png";
 import vector3 from "../../assets/Vector3.png";
 import vector4 from "../../assets/Vector4.png";
-import unsplash from "../../assets/unsplash.png";
-import unsplash2 from "../../assets/unsplash2.png";
+import { useNavigate, useParams } from "react-router-dom";
+
 import Footer from "../../components/Footer";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
-import { Button, Card, Menu, MenuItem } from "@mui/material";
 import ClampLines from "react-clamp-lines";
-import unsplash4 from "../../assets/unsplash4.png";
-import unsplash5 from "../../assets/unsplash5.png";
 import { LanguageContext } from "../../context/LanguageContext";
-import ReactPlayer from "react-player";
+import { Box, FormControl, InputLabel, Select } from "@mui/material";
 import { ThreeCircles } from "react-loader-spinner";
-import {
-  Box,
-  FormControl,
-  InputLabel,
-  Select,
-} from "@mui/material";
 
-const Details = () => {
+const Category = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const {
@@ -34,15 +28,12 @@ const Details = () => {
     isOromoLang,
     setIsOromoLang,
   } = useContext(LanguageContext);
-  const [isScholarship, setIsScolarship] = useState(true);
-  const [isAmharic, setIsAmharic] = useState(false);
 
-  const [isEnglish, setIsEnglish] = useState(false);
-  const [isChinese, setIsChinese] = useState(false);
   const [next, setNext] = useState(false);
   const [prev, setPrev] = useState(true);
-  const [after, setAfter] = useState(false);
-  const { token, user } = useAuth();
+  
+  const [counter, setCounter] = useState(true);
+  const [refresh, setRefresh] = useState(false);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -53,37 +44,13 @@ const Details = () => {
     setAnchorEl(null);
   };
 
+  const { token, user } = useAuth();
+
   const headers = {
     "Content-Type": "application/json",
     Accept: "application/json",
     Authorization: `Bearer ${token}`,
   };
-
-  const DetailData = useQuery(
-    ["DetailDataApi"],
-    async () =>
-      await axios.get(`${process.env.REACT_APP_BACKEND_URL}show-post/${id}`, {
-        headers,
-      }),
-    {
-      keepPreviousData: true,
-      refetchOnWindowFocus: false,
-      retry: false,
-      enabled: !!token,
-      onSuccess: () => {
-        //  console.log(categoryData?.data?.data?.data[1]?.name?.amharic);
-      },
-      onError: (res) => {
-        if (res?.response?.status == 401) {
-          console.log(res.message);
-        }
-      },
-    }
-  );
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [DetailData]);
-  console.log(DetailData?.data?.data?.post?.boddy?.english);
 
   const HomePageData = useQuery(
     ["HomePageDataApi"],
@@ -106,12 +73,33 @@ const Details = () => {
       },
     }
   );
+  const CategoryPageData = useQuery(
+    ["CategoryPageDataApi"],
+    async () =>
+      await axios.get(`${process.env.REACT_APP_BACKEND_URL}homepage`, {
+        headers,
+      }),
+    {
+      keepPreviousData: true,
+      refetchOnWindowFocus: false,
+      retry: false,
+      enabled: !!token,
+      onSuccess: (res) => {
+        console.log(res);
+      },
+      onError: (res) => {
+        if (res?.response?.status == 401) {
+          console.log(res.message);
+        }
+      },
+    }
+  );
 
   const Category1 = useQuery(
-    ["Category1Api"],
+    ["Category1Api", refresh],
     async () =>
       await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}posts-by-category/1`,
+        `${process.env.REACT_APP_BACKEND_URL}posts-by-category/${id}`,
         {
           headers,
         }
@@ -123,6 +111,7 @@ const Details = () => {
       enabled: !!token,
       onSuccess: (res) => {
         console.log(res);
+        setRefresh(false)
       },
       onError: (res) => {
         if (res?.response?.status == 401) {
@@ -132,54 +121,7 @@ const Details = () => {
     }
   );
 
-  const Category2 = useQuery(
-    ["Category2Api"],
-    async () =>
-      await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}posts-by-category/2`,
-        {
-          headers,
-        }
-      ),
-    {
-      keepPreviousData: true,
-      refetchOnWindowFocus: false,
-      retry: false,
-      enabled: !!token,
-      onSuccess: (res) => {
-        console.log(res);
-      },
-      onError: (res) => {
-        if (res?.response?.status == 401) {
-          console.log(res.message);
-        }
-      },
-    }
-  );
-  const Category3 = useQuery(
-    ["Category3Api"],
-    async () =>
-      await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}posts-by-category/3`,
-        {
-          headers,
-        }
-      ),
-    {
-      keepPreviousData: true,
-      refetchOnWindowFocus: false,
-      retry: false,
-      enabled: !!token,
-      onSuccess: (res) => {
-        console.log(res);
-      },
-      onError: (res) => {
-        if (res?.response?.status == 401) {
-          console.log(res.message);
-        }
-      },
-    }
-  );
+  console.log(CategoryPageData?.data?.data);
   return (
     <>
       <div className="w-[100%] h-[100%]  overflow-hidden">
@@ -197,10 +139,10 @@ const Details = () => {
                   </button>
                 </div>
                 <div className="pl-[0%] pt-[8%] flex flex-col lg:pt-[5%] lg:pl-[0%]">
-                  <p className="font-inter xs:text-4xl sm:text-xl md:text-xl lg:text-xl">
+                  <p className=" xs:text-4xl sm:text-xl md:text-xl lg:text-xl">
                     <button onClick={() => navigate("/")}>ClassABCD</button>
                   </p>
-                  <p className=" font-inter xs:text-4xl sm:text-xl md:text-xl lg:text-xl  text-[#f97316] ">
+                  <p className="  xs:text-4xl sm:text-xl md:text-xl lg:text-xl  text-[#f97316] ">
                     <button onClick={() => navigate("/")}>
                       Learning Center
                     </button>
@@ -208,7 +150,7 @@ const Details = () => {
                 </div>
                 <div className=" hidden w-[0%] h-[0%]  lg:w-[60%]  lg:block  lg:px-[15%] lg:py-[0%] lg:my-[4%]">
                   <div className="bg-blue-100 bg-opacity-50  rounded-lg bg-clip-padding">
-                    <div className=" flex flex-row justify-center  px-[10%] py-[2%] my-[2%] lg:text-sm">
+                    <div className=" flex flex-row justify-center  px-[10%] py-[2%] my-[2%] lg:text-base">
                       <button
                         className=" mx-[1%]"
                         onClick={() => {
@@ -217,30 +159,30 @@ const Details = () => {
                       >
                         Home
                       </button>
-                      <button
-                        className=" mx-[5%]"
-                        onClick={() => {
-                          
-                        }}
-                      >
+                      <button className=" mx-[5%]" onClick={() => {}}>
                         About Us
                       </button>
                       <div className="flex flex-row w-[30%]">
                         <Box sx={{ minWidth: 100 }}>
                           <FormControl fullWidth>
-                            <InputLabel sx={{fontSize: 16,
-                            fontFamily: 'Inter',
-                            color: "black",
-                            pb: 2 }} id="demo-simple-select-label">
+                            <InputLabel
+                              sx={{
+                                fontSize: 16,
+                                fontFamily: "Inter",
+                                color: "black",
+                                pb: 2,
+                              }}
+                              id="demo-simple-select-label"
+                            >
                               Menu
                             </InputLabel>
                             <Select
                               labelId="demo-simple-select-label"
                               id="demo-simple-select"
                               sx={{
-                                  boxShadow: "none",
+                                boxShadow: "none",
                                 ".MuiOutlinedInput-notchedOutline": { border: 0 },
-                                marginBottom: 0,
+                                marginTop: 0,
                                 width: "100%",
                                 height: "80%",
                               }}
@@ -253,9 +195,11 @@ const Details = () => {
                                       <div key={item}>
                                         <div className="    text-xl mb-[1%]">
                                           <MenuItem
-                                            onClick={() =>
-                                              navigate(`/category/${item.id}`)
-                                            }
+                                            onClick={() =>{
+                                              navigate(`/category/${item.id}`);
+                                              setRefresh(true)
+
+                                            }}
                                           >
                                             {" "}
                                             {isEnglishLang ? (
@@ -279,7 +223,8 @@ const Details = () => {
                                                     {item.title.oromiffa}
                                                   </p>
                                                 </>
-                                              )}                                          </MenuItem>
+                                              )}
+                                          </MenuItem>
                                         </div>
                                       </div>
                                     </>
@@ -444,12 +389,42 @@ const Details = () => {
                   </div>
                 </div>
               </div>
-              <div className="lg:flex lg:flex-row lg:h-[25%]">
-                <div className="lg:flex lg:flex-col lg:w-[90%] lg:pl-[10%]  lg:pr-[18%]">
-                  <div className="flex justify-center lg:justify-start lg:pl-[2%] text-xl my-[2%]">
-                    Detail
-                  </div>
-                  {DetailData?.isFetching ? (
+              <div className="flex justify-center lg:justify-start lg:pl-[2%] text-xl my-[2%]">
+                {HomePageData?.data?.data?.postByCategory?.map((item, i) => {
+                  return item.id == id ? (
+                    <>
+                      <div key={item}>
+                        <div className="    text-xl mb-[1%]">
+                        {isEnglishLang ? (
+                                                <>
+                                                  {" "}
+                                                  <p ClassName="text-sm font-bold">
+                                                    {item.title.english}
+                                                  </p>
+                                                </>
+                                              ) : isAmharicLang ? (
+                                                <>
+                                                  {" "}
+                                                  <p ClassName="text-sm font-bold">
+                                                    {item.title.amharic}
+                                                  </p>
+                                                </>
+                                              ) : (
+                                                <>
+                                                  {" "}
+                                                  <p ClassName="text-sm font-bold">
+                                                    {item.title.oromiffa}
+                                                  </p>
+                                                </>
+                                              )}
+                        </div>
+                      </div>
+                    </>
+                  ) : null;
+                })}
+              </div>
+              <div className="grid lg:grid-cols-4 m-[4%]   ">
+                {Category1.isFetching ? (
                 <>
                   {" "}
                   <div className="h-44 flex items-center justify-center min-h-0">
@@ -466,73 +441,64 @@ const Details = () => {
                     </div>
                   </div>
                 </>
-              ) : (
-                <>
-                  <div className=" h-[100%] p-[2%] lg:p-[6%] flex justify-center  lg:justify-start lg:max-h-[100%] lg:max-w-[100%]   ">
-                    <img
-                      className=" h-[100%] w-[90%] rounded-lg object-cover lg:overflow-clip lg:h-[100%] lg:w-[100%]  "
-                      alt="unsplash"
-                      src={DetailData?.data?.data?.post?.thumbnail?.link}
-                    />
-                  </div>
-                  <div className=" ml-[8%] text-xs lg:ml-[2%]">
-                    {DetailData?.data?.data?.post?.created_at}
-                  </div>
-                  <div className="flex justify-center  lg:justify-start  text-xl my-[1%] lg:ml-[2%]">
-                    {isEnglishLang ? (
-                      <>{DetailData?.data?.data?.post?.title?.english}</>
-                    ) : isAmharicLang ? (
-                      <>{DetailData?.data?.data?.post?.title?.amharic}</>
-                    ) : (
-                      <>{DetailData?.data?.data?.post?.title?.oromiffa}</>
-                    )}
-                  </div>
-                  <div className="flex justify-center lg:w-[90%]  lg:justify-start text-sm mx-[6%] lg:mx-[6%] ">
-                    {" "}
-                    {isEnglishLang ? (
-                      <>{DetailData?.data?.data?.post?.body?.english}</>
-                    ) : isAmharicLang ? (
-                      <>{DetailData?.data?.data?.post?.body?.english}</>
-                    ) : (
-                      <>{DetailData?.data?.data?.post?.body?.english}</>
-                    )}
-                  </div>
-                  <div>
-                    <p class="pt-[10%] pb-4">
-                      <b>Video:</b>
-                    </p>
-                    {DetailData?.data?.data?.post?.file?.type?.startsWith(
-                      "video"
-                    ) ? (
-                      <div className="flex justify-center">
-                        <Card
-                          sx={{ width: "70%", height: "16%" }}
-                          raised={true}
-                        >
-                          {/* <img  alt={"s"} src={DetailData?.data?.data?.post?.file?.link}/> */}
+              ):(<>{Category1?.data?.data?.data?.map((item, i) => {
+                  return (
+                    <>
+                      <div key={item}>
+                        <div className="flex flex-col  m-[4%]  ">
+                          <button
+                            onClick={() => {
+                              navigate(`/details/${item.id}`);
+                            }}
+                          >
+                            <div ClassName="">
+                              <img
+                                ClassName=""
+                                alt="unsplash"
+                                src={item?.thumbnail?.link}
+                              />
+                            </div>
 
-                          <ReactPlayer
-                            url={DetailData?.data?.data?.post?.file?.link}
-                            controls
-                          />
-                        </Card>
+                            <p className="">{item.category.created_at}</p>
+
+                            {isEnglishLang ? (
+                              <>
+                                {" "}
+                                <p className=" font-bold">
+                                  {item.title.english}
+                                </p>
+                                <p ClassName=" text-xs">{item.body.english}</p>
+                              </>
+                            ) : isAmharicLang ? (
+                              <>
+                                {" "}
+                                <p className="font-bold">
+                                  {item.title.amharic}
+                                </p>
+                                <p ClassName="">{item.body.amharic}</p>
+                              </>
+                            ) : (
+                              <>
+                                {" "}
+                                <p className="font-bold">
+                                  {item.title.oromiffa}
+                                </p>
+                                <p ClassName="">{item.body.oromiffa}</p>
+                              </>
+                            )}
+                          </button>
+                        </div>
                       </div>
-                    ) : (
-                      <p className="flex justify-center lg:pt-[10%]">
-                        No Video
-                      </p>
-                    )}
-                  </div>{" "}
-                  </>)}
-                </div>
+                    </>
+                  );
+                })}</>)}
               </div>
             </div>
           </div>
-          
         </div>
       </div>
     </>
   );
 };
 
-export default Details;
+export default Category;

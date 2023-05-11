@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import styles from "./Home.module.scss";
 import vector2 from "../../assets/Vector2.png";
 import vector3 from "../../assets/Vector3.png";
 import vector4 from "../../assets/Vector4.png";
@@ -17,6 +16,7 @@ import { useAuth } from "../../context/auth";
 import ClampLines from "react-clamp-lines";
 import { LanguageContext } from "../../context/LanguageContext";
 import { ThreeCircles } from "react-loader-spinner";
+import { Box, FormControl, InputLabel, Select } from "@mui/material";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -72,81 +72,6 @@ const Home = () => {
     }
   );
 
-  const Category1 = useQuery(
-    ["Category1Api"],
-    async () =>
-      await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}posts-by-category/1`,
-        {
-          headers,
-        }
-      ),
-    {
-      keepPreviousData: true,
-      refetchOnWindowFocus: false,
-      retry: false,
-      enabled: !!token,
-      onSuccess: (res) => {
-        console.log(res);
-      },
-      onError: (res) => {
-        if (res?.response?.status == 401) {
-          console.log(res.message);
-        }
-      },
-    }
-  );
-  console.log(HomePageData?.data?.data?.postByCategory);
-
-  const Category2 = useQuery(
-    ["Category2Api"],
-    async () =>
-      await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}posts-by-category/2`,
-        {
-          headers,
-        }
-      ),
-    {
-      keepPreviousData: true,
-      refetchOnWindowFocus: false,
-      retry: false,
-      enabled: !!token,
-      onSuccess: (res) => {
-        console.log(res);
-      },
-      onError: (res) => {
-        if (res?.response?.status == 401) {
-          console.log(res.message);
-        }
-      },
-    }
-  );
-  const Category3 = useQuery(
-    ["Category3Api"],
-    async () =>
-      await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}posts-by-category/3`,
-        {
-          headers,
-        }
-      ),
-    {
-      keepPreviousData: true,
-      refetchOnWindowFocus: false,
-      retry: false,
-      enabled: !!token,
-      onSuccess: (res) => {
-        console.log(res);
-      },
-      onError: (res) => {
-        if (res?.response?.status == 401) {
-          console.log(res.message);
-        }
-      },
-    }
-  );
-  console.log(HomePageData?.data?.data);
   return (
     <>
       <div className="w-[100%] h-[100%]  overflow-hidden">
@@ -156,7 +81,7 @@ const Home = () => {
               <div className="flex flex-row lg:ml-[4%]">
                 <div>
                   <img
-                    className=" w-[90%] my-[4%] lg:m-[1%] ml-[6%] lg:ml-]|[0%] mt-[16%] lg:mt-[70%] "
+                    className=" w-[90%] my-[4%] lg:m-[1%] ml-[6%] lg:ml-[0%] mt-[16%] lg:mt-[70%] "
                     alt="Vector"
                     src={vector2}
                   />
@@ -169,33 +94,91 @@ const Home = () => {
                     Learning Center
                   </p>
                 </div>
-                <div className=" hidden w-[0%] h-[0%]  lg:w-[60%]  lg:block  lg:px-[10%] lg:py-[2%] lg:my-[2%]">
+                <div className=" hidden w-[0%] h-[0%]  lg:w-[60%]  lg:block  lg:px-[15%] lg:py-[0%] lg:my-[4%]">
                   <div className="bg-blue-100 bg-opacity-50  rounded-lg bg-clip-padding">
-                    <div className=" flex flex-row justify-center  px-[10%] py-[2%] my-[2%] lg:text-xl">
+                    <div className=" flex flex-row justify-center  px-[10%] py-[0%] my-[0%] lg:text-base">
                       <button
                         className=" mx-[1%]"
                         onClick={() => {
-                          navigate("/scolarship");
+                          navigate("/");
                         }}
                       >
-                        Scholarship
+                        Home
                       </button>
-                      <button
-                        className=" mx-[10%]"
-                        onClick={() => {
-                          navigate("/english");
-                        }}
-                      >
-                        English
+                      <button className=" mx-[5%]" onClick={() => {}}>
+                        About Us
                       </button>
-                      <button
-                        className=" mx-[1%]"
-                        onClick={() => {
-                          navigate("/chineese");
-                        }}
-                      >
-                        Chineese
-                      </button>
+                      <div className="flex flex-row w-[30%]">
+                        <Box sx={{ minWidth: 100 }}>
+                          <FormControl fullWidth>
+                            <InputLabel
+                              sx={{
+                                fontSize: 16,
+                                fontFamily: "Inter",
+                                color: "black",
+                                pb: 2,
+                              }}
+                              id="demo-simple-select-label"
+                            >
+                              Menu
+                            </InputLabel>
+                            <Select
+                              labelId="demo-simple-select-label"
+                              id="demo-simple-select"
+                              sx={{
+                                boxShadow: "none",
+                                ".MuiOutlinedInput-notchedOutline": {
+                                  border: 0,
+                                },
+                                marginBottom: 0,
+                                width: "100%",
+                                height: "80%",
+                              }}
+                              label="Age"
+                            >
+                              {HomePageData?.data?.data?.postByCategory?.map(
+                                (item, i) => {
+                                  return (
+                                    <div key={item.id}>
+                                      <div className="    text-xl mb-[1%]">
+                                        <MenuItem
+                                          onClick={() =>
+                                            navigate(`/category/${item.id}`)
+                                          }
+                                        >
+                                          {" "}
+                                          {isEnglishLang ? (
+                                            <>
+                                              {" "}
+                                              <p ClassName="text-sm font-bold">
+                                                {item.title.english}
+                                              </p>
+                                            </>
+                                          ) : isAmharicLang ? (
+                                            <>
+                                              {" "}
+                                              <p ClassName="text-sm font-bold">
+                                                {item.title.amharic}
+                                              </p>
+                                            </>
+                                          ) : (
+                                            <>
+                                              {" "}
+                                              <p ClassName="text-sm font-bold">
+                                                {item.title.oromiffa}
+                                              </p>
+                                            </>
+                                          )}
+                                        </MenuItem>
+                                      </div>
+                                    </div>
+                                  );
+                                }
+                              )}
+                            </Select>
+                          </FormControl>
+                        </Box>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -264,33 +247,89 @@ const Home = () => {
                 </Menu>
               </div>
 
-              <div className=" lg:hidden lg:w-[100%] lg:h-[0%] px-[10%] py-[2%] my-[2%]">
-                <div className=" bg-blue-100 bg-opacity-50  rounded-lg bg-clip-border">
-                  <div className=" flex flex-row justify-center  px-[0%] py-[2%] my-[2%]">
+              <div className=" lg:hidden lg:w-[100%]  px-[10%] py-[2%] my-[2%]">
+                <div className="bg-blue-100 bg-opacity-50  rounded-lg bg-clip-padding">
+                  <div className=" flex flex-row justify-center  px-[10%] py-[2%] my-[2%]  lg:text-2xl">
                     <button
                       className=" mx-[1%]"
                       onClick={() => {
-                        navigate("/scolarship");
+                        navigate("/");
                       }}
                     >
-                      Scholarship
+                      Home
                     </button>
-                    <button
-                      className=" mx-[5%]"
-                      onClick={() => {
-                        navigate("/english");
-                      }}
-                    >
-                      English
+                    <button className=" mx-[5%]" onClick={() => {}}>
+                      About Us
                     </button>
-                    <button
-                      className=" mx-[1%]"
-                      onClick={() => {
-                        navigate("/chineese");
-                      }}
-                    >
-                      Chineese
-                    </button>
+                    <div className="flex flex-row w-[30%]">
+                      <Box sx={{ minWidth: 120 }}>
+                        <FormControl fullWidth>
+                          <InputLabel
+                            sx={{
+                              fontSize: 16,
+                              fontFamily: "Inter",
+                              color: "black",
+                              pb: 2,
+                            }}
+                            id="demo-simple-select-label"
+                          >
+                            Menu
+                          </InputLabel>
+                          <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            sx={{
+                              boxShadow: "none",
+                              ".MuiOutlinedInput-notchedOutline": { border: 0 },
+                              marginTop: 0,
+                              width: "100%",
+                              height: "80%",
+                            }}
+                            label="Age"
+                          >
+                            {HomePageData?.data?.data?.postByCategory?.map(
+                              (item, i) => {
+                                return (
+                                  <div key={item.id}>
+                                    <div className="    text-xl mb-[1%]">
+                                      <MenuItem
+                                        onClick={() =>
+                                          navigate(`/category/${item.id}`)
+                                        }
+                                      >
+                                        {" "}
+                                        {isEnglishLang ? (
+                                          <>
+                                            {" "}
+                                            <p ClassName="text-sm font-bold">
+                                              {item.title.english}
+                                            </p>
+                                          </>
+                                        ) : isAmharicLang ? (
+                                          <>
+                                            {" "}
+                                            <p ClassName="text-sm font-bold">
+                                              {item.title.amharic}
+                                            </p>
+                                          </>
+                                        ) : (
+                                          <>
+                                            {" "}
+                                            <p ClassName="text-sm font-bold">
+                                              {item.title.oromiffa}
+                                            </p>
+                                          </>
+                                        )}
+                                      </MenuItem>
+                                    </div>
+                                  </div>
+                                );
+                              }
+                            )}
+                          </Select>
+                        </FormControl>
+                      </Box>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -315,7 +354,7 @@ const Home = () => {
                 <>
                   <div className="lg:flex lg:flex-row lg:h-[25%] lg:pl-[6%] lg:justify-end">
                     <div className="lg:flex lg:flex-col lg:w-[60%]  lg:pr-[18%] overfill-y-clip ">
-                      <div className="flex justify-center lg:justify-start lg:pl-[2%] text-xl my-[2%]">
+                      <div className="flex justify-center lg:justify-start lg:pl-[2%] text-xl my-[2%] font-bold">
                         Most Popular
                       </div>
                       <div className=" h-[100%] p-[2%]   flex justify-center  lg:justify-start lg:max-h-[30%] lg:max-w-[100%]   ">
@@ -381,8 +420,8 @@ const Home = () => {
                         )}
                       </div>
                     </div>
-                    <div className=" hidden  w-[40%] lg:flex  lg:flex-col justify-start">
-                      <p>Most Recent</p>
+                    <div className=" hidden  w-[40%] lg:flex  lg:flex-col justify-start ">
+                      <p className="font-bold">Most Recent</p>
                       <div className=" lg:block">
                         <div>
                           {HomePageData?.data?.data?.popularPosts?.map(
@@ -415,12 +454,12 @@ const Home = () => {
                                                       );
                                                     }}
                                                   >
-                                                    <p className=" lg:w-[100%] lg:h-[0%] lg:pr-[0%] lg:text-sm  lg:font-bold">
+                                                    <p className=" lg:w-[100%]lg:pr-[0%] lg:text-sm  lg:font-bold">
                                                       {item.title.english}
                                                     </p>
                                                     <p>
                                                       <ClampLines
-                                                        className=" lg:w-[100%] lg:h-[0%] lg:pr-[0%] lg:text-xs "
+                                                        className=" lg:w-[100%]  lg:pr-[0%] lg:text-xs "
                                                         text={item.body.english}
                                                         id="really-unique-id"
                                                         lines={3}
@@ -514,25 +553,24 @@ const Home = () => {
                     </div>
                   </div>
                   <div className="lg:mx-[4%]">
-                    <div className="flex justify-center  lg:justify-start  lg:pl-[2%]  text-xl ">
+                    <div className="flex justify-center  lg:justify-start py-[4%]  pt-[4%] lg:pl-[2%]  text-xl font-bold ">
                       Popular Posts
                     </div>
-
-                    <div className="flex flex-col  lg:flex-row lg:text-xs   ">
+                    <div className="flex flex-col  lg:flex-row    ">
                       {HomePageData?.data?.data?.popularPosts?.map(
                         (item, i) => {
                           return i < 4 ? (
                             <>
                               <div key={item}>
                                 <button
-                                  className="flex w-[40vh] px-[4%]"
+                                  className="flex  lg:inline px-[4%]"
                                   onClick={() => {
                                     navigate(`/details/${item.id}`);
                                   }}
                                 >
-                                  <div className="flex justify-center lg:w-[100%] lg:flex-col ">
+                                  <div className="flex  flex-col justify-start lg:flex-col ">
                                     <img
-                                      className=" rounded-lg h-[20vh]  object-cover"
+                                      className=" rounded-lg  lg:aspect-[3/2] lg:max-w-xs object-cover"
                                       alt="unsplash"
                                       src={item?.thumbnail?.link}
                                     />
@@ -606,121 +644,131 @@ const Home = () => {
                         }
                       )}
                     </div>
-                    <div className="hidden lg:flex lg:flex-col ">
-                      <div className="hidden lg:flex lg:flex-col lg:m-[2%]">
-                        {HomePageData?.data?.data?.postByCategory?.map(
-                          (item, i) => {
-                            return (
-                              <>
-                                <div key={item}>
-                                  <div className="    text-xl mb-[1%]">
-                                    {item.title.english}
-                                  </div>
-                                  <div className="flex flex-row">
-                                    {item?.posts?.map((item, i) => {
-                                      return (
-                                        <>
-                                          <div key={item}></div>
-                                          <button
-                                            className="flex  w-[40vh] px-[4%]"
-                                            onClick={() => {
-                                              navigate(`/details/${item.id}`);
-                                            }}
-                                          >
-                                            <div className="flex justify-center lg:w-[100%] lg:flex-col ">
-                                              <img
-                                                ClassName="  rounded-lg h-[20vh]  object-cover"
-                                                alt="unsplash"
-                                                src={item?.thumbnail?.link}
-                                              />
+                      {HomePageData?.data?.data?.postByCategory?.map(
+                        (item, i) => {
+                          return i < 4 ? (
+                            <div key={item}>
+                              <div className="mt-[4%]">
+                              {isEnglishLang ? (
+                                <>
+                                  {" "}
+                                  <p ClassName="text-lg  ">
+                                    <b>{item.title.english}</b>
+                                  </p>
+                                </>
+                              ) : isAmharicLang ? (
+                                <>
+                                  {" "}
+                                  <p ClassName="text-sm font-bold">
+                                    {item.title.amharic}
+                                  </p>
+                                </>
+                              ) : (
+                                <>
+                                  {" "}
+                                  <p ClassName="text-sm font-bold">
+                                    {item.title.oromiffa}
+                                  </p>
+                                </>
+                              )}
+                              <div className="flex flex-col  lg:flex-row lg:text-xs   ">
+                                {item?.posts?.map((item, i) => {
+                                  return i < 4 ? (
+                                    <>
+                                      <div key={item}>
+                                        <button
+                                          className="flex  lg:inline p-[4%]"
+                                          onClick={() => {
+                                            navigate(`/details/${item.id}`);
+                                          }}
+                                        >
+                                          <div className="flex  flex-col justify-start lg:flex-col  lg:p-[4%]">
+                                            <img
+                                              className=" rounded-lg  lg:aspect-[3/2] lg:max-w-xs object-cover"
+                                              alt="unsplash"
+                                              src={item?.thumbnail?.link}
+                                            />
 
-                                              <p ClassName="text-xs">
-                                                {item.category.created_at}
-                                              </p>
+                                            <p className="text-xs">
+                                              {item.created_at}
+                                            </p>
+                                            {isEnglishLang ? (
+                                              <>
+                                                <p className=" text-sm lg:font-bold">
+                                                  {item.title.english}
+                                                </p>
+                                              </>
+                                            ) : isAmharicLang ? (
+                                              <>
+                                                <p className="text-sm lg:font-bold">
+                                                  {item.title.amharic}
+                                                </p>
+                                              </>
+                                            ) : (
+                                              <>
+                                                <p className="text-sm lg:font-bold">
+                                                  {item.title.oromiffa}
+                                                </p>
+                                              </>
+                                            )}
 
-                                              {isEnglishLang ? (
-                                                <>
-                                                  {" "}
-                                                  <p ClassName="text-sm font-bold">
-                                                    {item.title.english}
-                                                  </p>
-                                                </>
-                                              ) : isAmharicLang ? (
-                                                <>
-                                                  {" "}
-                                                  <p ClassName="text-sm font-bold">
-                                                    {item.title.amharic}
-                                                  </p>
-                                                </>
-                                              ) : (
-                                                <>
-                                                  {" "}
-                                                  <p ClassName="text-sm font-bold">
-                                                    {item.title.oromiffa}
-                                                  </p>
-                                                </>
-                                              )}
-                                              {isEnglishLang ? (
-                                                <>
-                                                  {" "}
-                                                  <ClampLines
-                                                    className=" lg:w-[100%] lg:h-[0%] lg:pr-[0%] lg:text-xs "
-                                                    text={item.body.english}
-                                                    id="really-unique-id"
-                                                    lines={3}
-                                                    ellipsis="..."
-                                                    moreText=""
-                                                    lessText=""
-                                                    innerElement="p"
-                                                  />
-                                                </>
-                                              ) : isAmharicLang ? (
-                                                <>
-                                                  {" "}
-                                                  <ClampLines
-                                                    className=" lg:w-[100%] lg:h-[0%] lg:pr-[0%] lg:text-xs "
-                                                    text={item.body.amharic}
-                                                    id="really-unique-id"
-                                                    lines={3}
-                                                    ellipsis="..."
-                                                    moreText=""
-                                                    lessText=""
-                                                    innerElement="p"
-                                                  />
-                                                </>
-                                              ) : (
-                                                <>
-                                                  <ClampLines
-                                                    className=" lg:w-[100%] lg:h-[0%] lg:pr-[0%] lg:text-xs "
-                                                    text={item.body.oromiffa}
-                                                    id="really-unique-id"
-                                                    lines={3}
-                                                    ellipsis="..."
-                                                    moreText=""
-                                                    lessText=""
-                                                    innerElement="p"
-                                                  />
-                                                </>
-                                              )}
-                                            </div>
-                                          </button>
-                                        </>
-                                      );
-                                    })}
-                                  </div>
-                                </div>
-                              </>
-                            );
-                          }
-                        )}
-                      </div>
+                                            {isEnglishLang ? (
+                                              <>
+                                                <ClampLines
+                                                  className=" lg:w-[100%] lg:h-[0%] lg:pr-[0%] lg:text-xs "
+                                                  text={item.body.english}
+                                                  id="really-unique-id"
+                                                  lines={3}
+                                                  ellipsis="..."
+                                                  moreText=""
+                                                  lessText=""
+                                                  innerElement="p"
+                                                />
+                                              </>
+                                            ) : isAmharicLang ? (
+                                              <>
+                                                <ClampLines
+                                                  className=" lg:w-[100%] lg:h-[0%] lg:pr-[0%] lg:text-xs "
+                                                  text={item.body.english}
+                                                  id="really-unique-id"
+                                                  lines={3}
+                                                  ellipsis="..."
+                                                  moreText=""
+                                                  lessText=""
+                                                  innerElement="p"
+                                                />
+                                              </>
+                                            ) : (
+                                              <>
+                                                <ClampLines
+                                                  className=" lg:w-[100%] lg:h-[0%] lg:pr-[0%] lg:text-xs "
+                                                  text={item.body.english}
+                                                  id="really-unique-id"
+                                                  lines={3}
+                                                  ellipsis="..."
+                                                  moreText=""
+                                                  lessText=""
+                                                  innerElement="p"
+                                                />
+                                              </>
+                                            )}
+                                          </div>
+                                        </button>
+                                      </div>
+                                    </>
+                                  ) : null;
+                                })}
+                              </div>
                     </div>
+                            </div>
+                          ) : null;
+                        }
+                      )}
                   </div>
                 </>
               )}
             </div>
           </div>
-          <Footer />
         </div>
       </div>
     </>

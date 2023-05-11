@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/auth/Login";
-import {  ThreeCircles } from "react-loader-spinner";
+import { ThreeCircles } from "react-loader-spinner";
 import { useAuth } from "./context/auth";
 
 import GoogleFontLoader from "react-google-font-loader";
@@ -11,9 +11,8 @@ import SearchPage from "./pages/search/SearchPage";
 import Details from "./pages/details/Details";
 import { LanguageContext } from "./context/LanguageContext";
 import { TokenContext } from "./context/TokenContext";
-import Chineese from "./pages/chineese/Chineese";
-import English from "./pages/english/English";
-import Scolarship from "./pages/scolarship/Scolarship";
+
+import Category from "./pages/category/Category";
 const App = () => {
   const { token, user, checked } = useAuth();
   const [isEnglishLang, setIsEnglishLang] = useState(true);
@@ -58,11 +57,10 @@ const App = () => {
                 <Route path="/login" element={<Login />} />
                 <Route path="/" element={<Home />} />
                 <Route path="/search" element={<SearchPage />} />
-                <Route path="/scolarship" element={<Scolarship />} />
-                <Route path="/english" element={<English />} />
-                <Route path="/chineese" element={<Chineese />} />
                 <Route path="/details/:id" element={<Details />} />
+                <Route path="/category/:id" element={<Category />} />
               </Routes>
+              <Footer/>
             </div>
           </LanguageContext.Provider>
         </TokenContext.Provider>
