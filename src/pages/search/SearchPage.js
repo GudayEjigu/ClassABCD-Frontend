@@ -26,6 +26,7 @@ import {
 import Category from "../category/Category";
 import { GoThreeBars } from "react-icons/go";
 import Modal from "@mui/material/Modal";
+import MultiClamp from "react-multi-clamp";
 
 const style = {
   position: "absolute",
@@ -38,7 +39,6 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-
 
 const SearchPage = () => {
   const navigate = useNavigate();
@@ -71,7 +71,7 @@ const SearchPage = () => {
   const handleClose2 = () => {
     setAnchorEl2(null);
   };
-  
+
   const [openBars, setOpenBars] = useState(false);
   const handleOpenBars = () => setOpenBars(true);
   const handleCloseBars = () => setOpenBars(false);
@@ -165,7 +165,7 @@ const SearchPage = () => {
                 </div>
                 <div className=" hidden w-[0%] h-[0%]  lg:w-[60%]  lg:block  lg:px-[0%] lg:py-[0%] lg:my-[4%]">
                   <div className=" bg-opacity-50  rounded-lg bg-clip-padding">
-                  <div className=" flex flex-row justify-start  px-[10%] py-[0%] my-[0%] lg:text-base">
+                    <div className=" flex flex-row justify-start  px-[10%] py-[0%] my-[0%] lg:text-base">
                       <div className="flex flex-row w-[30%]">
                         {HomePageData?.data?.data?.postByCategory?.map(
                           (item, i) => {
@@ -390,71 +390,72 @@ const SearchPage = () => {
                   <img className="w-[500%]" alt="Vector" src={vector3} />
                 </button>
                 <div className=" hidden lg:flex ">
-                <Button
-                  className=" ml-[6%]  px-[4%]  my-[4%] rounded-lg flex flex-col"
-                  id="basic-button"
-                  aria-controls={open ? "basic-menu" : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open ? "true" : undefined}
-                  onClick={handleClick}
-                >
-                  <img alt="Vector" src={vector4} />
-                  <p className="text-[#f97316]">Language </p>
-                </Button>
-                <Menu
-                  id="basic-menu"
-                  sx={{
-                    left: { xs: "0%", lg: "0%" },
-                    top: { xs: "0%", lg: "-10%" },
-                  }}
-                  anchorEl={anchorEl}
-                  open={open}
-                  onClose={handleClose}
-                  MenuListProps={{
-                    "aria-labelledby": "basic-button",
-                  }}
-                >
-                  <MenuItem
-                    onClick={() => {
-                      handleClose();
-                      setIsEnglishLang(true);
-                      setIsAmharicLang(false);
-                      setIsOromoLang(false);
+                  <Button
+                    className=" ml-[6%]  px-[4%]  my-[4%] rounded-lg flex flex-col"
+                    id="basic-button"
+                    aria-controls={open ? "basic-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                    onClick={handleClick}
+                  >
+                    <img alt="Vector" src={vector4} />
+                    <p className="text-[#f97316]">Language </p>
+                  </Button>
+                  <Menu
+                    id="basic-menu"
+                    sx={{
+                      left: { xs: "0%", lg: "0%" },
+                      top: { xs: "0%", lg: "-10%" },
+                    }}
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                    MenuListProps={{
+                      "aria-labelledby": "basic-button",
                     }}
                   >
-                    English
-                  </MenuItem>
-                  <MenuItem
-                    onClick={() => {
-                      handleClose();
-                      setIsEnglishLang(false);
-                      setIsAmharicLang(true);
-                      setIsOromoLang(true);
-                    }}
-                  >
-                    Amharic
-                  </MenuItem>
+                    <MenuItem
+                      onClick={() => {
+                        handleClose();
+                        setIsEnglishLang(true);
+                        setIsAmharicLang(false);
+                        setIsOromoLang(false);
+                      }}
+                    >
+                      English
+                    </MenuItem>
+                    <MenuItem
+                      onClick={() => {
+                        handleClose();
+                        setIsEnglishLang(false);
+                        setIsAmharicLang(true);
+                        setIsOromoLang(true);
+                      }}
+                    >
+                      Amharic
+                    </MenuItem>
 
-                  <MenuItem
-                    onClick={() => {
-                      handleClose();
-                      setIsEnglishLang(false);
-                      setIsAmharicLang(false);
-                      setIsOromoLang(true);
-                    }}
-                  >
-                    Oromiffa
-                  </MenuItem>
-                </Menu>
+                    <MenuItem
+                      onClick={() => {
+                        handleClose();
+                        setIsEnglishLang(false);
+                        setIsAmharicLang(false);
+                        setIsOromoLang(true);
+                      }}
+                    >
+                      Oromiffa
+                    </MenuItem>
+                  </Menu>
                 </div>
                 <div className="hidden lg:flex mt-[6%] lg:mt-[3%] h-[40%] mx-[2%]  lg:mx-[2%]  ">
-
-                <button className="hidden text-3xl lg:flex justify-center p-[15%] rounded-lg flex-col bg-[#f97316]" onClick={logout}>
-                  <BiLogOut />
-                  <p className="text-xs flex  justify-center">Logout</p>
-                </button>
+                  <button
+                    className="hidden text-3xl lg:flex justify-center p-[15%] rounded-lg flex-col bg-[#f97316]"
+                    onClick={logout}
+                  >
+                    <BiLogOut />
+                    <p className="text-xs flex  justify-center">Logout</p>
+                  </button>
                 </div>
-              
               </div>
 
               <div className=" lg:hidden lg:w-[100%]  px-[0%] py-[2%] my-[2%]">
@@ -671,255 +672,249 @@ const SearchPage = () => {
                     </>
                   ) : SearchData.isFetched ? (
                     <div className="flex flex-col ">
-                        {SearchData?.data?.data?.map((item, i) => {
-                          return (
-                            <>
-                              <div key={item}>
-                                <div className="flex flex-col m-2 mb-[16%] lg:mb-[6%] lg:pl-[8%] ">
-                                    <div className="flex flex-col  lg:flex-row ">
-                                      {isEnglishLang ? (
-                                        <>
-                                          <button
-                                            className="flex flex-col justify-center lg:flex-row first-letter"
-                                            onClick={() => {
-                                              navigate(`/details/${item.id}`);
-                                            }}
-                                          >
-                                            <img
-                                              className="   lg:h-48  lg:w-48 object-cover"
-                                              alt="unsplash"
-                                              src={item?.thumbnail?.link}
-                                            />
+                      {SearchData?.data?.data?.map((item, i) => {
+                        return (
+                          <>
+                            <div key={item}>
+                              <div className="flex flex-col m-2 mb-[16%] lg:mb-[6%] lg:pl-[8%] ">
+                                <div className="flex flex-col  lg:flex-row ">
+                                  {isEnglishLang ? (
+                                    <>
+                                      <button
+                                        className="flex flex-col justify-center lg:justify-start lg:flex-row first-letter"
+                                        onClick={() => {
+                                          navigate(`/details/${item.id}`);
+                                        }}
+                                      >
+                                        <img
+                                          className="   lg:h-48  lg:w-48 object-cover"
+                                          alt="unsplash"
+                                          src={item?.thumbnail?.link}
+                                        />
 
-                                            <div className="flex flex-col">
-                                              <p ClassName="">
-                                                <ClampLines
-                                                  text={item.body.english}
-                                                  id="really-unique-id"
-                                                  lines={4}
-                                                  ellipsis="..."
-                                                  moreText=""
-                                                  lessText=""
-                                                  className="custom-class"
-                                                  innerElement="p"
-                                                />
-                                              </p>
-                                              <p ClassName="mb-[8%]">
-                                                {" "}
-                                                {item.created_at}
-                                              </p>
-                                            </div>
-                                          </button>
-                                        </>
-                                      ) : isAmharicLang ? (
-                                        <>
-                                          {" "}
-                                          <button
-                                            onClick={() => {
-                                              navigate(`/details/${item.id}`);
-                                            }}
-                                          >
-                                            <img
-                                              className=" h-48 lg:h-48  lg:w-48 object-cover"
-                                              alt="unsplash"
-                                              src={item?.thumbnail?.link}
-                                            />
-                                            <div className="flex flex-col">
-                                              <p ClassName="">
-                                                <ClampLines
-                                                  text={item.body.amharic}
-                                                  id="really-unique-id"
-                                                  lines={4}
-                                                  ellipsis="..."
-                                                  moreText=""
-                                                  lessText=""
-                                                  className="custom-class"
-                                                  innerElement="p"
-                                                />
-                                              </p>
-                                              <p ClassName="mb-[8%]">
-                                                {" "}
-                                                {item.created_at}
-                                              </p>
-                                            </div>
-                                          </button>
-                                        </>
-                                      ) : (
-                                        <>
-                                          <button
-                                            onClick={() => {
-                                              navigate(`/details/${item.id}`);
-                                            }}
-                                          >
+                                        <div className="flex flex-col">
+                                          <p ClassName="">
+                                            <p className=" lg:w-[100%]  lg:pr-[0%] lg:text-lg  lg:font-bold">
+                                              {item.title.english}
+                                            </p>
+                                            <p className="text-xs w-[90%]  ">
+                                              <MultiClamp
+                                                ellipsis="..."
+                                                clamp={3}
+                                              >
+                                                {item.body.english}
+                                              </MultiClamp>
+                                            </p>
+                                          </p>
+                                          <div className="flex justify-start p-[2%] text-xs">
+                                          <p ClassName="mb-[8%] text-xs flex justify-start">
                                             {" "}
-                                            <img
-                                              className=" h-48 lg:h-48  lg:w-48 object-cover"
-                                              alt="unsplash"
-                                              src={item?.thumbnail?.link}
-                                            />
-                                            <div className="flex flex-col">
-                                              <p ClassName="">
-                                                <ClampLines
-                                                  text={item.body.oromiffa}
-                                                  id="really-unique-id"
-                                                  lines={4}
-                                                  ellipsis="..."
-                                                  moreText=""
-                                                  lessText=""
-                                                  className="custom-class"
-                                                  innerElement="p"
-                                                />
-                                              </p>
-                                              <p ClassName="mb-[8%]">
-                                                {" "}
-                                                {item.created_at}
-                                              </p>
-                                            </div>
-                                          </button>
-                                        </>
-                                      )}
-                                    </div>
-                                  
-                                </div>
-                              </div>
-                            </>
-                          );
-                        })}
-                      </div>
-                    
-                  ) : null}
-                </div>
-                <div className=" hidden  w-[40%] lg:flex  lg:flex-col justify-start ">
-                      <p className="font-bold">Most Recent</p>
-                      <div className=" lg:block">
-                        <div>
-                          {HomePageData?.data?.data?.popularPosts?.map(
-                            (item, i) => {
-                              return i < 4 ? (
-                                <>
-                                  <div key={item}>
-                                    <div className="flex flex-col bg-white lg:my-[0%] lg:mr-[4%] lg:p-[2%]    rounded lg">
-                                      <div>
-                                        <div className="flex flex-col shadow-lg">
-                                          <div className="flex flex-row">
+                                            {item.created_at}
+                                          </p>
+                                        </div>
+                                        </div>
+                                      </button>
+                                    </>
+                                  ) : isAmharicLang ? (
+                                    <>
+                                      {" "}
+                                      <button
+                                        className="flex flex-col justify-center lg:justify-start lg:flex-row first-letter"
+                                        onClick={() => {
+                                          navigate(`/details/${item.id}`);
+                                        }}
+                                      >
+                                        <img
+                                          className=" h-48 lg:h-48  lg:w-48 object-cover"
+                                          alt="unsplash"
+                                          src={item?.thumbnail?.link}
+                                        />
+                                        <div className="flex flex-col">
+                                          <p ClassName="">
+                                            <p className=" lg:w-[100%]  lg:pr-[0%] lg:text-lg  lg:font-bold">
+                                              {item.title.amharic}
+                                            </p>
+                                            <p className="text-xs w-[90%]  ">
+                                              <MultiClamp
+                                                ellipsis="..."
+                                                clamp={3}
+                                              >
+                                                {item.body.amharic}
+                                              </MultiClamp>
+                                            </p>
+                                          </p><div className="flex justify-start p-[2%] text-xs">
+                                          <p ClassName="flex justify-start text-xs mb-[8%]">
                                             {" "}
-                                            <div
-                                              className="   lg:max-w-[30vh]  
-                                            "
-                                            >
-                                              <img
-                                                className="   rounded-lg object-cover lg:overflow-clip  lg:pt-[0%] lg:max-h-[15vh] lg:w-[50vh]"
-                                                alt="unsplash"
-                                                src={item?.thumbnail?.link}
-                                              />
-                                            </div>
-                                            {isEnglishLang ? (
-                                              <>
-                                                <div className="flex flex-col lg:h-[100%] ">
-                                                  <button
-                                                    onClick={() => {
-                                                      navigate(
-                                                        `/details/${item.id}`
-                                                      );
-                                                    }}
-                                                  >
-                                                    <p className=" lg:w-[100%]  lg:pr-[0%] lg:text-sm  lg:font-bold">
-                                                      {item.title.english}
-                                                    </p>
-                                                    <p>
-                                                      <ClampLines
-                                                        className=" lg:w-[100%]  lg:pr-[0%] lg:text-xs "
-                                                        text={item.body.english}
-                                                        id="really-unique-id"
-                                                        lines={3}
-                                                        ellipsis="..."
-                                                        moreText=""
-                                                        lessText=""
-                                                        innerElement="p"
-                                                      />
-                                                    </p>
-                                                  </button>
-                                                </div>
-                                              </>
-                                            ) : isAmharicLang ? (
-                                              <>
-                                                {" "}
-                                                <div className="flex flex-col">
-                                                  <button
-                                                    onClick={() => {
-                                                      navigate(
-                                                        `/details/${item.id}`
-                                                      );
-                                                    }}
-                                                  >
-                                                    <p className=" lg:w-[100%]  lg:pr-[0%] lg:text-sm  lg:font-bold">
-                                                      {item.title.amharic}
-                                                    </p>
-                                                    <p>
-                                                      <ClampLines
-                                                        className=" lg:w-[100%]  lg:pr-[0%] lg:text-xs "
-                                                        text={item.body.amharic}
-                                                        id="really-unique-id"
-                                                        lines={4}
-                                                        ellipsis="..."
-                                                        moreText=""
-                                                        lessText=""
-                                                        innerElement="p"
-                                                      />
-                                                    </p>
-                                                  </button>
-                                                </div>
-                                              </>
-                                            ) : (
-                                              <>
-                                                {" "}
-                                                <div className="flex flex-col">
-                                                  <button
-                                                    onClick={() => {
-                                                      navigate(
-                                                        `/details/${item.id}`
-                                                      );
-                                                    }}
-                                                  >
-                                                    <p className=" lg:w-[100%]  lg:pr-[0%] lg:text-sm  lg:font-bold">
-                                                      {item.title.oromiffa}
-                                                    </p>
-                                                    <p>
-                                                      <ClampLines
-                                                        className=" lg:w-[100%]  lg:pr-[0%] lg:text-xs "
-                                                        text={
-                                                          item.body.oromiffa
-                                                        }
-                                                        id="really-unique-id"
-                                                        lines={4}
-                                                        ellipsis="..."
-                                                        moreText=""
-                                                        lessText=""
-                                                        innerElement="p"
-                                                      />
-                                                    </p>
-                                                  </button>
-                                                </div>
-                                              </>
-                                            )}
-                                          </div>
-                                          <div>
-                                            <p className="lg:text-xs lg:ml-[2%]">
+                                            {item.created_at}
+                                          </p>
+                                        </div>
+                                        </div>
+                                      </button>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <button
+                                        className="flex flex-col justify-center lg:justify-start lg:flex-row first-letter"
+                                        onClick={() => {
+                                          navigate(`/details/${item.id}`);
+                                        }}
+                                      >
+                                        {" "}
+                                        <img
+                                          className=" h-48 lg:h-48  lg:w-48 object-cover"
+                                          alt="unsplash"
+                                          src={item?.thumbnail?.link}
+                                        />
+                                        <div className="flex flex-col ">
+                                          <p ClassName="">
+                                            <p className=" lg:w-[100%]  lg:pr-[0%] lg:text-lg  lg:font-bold">
+                                              {item.title.oromiffa}
+                                            </p>
+                                            <p className="text-xs w-[90%]  ">
+                                              <MultiClamp
+                                                ellipsis="..."
+                                                clamp={3}
+                                              >
+                                                {item.body.oromiffa}
+                                              </MultiClamp>
+                                            </p>
+                                          </p>
+                                          <div className="flex justify-start p-[2%] text-xs">
+                                            <p ClassName="mb-[8%] ">
                                               {" "}
                                               {item.created_at}
                                             </p>
                                           </div>
                                         </div>
+                                      </button>
+                                    </>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          </>
+                        );
+                      })}
+                    </div>
+                  ) : null}
+                </div>
+                <div className=" hidden  w-[30%] lg:flex  lg:flex-col justify-start ">
+                  <p className="font-bold">Most Recent</p>
+                  <div className=" lg:block">
+                    <div>
+                      {HomePageData?.data?.data?.popularPosts?.map(
+                        (item, i) => {
+                          return i < 4 ? (
+                            <>
+                              <div key={item}>
+                                <div className="flex flex-col bg-white lg:my-[0%] lg:mr-[4%] lg:p-[2%]    rounded lg">
+                                  <div>
+                                    <div className="flex flex-col shadow-lg">
+                                      <div className="flex flex-row">
+                                        {" "}
+                                        <div
+                                          className="   lg:max-w-[30vh]  
+                                            "
+                                        >
+                                          <img
+                                            className="   rounded-lg object-cover lg:overflow-clip  lg:pt-[0%] lg:max-h-[15vh] lg:w-[50vh]"
+                                            alt="unsplash"
+                                            src={item?.thumbnail?.link}
+                                          />
+                                        </div>
+                                        {isEnglishLang ? (
+                                          <>
+                                            <div className="flex flex-col lg:h-[100%] ">
+                                              <button
+                                                onClick={() => {
+                                                  navigate(
+                                                    `/details/${item.id}`
+                                                  );
+                                                }}
+                                              >
+                                                <p className=" lg:w-[100%]  lg:pr-[0%] lg:text-sm  lg:font-bold">
+                                                  {item.title.english}
+                                                </p>
+                                                <p className="text-xs w-[90%]  ">
+                                                  <MultiClamp
+                                                    ellipsis="..."
+                                                    clamp={3}
+                                                  >
+                                                    {item.body.english}
+                                                  </MultiClamp>
+                                                </p>
+                                              </button>
+                                            </div>
+                                          </>
+                                        ) : isAmharicLang ? (
+                                          <>
+                                            {" "}
+                                            <div className="flex flex-col">
+                                              <button
+                                                onClick={() => {
+                                                  navigate(
+                                                    `/details/${item.id}`
+                                                  );
+                                                }}
+                                              >
+                                                <p className=" lg:w-[100%]  lg:pr-[0%] lg:text-sm  lg:font-bold">
+                                                  {item.title.amharic}
+                                                </p>
+                                                <p className="text-xs w-[90%]  ">
+                                                  <MultiClamp
+                                                    ellipsis="..."
+                                                    clamp={3}
+                                                  >
+                                                    {item.body.amharic}
+                                                  </MultiClamp>
+                                                </p>
+                                              </button>
+                                            </div>
+                                          </>
+                                        ) : (
+                                          <>
+                                            {" "}
+                                            <div className="flex flex-col">
+                                              <button
+                                                onClick={() => {
+                                                  navigate(
+                                                    `/details/${item.id}`
+                                                  );
+                                                }}
+                                              >
+                                                <p className=" lg:w-[100%]  lg:pr-[0%] lg:text-sm  lg:font-bold">
+                                                  {item.title.oromiffa}
+                                                </p>
+                                                <p className="text-xs w-[90%]  ">
+                                                  <MultiClamp
+                                                    ellipsis="..."
+                                                    clamp={3}
+                                                  >
+                                                    {item.body.oromiffa}
+                                                  </MultiClamp>
+                                                </p>
+                                              </button>
+                                            </div>
+                                          </>
+                                        )}
+                                      </div>
+                                      <div>
+                                        <p className="lg:text-xs lg:ml-[2%]">
+                                          {" "}
+                                          {item.created_at}
+                                        </p>
                                       </div>
                                     </div>
                                   </div>
-                                </>
-                              ) : null;
-                            }
-                          )}
-                        </div>
-                      </div>
+                                </div>
+                              </div>
+                            </>
+                          ) : null;
+                        }
+                      )}
                     </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

@@ -30,6 +30,7 @@
     "react-hook-form": "7.40.0",
     "react-icons": "^4.7.1",
     "react-loader-spinner": "^5.3.4",
+    "react-multi-clamp": "^2.0.6",
     "react-player": "^2.12.0",
     "react-query": "3.35.0",
     "react-router-dom": "^6.7.0",

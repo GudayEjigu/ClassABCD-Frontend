@@ -24,6 +24,7 @@ import { Box, FormControl, InputLabel, Select } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { GoThreeBars } from "react-icons/go";
 import Modal from "@mui/material/Modal";
+import MultiClamp from "react-multi-clamp";
 
 const style = {
   position: "absolute",
@@ -608,7 +609,7 @@ const Home = () => {
               ) : (
                 <>
                   <div className="lg:flex lg:flex-row lg:h-[25%] lg:pl-[6%] lg:justify-end">
-                    <div className="lg:flex lg:flex-col lg:w-[60%]  pb-[25%] lg:pb-[0%] lg:pr-[18%] overfill-y-clip ">
+                    <div className="lg:flex lg:flex-col lg:w-[70%]  pb-[25%] lg:pb-[0%] lg:pr-[18%] overfill-y-clip ">
                       <div className="flex justify-center lg:justify-start lg:pl-[2%] text-xl my-[2%] font-bold">
                         Most Popular
                       </div>
@@ -675,7 +676,7 @@ const Home = () => {
                         )}
                       </div>
                     </div>
-                    <div className=" hidden  w-[40%] lg:flex  lg:flex-col justify-start ">
+                    <div className=" hidden  w-[30%] lg:flex  lg:flex-col justify-start ">
                       <p className="font-bold">Most Recent</p>
                       <div className=" lg:block">
                         <div>
@@ -712,17 +713,13 @@ const Home = () => {
                                                     <p className=" flex justify-start pl-[4%] lg:w-[100%]lg:pr-[0%] lg:text-sm  lg:font-bold">
                                                       {item.title.english}
                                                     </p>
-                                                    <p>
-                                                      <ClampLines
-                                                        className=" lg:w-[100%]  lg:pr-[0%] lg:text-xs "
-                                                        text={item.body.english}
-                                                        id="really-unique-id"
-                                                        lines={3}
+                                                    <p className="text-xs w-[90%]  ">
+                                                      <MultiClamp
                                                         ellipsis="..."
-                                                        moreText=""
-                                                        lessText=""
-                                                        innerElement="p"
-                                                      />
+                                                        clamp={3}
+                                                      >
+                                                        {item.body.english}
+                                                      </MultiClamp>
                                                     </p>
                                                   </button>
                                                 </div>
@@ -741,17 +738,13 @@ const Home = () => {
                                                     <p className=" lg:w-[100%]  lg:pr-[0%] lg:text-sm  lg:font-bold">
                                                       {item.title.amharic}
                                                     </p>
-                                                    <p>
-                                                      <ClampLines
-                                                        className=" lg:w-[100%]  lg:pr-[0%] lg:text-xs "
-                                                        text={item.body.amharic}
-                                                        id="really-unique-id"
-                                                        lines={4}
+                                                    <p className="text-xs w-[90%]  ">
+                                                      <MultiClamp
                                                         ellipsis="..."
-                                                        moreText=""
-                                                        lessText=""
-                                                        innerElement="p"
-                                                      />
+                                                        clamp={3}
+                                                      >
+                                                        {item.body.amharic}
+                                                      </MultiClamp>
                                                     </p>
                                                   </button>
                                                 </div>
@@ -770,19 +763,13 @@ const Home = () => {
                                                     <p className=" lg:w-[100%]  lg:pr-[0%] lg:text-sm  lg:font-bold">
                                                       {item.title.oromiffa}
                                                     </p>
-                                                    <p>
-                                                      <ClampLines
-                                                        className=" lg:w-[100%]  lg:pr-[0%] lg:text-xs "
-                                                        text={
-                                                          item.body.oromiffa
-                                                        }
-                                                        id="really-unique-id"
-                                                        lines={4}
+                                                    <p className="text-xs w-[90%]  ">
+                                                      <MultiClamp
                                                         ellipsis="..."
-                                                        moreText=""
-                                                        lessText=""
-                                                        innerElement="p"
-                                                      />
+                                                        clamp={3}
+                                                      >
+                                                        {item.body.oromiffa}
+                                                      </MultiClamp>
                                                     </p>
                                                   </button>
                                                 </div>
@@ -864,42 +851,30 @@ const Home = () => {
                                               </div>
                                               {isEnglishLang ? (
                                                 <>
-                                                  <ClampLines
-                                                    className=" lg:w-[100%] lg:h-[0%] lg:pr-[0%] lg:text-xs "
-                                                    text={item.body.english}
-                                                    id="really-unique-id"
-                                                    lines={3}
+                                                  <MultiClamp
                                                     ellipsis="..."
-                                                    moreText=""
-                                                    lessText=""
-                                                    innerElement="p"
-                                                  />
+                                                    clamp={3}
+                                                  >
+                                                    {item.body.english}
+                                                  </MultiClamp>
                                                 </>
                                               ) : isAmharicLang ? (
                                                 <>
-                                                  <ClampLines
-                                                    className=" lg:w-[100%] lg:h-[0%] lg:pr-[0%] lg:text-xs "
-                                                    text={item.body.english}
-                                                    id="really-unique-id"
-                                                    lines={3}
+                                                  <MultiClamp
                                                     ellipsis="..."
-                                                    moreText=""
-                                                    lessText=""
-                                                    innerElement="p"
-                                                  />
+                                                    clamp={3}
+                                                  >
+                                                    {item.body.amharic}
+                                                  </MultiClamp>
                                                 </>
                                               ) : (
                                                 <>
-                                                  <ClampLines
-                                                    className=" lg:w-[100%] lg:h-[0%] lg:pr-[0%] lg:text-xs "
-                                                    text={item.body.english}
-                                                    id="really-unique-id"
-                                                    lines={3}
+                                                  <MultiClamp
                                                     ellipsis="..."
-                                                    moreText=""
-                                                    lessText=""
-                                                    innerElement="p"
-                                                  />
+                                                    clamp={3}
+                                                  >
+                                                    {item.body.oromiffa}
+                                                  </MultiClamp>
                                                 </>
                                               )}
                                             </div>

@@ -19,6 +19,8 @@ import { ThreeCircles } from "react-loader-spinner";
 import { BiLogOut } from "react-icons/bi";
 import { GoThreeBars } from "react-icons/go";
 import Modal from "@mui/material/Modal";
+import MultiClamp from 'react-multi-clamp';
+
 
 const style = {
   position: "absolute",
@@ -709,9 +711,14 @@ const Category = () => {
                                     <p className=" font-bold">
                                       {item.title.english}
                                     </p>
-                                    <p ClassName=" text-xs">
-                                      {item.body.english}
-                                    </p>
+                                    <p className="text-xs w-[90%]  ">
+                                                      <MultiClamp
+                                                        ellipsis="..."
+                                                        clamp={3}
+                                                      >
+                                                        {item.body.english}
+                                                      </MultiClamp>
+                                                    </p>
                                   </>
                                 ) : isAmharicLang ? (
                                   <>
@@ -719,7 +726,14 @@ const Category = () => {
                                     <p className="font-bold">
                                       {item.title.amharic}
                                     </p>
-                                    <p ClassName="">{item.body.amharic}</p>
+                                    <p className="text-xs w-[90%]  ">
+                                                      <MultiClamp
+                                                        ellipsis="..."
+                                                        clamp={3}
+                                                      >
+                                                        {item.body.amharic}
+                                                      </MultiClamp>
+                                                    </p>
                                   </>
                                 ) : (
                                   <>
@@ -727,7 +741,14 @@ const Category = () => {
                                     <p className="font-bold">
                                       {item.title.oromiffa}
                                     </p>
-                                    <p ClassName="">{item.body.oromiffa}</p>
+                                    <p className="text-xs w-[90%]  ">
+                                                      <MultiClamp
+                                                        ellipsis="..."
+                                                        clamp={3}
+                                                      >
+                                                        {item.body.oromiffa}
+                                                      </MultiClamp>
+                                                    </p>
                                   </>
                                 )}
                               </button>
