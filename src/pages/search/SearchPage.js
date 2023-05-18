@@ -103,7 +103,7 @@ const SearchPage = () => {
       },
       onError: (res) => {
         if (res?.response?.status == 401) {
-          console.log(res.message);
+          logout()
         }
       },
     }
@@ -136,7 +136,7 @@ const SearchPage = () => {
       },
       onError: (res) => {
         if (res?.response?.status == 401) {
-          console.log(res.message);
+          logout()
         }
       },
     }
@@ -824,7 +824,7 @@ const SearchPage = () => {
                                         </div>
                                         {isEnglishLang ? (
                                           <>
-                                            <div className="flex flex-col lg:h-[100%] ">
+                                            <div className="flex flex-col   lg:h-[100%] ">
                                               <button
                                                 onClick={() => {
                                                   navigate(
@@ -832,10 +832,10 @@ const SearchPage = () => {
                                                   );
                                                 }}
                                               >
-                                                <p className=" lg:w-[100%]  lg:pr-[0%] lg:text-sm  lg:font-bold">
+                                                <div className=" lg:w-[100%]   lg:text-sm  text-left pl-[4%] lg:font-bold">
                                                   {item.title.english}
-                                                </p>
-                                                <p className="text-xs w-[90%]  ">
+                                                </div>
+                                                <p className="text-xs w-[90%] text-left pl-[4%] ">
                                                   <MultiClamp
                                                     ellipsis="..."
                                                     clamp={3}
@@ -857,10 +857,10 @@ const SearchPage = () => {
                                                   );
                                                 }}
                                               >
-                                                <p className=" lg:w-[100%]  lg:pr-[0%] lg:text-sm  lg:font-bold">
+                                                <p className=" lg:w-[100%]  lg:pr-[0%] text-left pl-[4%] lg:text-sm  lg:font-bold">
                                                   {item.title.amharic}
                                                 </p>
-                                                <p className="text-xs w-[90%]  ">
+                                                <p className="text-xs w-[90%] text-left pl-[4%]  ">
                                                   <MultiClamp
                                                     ellipsis="..."
                                                     clamp={3}
@@ -882,10 +882,10 @@ const SearchPage = () => {
                                                   );
                                                 }}
                                               >
-                                                <p className=" lg:w-[100%]  lg:pr-[0%] lg:text-sm  lg:font-bold">
+                                                <p className=" lg:w-[100%]  lg:pr-[0%] text-left pl-[4%] lg:text-sm  lg:font-bold">
                                                   {item.title.oromiffa}
                                                 </p>
-                                                <p className="text-xs w-[90%]  ">
+                                                <p className="text-xs w-[90%]  text-left pl-[4%] ">
                                                   <MultiClamp
                                                     ellipsis="..."
                                                     clamp={3}

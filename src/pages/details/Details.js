@@ -94,7 +94,7 @@ const Details = () => {
       },
       onError: (res) => {
         if (res?.response?.status == 401) {
-          console.log(res.message);
+         logout()
         }
       },
     }
@@ -120,7 +120,7 @@ const Details = () => {
       },
       onError: (res) => {
         if (res?.response?.status == 401) {
-          console.log(res.message);
+          logout()
         }
       },
     }
@@ -145,7 +145,7 @@ const Details = () => {
       },
       onError: (res) => {
         if (res?.response?.status == 401) {
-          console.log(res.message);
+          logout()
         }
       },
     }
@@ -170,7 +170,7 @@ const Details = () => {
       },
       onError: (res) => {
         if (res?.response?.status == 401) {
-          console.log(res.message);
+          logout()
         }
       },
     }
@@ -194,7 +194,7 @@ const Details = () => {
       },
       onError: (res) => {
         if (res?.response?.status == 401) {
-          console.log(res.message);
+          logout()
         }
       },
     }

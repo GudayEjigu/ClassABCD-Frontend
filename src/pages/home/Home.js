@@ -101,7 +101,7 @@ const Home = () => {
       },
       onError: (res) => {
         if (res?.response?.status == 401) {
-          console.log(res.message);
+          logout()
         }
       },
     }
@@ -112,7 +112,7 @@ const Home = () => {
       <div className="w-[100%] h-[100%]  overflow-hidden">
         <div className="">
           <div className="flex font-inter ">
-            <div className="flex flex-col w-[100%] ">
+            <div className="flex flex-col  ">
               <div className="flex flex-row lg:ml-[4%]">
                 <div>
                   <img
@@ -608,14 +608,14 @@ const Home = () => {
                 </>
               ) : (
                 <>
-                  <div className="lg:flex lg:flex-row lg:h-[25%] lg:pl-[6%] lg:justify-end">
-                    <div className="lg:flex lg:flex-col lg:w-[70%]  pb-[25%] lg:pb-[0%] lg:pr-[18%] overfill-y-clip ">
+                  <div className="lg:flex lg:flex-row lg:h-[20%] lg:pl-[6%] lg:justify-end">
+                    <div className="lg:flex lg:flex-col lg:w-[70%]  pb-[25%] lg:pb-[0%] lg:pr-[18%] overfill-y-hidden ">
                       <div className="flex justify-center lg:justify-start lg:pl-[2%] text-xl my-[2%] font-bold">
                         Most Popular
                       </div>
-                      <div className=" h-[100%] p-[2%]   flex justify-center  lg:justify-start lg:max-h-[50%] lg:max-w-[100%]   ">
+                      <div className=" h-[100%] p-[2%]   flex justify-center  lg:justify-start lg:max-h-[100%] lg:max-w-[60%]   ">
                         <img
-                          className=" h-[100%] w-[90%] rounded-lg object-cover lg:overflow-clip lg:h-[100%] lg:w-[100%]  "
+                          className=" h-[100%] w-[90%] rounded-lg object-cover lg:aspect-[3/2] lg:max-w-xs  "
                           alt="unsplash"
                           src={
                             HomePageData?.data?.data?.popularPosts[0]?.thumbnail
@@ -713,7 +713,7 @@ const Home = () => {
                                                     <p className=" flex justify-start pl-[4%] lg:w-[100%]lg:pr-[0%] lg:text-sm  lg:font-bold">
                                                       {item.title.english}
                                                     </p>
-                                                    <p className="text-xs w-[90%]  ">
+                                                    <p className="text-xs w-[90%] text-left pl-[4%]  ">
                                                       <MultiClamp
                                                         ellipsis="..."
                                                         clamp={3}
@@ -738,7 +738,7 @@ const Home = () => {
                                                     <p className=" lg:w-[100%]  lg:pr-[0%] lg:text-sm  lg:font-bold">
                                                       {item.title.amharic}
                                                     </p>
-                                                    <p className="text-xs w-[90%]  ">
+                                                    <p className="text-xs w-[90%] text-left pl-[4%]  ">
                                                       <MultiClamp
                                                         ellipsis="..."
                                                         clamp={3}
@@ -763,7 +763,7 @@ const Home = () => {
                                                     <p className=" lg:w-[100%]  lg:pr-[0%] lg:text-sm  lg:font-bold">
                                                       {item.title.oromiffa}
                                                     </p>
-                                                    <p className="text-xs w-[90%]  ">
+                                                    <p className="text-xs w-[90%]  text-left pl-[4%]">
                                                       <MultiClamp
                                                         ellipsis="..."
                                                         clamp={3}
@@ -796,7 +796,7 @@ const Home = () => {
                   </div>
 
                   <div className="lg:mx-[4%]">
-                    <div className="flex justify-center  lg:justify-start py-[0%]  pt-[4%] lg:pl-[2%]  text-xl font-bold ">
+                    <div className="flex justify-center  lg:justify-start py-[0%]  pt-[4%] lg:mt-[6%] lg:pl-[2%]  text-xl font-bold ">
                       Popular Posts
                     </div>
 
@@ -811,7 +811,7 @@ const Home = () => {
                                     <>
                                       <div key={item}>
                                         <button
-                                          className="flex flex-col lg:inline p-[4%]  mx-[2%] mb-[25%] lg:pb-[2%] shadow-lg   "
+                                          className="flex flex-col lg:inline p-[4%]  lg:p-[0%]  mx-[2%] mb-[25%] lg:mb-[5%] lg:pb-[2%] shadow-lg   "
                                           onClick={() => {
                                             navigate(`/details/${item.id}`);
                                           }}
@@ -844,39 +844,42 @@ const Home = () => {
                                               src={item?.thumbnail?.link}
                                             />
                                             <div className="flex flex-col ">
-                                              <div className="flex  justify-start">
-                                                <p className="text-xs ">
+                                              <div>
+                                                <p className="text-xs text-left ">
                                                   {item.created_at}
                                                 </p>
                                               </div>
-                                              {isEnglishLang ? (
-                                                <>
-                                                  <MultiClamp
-                                                    ellipsis="..."
-                                                    clamp={3}
-                                                  >
-                                                    {item.body.english}
-                                                  </MultiClamp>
-                                                </>
-                                              ) : isAmharicLang ? (
-                                                <>
-                                                  <MultiClamp
-                                                    ellipsis="..."
-                                                    clamp={3}
-                                                  >
-                                                    {item.body.amharic}
-                                                  </MultiClamp>
-                                                </>
-                                              ) : (
-                                                <>
-                                                  <MultiClamp
-                                                    ellipsis="..."
-                                                    clamp={3}
-                                                  >
-                                                    {item.body.oromiffa}
-                                                  </MultiClamp>
-                                                </>
-                                              )}
+                                              <div className="  text-sm text-left lg:text-xs">
+                                                {isEnglishLang ? (
+                                                  <>
+                                                    <MultiClamp
+                                                      ellipsis="..."
+                                                      clamp={3}
+                                                    >
+                                                      {item.body.english}
+                                                    </MultiClamp>
+                                                  </>
+                                                ) : isAmharicLang ? (
+                                                  <>
+                                                    <MultiClamp
+                                                      ellipsis="..."
+                                                      clamp={3}
+                                                    >
+                                                      {item.body.amharic}
+                                                    </MultiClamp>
+                                                  </>
+                                                ) : (
+                                                  <>
+                                                    <MultiClamp
+                                                      ellipsis="..."
+                                                      clamp={3}
+                                                    >
+                                                      {item.body.oromiffa}
+                                                    </MultiClamp>
+                                                  </>
+                                                )}
+                                                <br />
+                                              </div>
                                             </div>
                                           </div>
                                           <div className="flex justify-start lg:pl-[6%]">

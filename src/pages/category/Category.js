@@ -19,8 +19,7 @@ import { ThreeCircles } from "react-loader-spinner";
 import { BiLogOut } from "react-icons/bi";
 import { GoThreeBars } from "react-icons/go";
 import Modal from "@mui/material/Modal";
-import MultiClamp from 'react-multi-clamp';
-
+import MultiClamp from "react-multi-clamp";
 
 const style = {
   position: "absolute",
@@ -33,7 +32,6 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-
 
 const Category = () => {
   const { id } = useParams();
@@ -63,7 +61,7 @@ const Category = () => {
   };
 
   const { token, user, logout } = useAuth();
-  
+
   const [openBars, setOpenBars] = useState(false);
   const handleOpenBars = () => setOpenBars(true);
   const handleCloseBars = () => setOpenBars(false);
@@ -90,7 +88,7 @@ const Category = () => {
       },
       onError: (res) => {
         if (res?.response?.status == 401) {
-          console.log(res.message);
+          logout();
         }
       },
     }
@@ -111,7 +109,7 @@ const Category = () => {
       },
       onError: (res) => {
         if (res?.response?.status == 401) {
-          console.log(res.message);
+          logout();
         }
       },
     }
@@ -137,7 +135,7 @@ const Category = () => {
       },
       onError: (res) => {
         if (res?.response?.status == 401) {
-          console.log(res.message);
+          logout();
         }
       },
     }
@@ -180,10 +178,10 @@ const Category = () => {
                               <>
                                 {" "}
                                 <MenuItem
-                                  onClick={() =>{
-                                    navigate(`/category/${item.id}`)
-                                    setRefresh(true)}
-                                  }
+                                  onClick={() => {
+                                    navigate(`/category/${item.id}`);
+                                    setRefresh(true);
+                                  }}
                                 >
                                   {" "}
                                   {isEnglishLang ? (
@@ -398,62 +396,62 @@ const Category = () => {
                   <img className="w-[500%]" alt="Vector" src={vector3} />
                 </button>
                 <div className=" hidden lg:flex ">
-                <Button
-                  className=" ml-[6%]  px-[4%]  my-[4%] rounded-lg flex flex-col"
-                  id="basic-button"
-                  aria-controls={open ? "basic-menu" : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open ? "true" : undefined}
-                  onClick={handleClick}
-                >
-                  <img alt="Vector" src={vector4} />
-                  <p className="text-[#f97316]">Language </p>
-                </Button>
-                <Menu
-                  id="basic-menu"
-                  sx={{
-                    left: { xs: "0%", lg: "0%" },
-                    top: { xs: "0%", lg: "-10%" },
-                  }}
-                  anchorEl={anchorEl}
-                  open={open}
-                  onClose={handleClose}
-                  MenuListProps={{
-                    "aria-labelledby": "basic-button",
-                  }}
-                >
-                  <MenuItem
-                    onClick={() => {
-                      handleClose();
-                      setIsEnglishLang(true);
-                      setIsAmharicLang(false);
-                      setIsOromoLang(false);
+                  <Button
+                    className=" ml-[6%]  px-[4%]  my-[4%] rounded-lg flex flex-col"
+                    id="basic-button"
+                    aria-controls={open ? "basic-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                    onClick={handleClick}
+                  >
+                    <img alt="Vector" src={vector4} />
+                    <p className="text-[#f97316]">Language </p>
+                  </Button>
+                  <Menu
+                    id="basic-menu"
+                    sx={{
+                      left: { xs: "0%", lg: "0%" },
+                      top: { xs: "0%", lg: "-10%" },
+                    }}
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                    MenuListProps={{
+                      "aria-labelledby": "basic-button",
                     }}
                   >
-                    English
-                  </MenuItem>
-                  <MenuItem
-                    onClick={() => {
-                      handleClose();
-                      setIsEnglishLang(false);
-                      setIsAmharicLang(true);
-                      setIsOromoLang(true);
-                    }}
-                  >
-                    Amharic
-                  </MenuItem>
+                    <MenuItem
+                      onClick={() => {
+                        handleClose();
+                        setIsEnglishLang(true);
+                        setIsAmharicLang(false);
+                        setIsOromoLang(false);
+                      }}
+                    >
+                      English
+                    </MenuItem>
+                    <MenuItem
+                      onClick={() => {
+                        handleClose();
+                        setIsEnglishLang(false);
+                        setIsAmharicLang(true);
+                        setIsOromoLang(true);
+                      }}
+                    >
+                      Amharic
+                    </MenuItem>
 
-                  <MenuItem
-                    onClick={() => {
-                      handleClose();
-                      setIsEnglishLang(false);
-                      setIsAmharicLang(false);
-                      setIsOromoLang(true);
-                    }}
-                  >
-                    Oromiffa
-                  </MenuItem>
-                </Menu>
+                    <MenuItem
+                      onClick={() => {
+                        handleClose();
+                        setIsEnglishLang(false);
+                        setIsAmharicLang(false);
+                        setIsOromoLang(true);
+                      }}
+                    >
+                      Oromiffa
+                    </MenuItem>
+                  </Menu>
                 </div>
                 <div className="hidden lg:flex mt-[6%] lg:mt-[3%] h-[40%] mx-[2%]  lg:mx-[2%]  ">
                   <button
@@ -695,10 +693,9 @@ const Category = () => {
                                   navigate(`/details/${item.id}`);
                                 }}
                               >
-                                <div ClassName="">
+                                <div ClassName="rounded-lg">
                                   <img
-                                    ClassName=""
-                                    alt="unsplash"
+                                    alt="cover"
                                     src={item?.thumbnail?.link}
                                   />
                                 </div>
@@ -712,13 +709,10 @@ const Category = () => {
                                       {item.title.english}
                                     </p>
                                     <p className="text-xs w-[90%]  ">
-                                                      <MultiClamp
-                                                        ellipsis="..."
-                                                        clamp={3}
-                                                      >
-                                                        {item.body.english}
-                                                      </MultiClamp>
-                                                    </p>
+                                      <MultiClamp ellipsis="..." clamp={3}>
+                                        {item.body.english}
+                                      </MultiClamp>
+                                    </p>
                                   </>
                                 ) : isAmharicLang ? (
                                   <>
@@ -727,13 +721,10 @@ const Category = () => {
                                       {item.title.amharic}
                                     </p>
                                     <p className="text-xs w-[90%]  ">
-                                                      <MultiClamp
-                                                        ellipsis="..."
-                                                        clamp={3}
-                                                      >
-                                                        {item.body.amharic}
-                                                      </MultiClamp>
-                                                    </p>
+                                      <MultiClamp ellipsis="..." clamp={3}>
+                                        {item.body.amharic}
+                                      </MultiClamp>
+                                    </p>
                                   </>
                                 ) : (
                                   <>
@@ -742,13 +733,10 @@ const Category = () => {
                                       {item.title.oromiffa}
                                     </p>
                                     <p className="text-xs w-[90%]  ">
-                                                      <MultiClamp
-                                                        ellipsis="..."
-                                                        clamp={3}
-                                                      >
-                                                        {item.body.oromiffa}
-                                                      </MultiClamp>
-                                                    </p>
+                                      <MultiClamp ellipsis="..." clamp={3}>
+                                        {item.body.oromiffa}
+                                      </MultiClamp>
+                                    </p>
                                   </>
                                 )}
                               </button>

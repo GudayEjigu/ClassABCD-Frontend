@@ -20,6 +20,7 @@
     "axios": "^1.2.4",
     "dotenv": "^16.0.3",
     "formik": "^2.2.9",
+    "material-ui-image": "^3.3.2",
     "muicss": "^0.10.3",
     "query": "^0.2.0",
     "react": "^18.2.0",
